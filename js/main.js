@@ -226,6 +226,21 @@
       });
     }, { threshold: 0.15 });
     vids.forEach(v => vio.observe(v));
+
+    /* pré-carrega o vídeo ~1200px antes de entrar na tela, para já ter
+       buffer quando o play disparar (hospedagem remota tem latência) */
+    const warm = new IntersectionObserver(entries => {
+      entries.forEach(en => {
+        if (!en.isIntersecting) return;
+        const v = en.target;
+        if (v.paused && v.readyState < 2 && v.preload !== 'auto') {
+          v.preload = 'auto';
+          try { v.load(); } catch (e) { /* noop */ }
+        }
+        warm.unobserve(v);
+      });
+    }, { rootMargin: '1200px 0px' });
+    vids.forEach(v => warm.observe(v));
   }
 
   /* ── Caça-palavras: acende cultura, artesanato, pescaria e festa ── */
