@@ -105,7 +105,7 @@
   <div class="wrap coastal__grid rv">
     <figure><img src="assets/img/praia-banco.jpg" alt="Banco de areia na maré baixa" loading="lazy"></figure>
     <figure><img src="assets/img/praia-barco.jpg" alt="Jangada nas águas turquesa" loading="lazy"></figure>
-    <figure><img src="assets/img/praia-capela.jpg" alt="Capela de São Miguel dos Milagres" loading="lazy"></figure>
+    <figure><img src="assets/img/praia-capela.jpg" alt="Capela de São Miguel dos Milagres" loading="lazy" style="object-position:center 65%"></figure>
   </div>
 
   <div class="wrap coastal__story rv">
@@ -160,6 +160,16 @@
           
         </g>
       </svg>
+
+      <!-- Mobile: lista vertical simples (SVG horizontal fica ilegível em 390px) -->
+      <ol class="costa__lista" aria-hidden="true">
+        <li><span class="costa__lista-nm">Praia do Marceneiro</span></li>
+        <li class="is-hi"><span class="costa__lista-nm">Praia do Toque</span><span class="costa__lista-ds">o Bossa</span></li>
+        <li><span class="costa__lista-nm">Praia do Riacho</span></li>
+        <li><span class="costa__lista-nm">Praia de São Miguel</span></li>
+        <li><span class="costa__lista-nm">Praia do Patacho</span></li>
+        <li><span class="costa__lista-nm">Rio Tatuamunha</span></li>
+      </ol>
     </div>
 
     <div class="costa__poles">
@@ -253,7 +263,7 @@
 <section id="casas">
   <div class="wrap sec--casas-intro">
     <div class="track rv"><i>05</i><span>Disponibilidade</span><span class="track__em track__em--chave" aria-hidden="true"></span></div>
-    <h2 class="h-display decode rv" data-final="Últimas unidades disponíveis">Últimas unidades disponíveis</h2>
+    <h2 class="h-display decode rv" data-final="Últimas unidades|disponíveis">Últimas unidades disponíveis</h2>
     <div class="contagem rv">
       <div><dt>O Bossa nasceu com</dt><dd>43 casas</dd></div>
       <div class="contagem__seta" aria-hidden="true">→</div>

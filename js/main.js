@@ -176,7 +176,9 @@
   document.querySelectorAll('.decode').forEach(el => {
     const alvo = el.dataset.final || el.textContent.trim();
     const pool = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    // suporta quebra de linha via | no data-final (ex.: "Últimas unidades|disponíveis")
     el.innerHTML = [...alvo].map(c =>
+      c === '|' ? '<br>' :
       `<span class="ch" data-c="${c}">${c === ' ' ? ' ' : c}</span>`).join('');
     const chars = [...el.querySelectorAll('.ch')];
     let rodou = false;
