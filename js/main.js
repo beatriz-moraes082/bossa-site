@@ -109,6 +109,14 @@
       });
     }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
     reveals.forEach(el => io.observe(el));
+    // mapa vertical (mobile): quase do tamanho do viewport → threshold nunca cruza 12%.
+    // Aplica .on quando qualquer parte encosta no viewport (threshold 0.01).
+    const ioBig = new IntersectionObserver((entries, obs) => {
+      entries.forEach(en => {
+        if (en.isIntersecting) { en.target.classList.add('on'); obs.unobserve(en.target); }
+      });
+    }, { threshold: 0.01, rootMargin: '600px 0px' });
+    document.querySelectorAll('.costa__map-v').forEach(el => ioBig.observe(el));
   } else {
     reveals.forEach(el => el.classList.add('on'));
   }

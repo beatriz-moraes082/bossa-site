@@ -161,15 +161,36 @@
         </g>
       </svg>
 
-      <!-- Mobile: lista vertical simples (SVG horizontal fica ilegível em 390px) -->
-      <ol class="costa__lista" aria-hidden="true">
-        <li><span class="costa__lista-nm">Praia do Marceneiro</span></li>
-        <li class="is-hi"><span class="costa__lista-nm">Praia do Toque</span><span class="costa__lista-ds">o Bossa</span></li>
-        <li><span class="costa__lista-nm">Praia do Riacho</span></li>
-        <li><span class="costa__lista-nm">Praia de São Miguel</span></li>
-        <li><span class="costa__lista-nm">Praia do Patacho</span></li>
-        <li><span class="costa__lista-nm">Rio Tatuamunha</span></li>
-      </ol>
+      <!-- Mobile: SVG vertical serpenteante (linha desce em curvas com os 6 pontos) -->
+      <svg class="costa__map-v" viewBox="0 0 360 860" preserveAspectRatio="xMidYMid meet" role="img" aria-label="As praias da costa: Marceneiro, Toque (o Bossa), Riacho, São Miguel, Patacho e o Rio Tatuamunha" aria-hidden="true">
+        <path class="cline" d="M195,40 C205,110 220,150 210,220 C200,290 165,320 175,395 C185,470 215,500 205,570 C195,640 160,670 170,740 C176,790 178,820 180,860" pathLength="1000"/>
+        <circle class="cline__runner" r="4"/>
+        <g class="cpt" style="--i:0" transform="translate(195,40)">
+          <circle class="cpt__dot" r="4.5"/>
+          <text class="cpt__nm" text-anchor="start" x="18" y="6">Praia do Marceneiro</text>
+        </g>
+        <g class="cpt" style="--i:1" transform="translate(210,220)">
+          <circle class="cpt__dot cpt__dot--hi" r="6"/>
+          <text class="cpt__nm" text-anchor="start" x="20" y="0">Praia do Toque</text>
+          <text class="cpt__ds cpt__ds--hi" text-anchor="start" x="20" y="18">o Bossa</text>
+        </g>
+        <g class="cpt" style="--i:2" transform="translate(175,395)">
+          <circle class="cpt__dot" r="4.5"/>
+          <text class="cpt__nm" text-anchor="end" x="-18" y="6">Praia do Riacho</text>
+        </g>
+        <g class="cpt" style="--i:3" transform="translate(205,570)">
+          <circle class="cpt__dot" r="4.5"/>
+          <text class="cpt__nm" text-anchor="start" x="18" y="6">Praia de São Miguel</text>
+        </g>
+        <g class="cpt" style="--i:4" transform="translate(170,740)">
+          <circle class="cpt__dot" r="4.5"/>
+          <text class="cpt__nm" text-anchor="end" x="-18" y="6">Praia do Patacho</text>
+        </g>
+        <g class="cpt" style="--i:5" transform="translate(180,860)">
+          <circle class="cpt__dot" r="4.5"/>
+          <text class="cpt__nm" text-anchor="start" x="18" y="6">Rio Tatuamunha</text>
+        </g>
+      </svg>
     </div>
 
     <div class="costa__poles">

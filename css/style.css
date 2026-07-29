@@ -1331,7 +1331,7 @@ ul,ol,dl{margin:0;padding:0;list-style:none}
 }
 .cline{fill:none;stroke:rgba(247,244,234,.88);stroke-width:1.5;stroke-linecap:round;
   stroke-dasharray:1000;stroke-dashoffset:1000}
-.costa__map.on .cline{animation:clineDraw 3s var(--ease) forwards}
+.costa__map.on .cline,.costa__map-v.on .cline{animation:clineDraw 3s var(--ease) forwards}
 @keyframes clineDraw{to{stroke-dashoffset:0}}
 .cpt__dot{fill:var(--creme)}
 .cpt__dot--hi{fill:var(--acento-claro)}
@@ -1340,14 +1340,14 @@ ul,ol,dl{margin:0;padding:0;list-style:none}
   fill:rgba(247,244,234,.62)}
 .cpt__ds--hi{fill:var(--acento-claro);opacity:.95}
 .cpt{opacity:0}
-.costa__map.on .cpt{animation:cptIn .6s var(--ease) forwards;animation-delay:calc(.6s + var(--i) * .34s)}
+.costa__map.on .cpt,.costa__map-v.on .cpt{animation:cptIn .6s var(--ease) forwards;animation-delay:calc(.6s + var(--i) * .34s)}
 @keyframes cptIn{from{opacity:0}to{opacity:1}}
 .cline__runner{fill:var(--creme);opacity:0;
   offset-path:path("M0,176 C40,180 80,186 120,190 C210,201 250,214 315,214 C380,214 440,205 500,202 C570,198 630,181 690,172 C770,160 800,127 880,124 C940,121 1010,127 1070,132 C1130,135 1170,138 1200,140");
   offset-distance:0}
-.costa__map.on .cline__runner{animation:clineRun 3s var(--ease) forwards}
+.costa__map.on .cline__runner,.costa__map-v.on .cline__runner{animation:clineRun 3s var(--ease) forwards}
 @keyframes clineRun{0%{opacity:0;offset-distance:0}6%{opacity:1}90%{opacity:1}100%{opacity:0;offset-distance:100%}}
-.costa__map.on .cpt__dot--hi{animation:cptPulse 2.6s var(--ease) 3.6s infinite}
+.costa__map.on .cpt__dot--hi,.costa__map-v.on .cpt__dot--hi{animation:cptPulse 2.6s var(--ease) 3.6s infinite}
 @keyframes cptPulse{0%,100%{r:5}50%{r:7}}
 
 /* polos tipográficos embaixo */
@@ -1358,25 +1358,23 @@ ul,ol,dl{margin:0;padding:0;list-style:none}
 .costa__to{font-family:var(--micro);font-size:.58rem;letter-spacing:.26em;text-transform:uppercase;
   color:rgba(247,244,234,.55);text-align:center;line-height:1.7}
 
-/* mobile: SVG horizontal fica ilegível, mostra lista vertical */
-.costa__lista{display:none}
+/* mobile: SVG horizontal ilegível — mostra a versão vertical serpenteante */
+.costa__map-v{display:none}
 @media(max-width:760px){
   .costa{min-height:auto}
   .costa__inner{gap:clamp(1.4rem,3.5vh,2.2rem);padding-block:clamp(2.5rem,6vh,3.5rem)}
   .costa__mapwrap{overflow:visible}
   .costa__map{display:none}
-  .costa__lista{display:flex;flex-direction:column;gap:1.4rem;margin:0;padding:0 0 0 clamp(1.5rem,5vw,2rem);
-    list-style:none;position:relative}
-  .costa__lista::before{content:"";position:absolute;left:5px;top:14px;bottom:14px;
-    width:1px;background:rgba(247,244,234,.35)}
-  .costa__lista li{position:relative;color:var(--creme);line-height:1.1}
-  .costa__lista li::before{content:"";position:absolute;left:calc(-1 * clamp(1.5rem,5vw,2rem) + 1px);top:8px;
-    width:9px;height:9px;border-radius:50%;background:var(--creme)}
-  .costa__lista li.is-hi::before{background:var(--acento-claro);width:11px;height:11px;top:7px;
-    box-shadow:0 0 0 3px rgba(217,201,163,.25)}
-  .costa__lista-nm{font-family:var(--display);font-size:1.15rem;display:block}
-  .costa__lista-ds{font-family:var(--micro);font-size:.6rem;letter-spacing:.22em;text-transform:uppercase;
-    color:var(--acento-claro);opacity:.9;margin-top:.3rem;display:block}
+  .costa__map-v{display:block;width:100%;max-width:360px;margin:0 auto;height:auto;overflow:visible}
+  .costa__map-v .cpt__nm{font-size:15px;dominant-baseline:middle}
+  .costa__map-v .cpt__ds{font-size:9.5px;letter-spacing:1.6px;dominant-baseline:middle}
+  /* mobile: sempre visível (dispensa animação que estava travando) */
+  .costa__map-v .cline{stroke-dashoffset:0}
+  .costa__map-v .cpt{opacity:1}
+  /* runner do vertical: percorre o mesmo path da linha */
+  .costa__map-v .cline__runner{
+    offset-path:path("M195,40 C205,110 220,150 210,220 C200,290 165,320 175,395 C185,470 215,500 205,570 C195,640 160,670 170,740 C176,790 178,820 180,860")
+  }
   .costa__poles{flex-direction:column;align-items:flex-start;gap:.3rem;text-align:left}
   .costa__pole{font-size:clamp(2rem,10vw,3rem)}
   .costa__to{font-size:.55rem;letter-spacing:.22em;text-align:left;margin:.6rem 0;line-height:1.7}
@@ -1385,5 +1383,7 @@ ul,ol,dl{margin:0;padding:0;list-style:none}
   .cline{stroke-dashoffset:0}
   .cpt{opacity:1}
   .costa__map.on .cline,.costa__map.on .cpt,
-  .costa__map.on .cline__runner,.costa__map.on .cpt__dot--hi{animation:none}
+  .costa__map.on .cline__runner,.costa__map.on .cpt__dot--hi,
+  .costa__map-v.on .cline,.costa__map-v.on .cpt,
+  .costa__map-v.on .cline__runner,.costa__map-v.on .cpt__dot--hi{animation:none}
 }
