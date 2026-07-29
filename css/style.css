@@ -313,7 +313,7 @@ ul,ol,dl{margin:0;padding:0;list-style:none}
 .hero__word .ln{display:block;overflow:hidden}
 /* variante logo real do Bossa (mask preserva a tipografia oficial) */
 .hero__word--logo{display:block;width:100%}
-.hero__logo{display:block;width:100%;aspect-ratio:1328/314;
+.hero__logo{display:block;width:100%;max-width:clamp(260px,32vw,440px);aspect-ratio:1328/314;
   background:var(--oliva-esc);
   -webkit-mask:url("../assets/img/bossa-logo-only.png") no-repeat left center/contain;
   mask:url("../assets/img/bossa-logo-only.png") no-repeat left center/contain}
@@ -516,7 +516,10 @@ ul,ol,dl{margin:0;padding:0;list-style:none}
 
 /* ── FULL-BLEED (mídia sangrando na largura) ─────────────── */
 .bleed{margin:clamp(2.5rem,5vw,4.5rem) 0 0;position:relative}
-.bleed video,.bleed img{width:100%;height:clamp(320px,58vh,620px);object-fit:cover}
+.bleed video,.bleed img{width:100%;height:clamp(320px,58vh,620px);object-fit:cover;display:block}
+/* terreno: vídeo cola nas bordas da seção (sem faixa creme) */
+.sec--terreno .bleed{margin:0}
+.sec--terreno .bleed video,.sec--terreno .bleed img{height:clamp(420px,80vh,880px)}
 .bleed figcaption{
   max-width:var(--maxw);margin:.9rem auto 0;padding-inline:var(--pad);
   font-family:var(--micro);font-size:.62rem;letter-spacing:.2em;
@@ -524,7 +527,7 @@ ul,ol,dl{margin:0;padding:0;list-style:none}
 }
 
 /* ── 02 · TERRENO ────────────────────────────────────────── */
-.sec--terreno{background:var(--areia-luz)}
+.sec--terreno{background:var(--areia-luz);padding:0}
 .sec--terreno .falta{margin-top:clamp(2.5rem,5vw,4rem)}
 
 /* ── 03 · MILAGRES ───────────────────────────────────────── */
@@ -1262,7 +1265,7 @@ ul,ol,dl{margin:0;padding:0;list-style:none}
 .mil2__link .condo__btn{color:var(--oliva-esc);border-color:var(--oliva)}
 .mil2__link .condo__btn:hover{background:var(--oliva-esc);color:var(--creme);border-color:var(--oliva-esc)}
 .lounge__cta{margin-top:clamp(1.5rem,3vw,2rem)}
-.lounge__logo{margin:0 0 clamp(1rem,2vw,1.6rem);max-width:clamp(200px,22vw,300px)}
+.lounge__logo{margin:0 0 clamp(1rem,2vw,1.6rem);max-width:clamp(110px,12vw,160px)}
 .lounge__logo img{display:block;width:100%;height:auto}
 
 /* ═══════════ 01 · A PRAIA — Coastal & Co (praia + grid sóbrio) ═══════════ */
@@ -1292,11 +1295,11 @@ ul,ol,dl{margin:0;padding:0;list-style:none}
   display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(.6rem,1.4vw,1.2rem)
 }
 .coastal__grid figure{margin:0;overflow:hidden;border-radius:2px}
-.coastal__grid img{
+.coastal__grid img,.coastal__grid video{
   width:100%;aspect-ratio:3/4;object-fit:cover;display:block;
   transition:transform 1s var(--ease)
 }
-.coastal__grid figure:hover img{transform:scale(1.05)}
+.coastal__grid figure:hover img,.coastal__grid figure:hover video{transform:scale(1.05)}
 
 /* bloco de texto + reconhecimento Guardian */
 .coastal__story{text-align:center;max-width:58ch;margin:clamp(2.5rem,5vw,4rem) auto 0}
@@ -1319,7 +1322,7 @@ ul,ol,dl{margin:0;padding:0;list-style:none}
 
 @media(max-width:760px){
   .coastal__grid{grid-template-columns:1fr;gap:.6rem}
-  .coastal__grid img{aspect-ratio:16/10}
+  .coastal__grid img,.coastal__grid video{aspect-ratio:16/10}
 }
 
 /* ═══════════ A COSTA — os 15 km (estrutura da ref Works/Field) ═══════════ */
@@ -1355,7 +1358,7 @@ ul,ol,dl{margin:0;padding:0;list-style:none}
 .cpt{opacity:0}
 .costa__map.on .cpt,.costa__map-v.on .cpt{animation:cptIn .6s var(--ease) forwards;animation-delay:calc(.6s + var(--i) * .34s)}
 @keyframes cptIn{from{opacity:0}to{opacity:1}}
-.cline__runner{fill:var(--creme);opacity:0;offset-path:path("M0,176 C40,176 155,190 185,190 C165,190 280,208 310,208 C290,208 405,212 435,212 C415,212 530,208 560,208 C540,208 655,194 685,194 C665,194 780,172 810,172 C790,172 905,138 935,138 C915,138 1030,126 1060,126 C1040,126 1140,138 1170,138");offset-distance:0}
+.cline__runner{fill:var(--creme);opacity:0;offset-path:path("M120,176 C140,176 190,190 220,190 C200,190 300,208 330,208 C310,208 415,212 445,212 C425,212 530,208 560,208 C540,208 655,194 685,194 C665,194 780,172 810,172 C790,172 895,138 925,138 C905,138 1005,126 1035,126 C1015,126 1090,132 1110,132");offset-distance:0}
 .costa__map.on .cline__runner,.costa__map-v.on .cline__runner{animation:clineRun 3s var(--ease) forwards}
 @keyframes clineRun{0%{opacity:0;offset-distance:0}6%{opacity:1}90%{opacity:1}100%{opacity:0;offset-distance:100%}}
 .costa__map.on .cpt__dot--hi,.costa__map-v.on .cpt__dot--hi{animation:cptPulse 2.6s var(--ease) 3.6s infinite}
