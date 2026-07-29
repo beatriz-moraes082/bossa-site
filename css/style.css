@@ -311,6 +311,12 @@ ul,ol,dl{margin:0;padding:0;list-style:none}
    não do viewport — assim a borda esquerda do B alinha com o eyebrow e o "Milagres tem" */
 .hero__word{margin:0;line-height:0}
 .hero__word .ln{display:block;overflow:hidden}
+/* variante logo real do Bossa (mask preserva a tipografia oficial) */
+.hero__word--logo{display:block;width:100%}
+.hero__logo{display:block;width:100%;aspect-ratio:1328/314;
+  background:var(--oliva-esc);
+  -webkit-mask:url("../assets/img/bossa-logo-only.png") no-repeat left center/contain;
+  mask:url("../assets/img/bossa-logo-only.png") no-repeat left center/contain}
 /* texto SVG: textLength força a palavra a preencher exatamente a largura do
    container — alinhamento perfeito à direita, sem JS, sem depender da fonte */
 .hero__word svg{display:block;width:100%;height:auto}
@@ -1120,7 +1126,7 @@ ul,ol,dl{margin:0;padding:0;list-style:none}
   display:grid;grid-template-columns:1fr;gap:2px;
   margin-top:clamp(2.5rem,5vw,4rem)
 }
-@media(min-width:820px){.assina{grid-template-columns:repeat(2,1fr)}}
+@media(min-width:820px){.assina{grid-template-columns:repeat(3,1fr)}}
 .assina__c{position:relative;margin:0;overflow:hidden}
 .assina__c img,.assina__c video{
   width:100%;height:100%;object-fit:cover;object-position:center top;aspect-ratio:3/4;
@@ -1251,6 +1257,13 @@ ul,ol,dl{margin:0;padding:0;list-style:none}
   transition:transform .35s var(--ease)}
 .condo__btn:hover{background:var(--creme);color:var(--oliva-esc);border-color:var(--creme)}
 .condo__btn:hover svg{transform:translateX(4px)}
+/* botão em contexto claro (Milagres/Lounge cta) */
+.mil2__link{text-align:center;margin-top:clamp(2rem,4vw,3rem)}
+.mil2__link .condo__btn{color:var(--oliva-esc);border-color:var(--oliva)}
+.mil2__link .condo__btn:hover{background:var(--oliva-esc);color:var(--creme);border-color:var(--oliva-esc)}
+.lounge__cta{margin-top:clamp(1.5rem,3vw,2rem)}
+.lounge__logo{margin:0 0 clamp(1rem,2vw,1.6rem);max-width:clamp(200px,22vw,300px)}
+.lounge__logo img{display:block;width:100%;height:auto}
 
 /* ═══════════ 01 · A PRAIA — Coastal & Co (praia + grid sóbrio) ═══════════ */
 /* topo sem padding: a foto encosta direto na faixa creme do hero (sem vão) */
@@ -1319,8 +1332,8 @@ ul,ol,dl{margin:0;padding:0;list-style:none}
 .costa__inner{position:relative;z-index:2;width:100%;max-width:var(--maxw);margin-inline:auto;
   padding:clamp(2.5rem,6vh,5rem) var(--pad);
   display:flex;flex-direction:column;justify-content:center;gap:clamp(2rem,5vh,4.5rem)}
-.costa__eyebrow{text-align:center;margin:0;font-family:var(--micro);font-size:.62rem;
-  letter-spacing:.3em;text-transform:uppercase;color:rgba(247,244,234,.72)}
+.costa__eyebrow{text-align:center;margin:0;font-family:var(--display);font-style:italic;
+  font-size:clamp(1.6rem,3.4vw,2.8rem);letter-spacing:-.005em;text-transform:none;color:var(--creme)}
 
 /* mapa / linha */
 .costa__mapwrap{width:100%}
@@ -1334,17 +1347,15 @@ ul,ol,dl{margin:0;padding:0;list-style:none}
 .costa__map.on .cline,.costa__map-v.on .cline{animation:clineDraw 3s var(--ease) forwards}
 @keyframes clineDraw{to{stroke-dashoffset:0}}
 .cpt__dot{fill:var(--creme)}
-.cpt__dot--hi{fill:var(--acento-claro)}
+.cpt__dot--hi{fill:var(--acento-claro);filter:drop-shadow(0 0 8px rgba(217,201,163,.6))}
 .cpt__nm{font-family:var(--display);font-size:19px;fill:var(--creme)}
 .cpt__ds{font-family:var(--micro);font-size:11px;letter-spacing:1.4px;text-transform:uppercase;
   fill:rgba(247,244,234,.62)}
-.cpt__ds--hi{fill:var(--acento-claro);opacity:.95}
+.cpt__ds--hi{fill:var(--acento-claro);opacity:1;font-weight:500;letter-spacing:2.4px}
 .cpt{opacity:0}
 .costa__map.on .cpt,.costa__map-v.on .cpt{animation:cptIn .6s var(--ease) forwards;animation-delay:calc(.6s + var(--i) * .34s)}
 @keyframes cptIn{from{opacity:0}to{opacity:1}}
-.cline__runner{fill:var(--creme);opacity:0;
-  offset-path:path("M0,176 C40,180 80,186 120,190 C210,201 250,214 315,214 C380,214 440,205 500,202 C570,198 630,181 690,172 C770,160 800,127 880,124 C940,121 1010,127 1070,132 C1130,135 1170,138 1200,140");
-  offset-distance:0}
+.cline__runner{fill:var(--creme);opacity:0;offset-path:path("M0,176 C40,176 155,190 185,190 C165,190 280,208 310,208 C290,208 405,212 435,212 C415,212 530,208 560,208 C540,208 655,194 685,194 C665,194 780,172 810,172 C790,172 905,138 935,138 C915,138 1030,126 1060,126 C1040,126 1140,138 1170,138");offset-distance:0}
 .costa__map.on .cline__runner,.costa__map-v.on .cline__runner{animation:clineRun 3s var(--ease) forwards}
 @keyframes clineRun{0%{opacity:0;offset-distance:0}6%{opacity:1}90%{opacity:1}100%{opacity:0;offset-distance:100%}}
 .costa__map.on .cpt__dot--hi,.costa__map-v.on .cpt__dot--hi{animation:cptPulse 2.6s var(--ease) 3.6s infinite}
@@ -1372,9 +1383,7 @@ ul,ol,dl{margin:0;padding:0;list-style:none}
   .costa__map-v .cline{stroke-dashoffset:0}
   .costa__map-v .cpt{opacity:1}
   /* runner do vertical: percorre o mesmo path da linha */
-  .costa__map-v .cline__runner{
-    offset-path:path("M195,40 C205,110 220,150 210,220 C200,290 165,320 175,395 C185,470 215,500 205,570 C195,640 160,670 170,740 C176,790 178,820 180,860")
-  }
+  .costa__map-v .cline__runner{offset-path:path("M195,40 C205,70 205,100 215,130 C225,160 175,190 185,220 C195,250 195,290 205,320 C215,350 185,400 195,430 C205,460 205,510 215,540 C225,570 170,610 180,640 C190,670 190,710 200,740 C210,770 160,810 170,840 C180,870 185,910 195,940")}
   .costa__poles{flex-direction:column;align-items:flex-start;gap:.3rem;text-align:left}
   .costa__pole{font-size:clamp(2rem,10vw,3rem)}
   .costa__to{font-size:.55rem;letter-spacing:.22em;text-align:left;margin:.6rem 0;line-height:1.7}
