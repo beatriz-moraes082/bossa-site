@@ -3,6 +3,15 @@
    Paleta extraída do book oficial (p.06 oliva / p.64 areia)
    ═══════════════════════════════════════════════════════════ */
 
+@font-face{
+  font-family:"Sitka Display";
+  src:url("../assets/fonts/SitkaVF.ttf") format("truetype-variations"),
+      url("../assets/fonts/SitkaVF.ttf") format("truetype");
+  font-weight:100 900;
+  font-style:normal;
+  font-display:swap;
+}
+
 :root{
   --oliva:#606c48;
   --oliva-esc:#3d4530;
@@ -16,9 +25,9 @@
   --linha:rgba(96,108,72,.20);
   --linha-luz:rgba(247,244,234,.26);
 
-  --display:"PT Serif",Georgia,serif;      /* títulos — confirmado contra a arte do deck */
-  --corpo:"PT Sans",system-ui,sans-serif;  /* corpo de texto */
-  --micro:"PT Sans",system-ui,sans-serif;  /* labels em caixa-alta */
+  --display:"PT Serif",Georgia,serif;      /* títulos — Roc Grotesk Wide vai substituir quando chegar */
+  --corpo:"Sitka Display","PT Sans",system-ui,sans-serif;  /* textos corridos — Sitka */
+  --micro:"Sitka Display","PT Sans",system-ui,sans-serif;  /* labels — Sitka */
 
   --pad:clamp(1.25rem,5vw,5.5rem);
   --maxw:1320px;
@@ -1170,10 +1179,11 @@ ul,ol,dl{margin:0;padding:0;list-style:none}
   padding-block:clamp(4.5rem,11vh,8rem)
 }
 .micro--claro{color:rgba(247,244,234,.62)}
+/* condo topo: título + texto empilhados em coluna única (evita aside estranho) */
 .condo__topo{
-  display:grid;grid-template-columns:1fr;gap:clamp(2rem,4vw,4rem);align-items:end
+  display:block;max-width:min(760px,90%);margin-inline:auto;text-align:left
 }
-@media(min-width:960px){.condo__topo{grid-template-columns:1.35fr .65fr}}
+.condo__topo .condo__aside{margin-top:clamp(1.5rem,3vw,2.4rem)}
 .condo__display{
   margin-top:1.4rem;font-family:var(--display);font-weight:400;
   font-size:clamp(2.3rem,6.4vw,5.4rem);line-height:1.02;letter-spacing:-.02em;
