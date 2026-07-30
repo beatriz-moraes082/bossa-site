@@ -1285,8 +1285,8 @@ ul,ol,dl{margin:0;padding:0;list-style:none}
 .mil2__link .condo__btn:hover{background:var(--oliva-esc);color:var(--creme);border-color:var(--oliva-esc)}
 .lounge__cta{margin-top:clamp(1.5rem,3vw,2rem)}
 /* Grid editorial "concept store" — parcerias do Lounge (ref food) */
-.lounge__grid{position:relative;max-width:var(--maxw);margin:clamp(2.5rem,5vw,4rem) auto 0;
-  padding-inline:var(--pad);display:grid;gap:clamp(.6rem,1vw,1rem);
+.lounge__grid{position:relative;max-width:none;margin:clamp(2.5rem,5vw,4rem) 0 0;
+  padding-inline:0;display:grid;gap:clamp(.6rem,1vw,1rem);
   grid-template-columns:1fr;color:var(--oliva-esc)}
 @media(min-width:900px){
   .lounge__grid{
