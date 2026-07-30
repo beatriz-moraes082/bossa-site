@@ -1294,7 +1294,7 @@ ul,ol,dl{margin:0;padding:0;list-style:none}
     grid-template-areas:
       "titulo foto1 foto1"
       "card   foto2 acento";
-    grid-auto-rows:minmax(200px,1fr);
+    grid-template-rows:clamp(280px,32vw,420px) clamp(220px,26vw,340px);
     padding-inline:calc(var(--pad) + 2.2rem)
   }
   .lounge__gitem--titulo{grid-area:titulo}
