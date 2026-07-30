@@ -1284,6 +1284,19 @@ ul,ol,dl{margin:0;padding:0;list-style:none}
 .mil2__link .condo__btn{color:var(--oliva-esc);border-color:var(--oliva)}
 .mil2__link .condo__btn:hover{background:var(--oliva-esc);color:var(--creme);border-color:var(--oliva-esc)}
 .lounge__cta{margin-top:clamp(1.5rem,3vw,2rem)}
+/* Galeria/álbum do Lounge — scroll horizontal com snap */
+.lounge__gal{max-width:var(--maxw);margin:clamp(2rem,4vw,3.5rem) auto 0;padding-inline:var(--pad);
+  display:grid;grid-auto-flow:column;grid-auto-columns:min(78vw,420px);gap:clamp(.8rem,1.6vw,1.4rem);
+  overflow-x:auto;scroll-snap-type:x mandatory;scroll-padding-inline:var(--pad);
+  scrollbar-width:thin;scrollbar-color:rgba(247,244,234,.3) transparent;
+  padding-bottom:1rem}
+.lounge__gal::-webkit-scrollbar{height:6px}
+.lounge__gal::-webkit-scrollbar-thumb{background:rgba(247,244,234,.3);border-radius:3px}
+.lounge__gal figure{margin:0;scroll-snap-align:start;overflow:hidden;border-radius:2px;
+  aspect-ratio:3/4;background:rgba(247,244,234,.05)}
+.lounge__gal img{width:100%;height:100%;object-fit:cover;display:block;
+  transition:transform 1.2s var(--ease)}
+.lounge__gal figure:hover img{transform:scale(1.04)}
 .obras__cta{margin-top:clamp(1.5rem,3vw,2rem)}
 .obras__cta .condo__btn{color:var(--oliva-esc);border-color:var(--oliva)}
 .obras__cta .condo__btn:hover{background:var(--oliva-esc);color:var(--creme);border-color:var(--oliva-esc)}
