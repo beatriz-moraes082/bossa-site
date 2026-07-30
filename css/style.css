@@ -1179,11 +1179,13 @@ ul,ol,dl{margin:0;padding:0;list-style:none}
   padding-block:clamp(4.5rem,11vh,8rem)
 }
 .micro--claro{color:rgba(247,244,234,.62)}
-/* condo topo: título + texto empilhados em coluna única (evita aside estranho) */
 .condo__topo{
-  display:block;max-width:min(760px,90%);margin-inline:auto;text-align:left
+  display:grid;grid-template-columns:1fr;gap:clamp(2rem,4vw,4rem);align-items:end
 }
-.condo__topo .condo__aside{margin-top:clamp(1.5rem,3vw,2.4rem)}
+@media(min-width:960px){.condo__topo{grid-template-columns:1.4fr .6fr}}
+.condo__sub{margin-top:clamp(1.2rem,2.4vw,1.8rem);max-width:52ch;
+  color:rgba(247,244,234,.78);font-size:clamp(1rem,1.2vw,1.15rem);line-height:1.7}
+.condo__sub b{color:var(--creme);font-weight:400}
 .condo__display{
   margin-top:1.4rem;font-family:var(--display);font-weight:400;
   font-size:clamp(2.3rem,6.4vw,5.4rem);line-height:1.02;letter-spacing:-.02em;
