@@ -1290,11 +1290,12 @@ ul,ol,dl{margin:0;padding:0;list-style:none}
   grid-template-columns:1fr;color:var(--oliva-esc)}
 @media(min-width:900px){
   .lounge__grid{
-    grid-template-columns:1.15fr 1fr .9fr;
+    grid-template-columns:1fr 1fr 1fr;
     grid-template-areas:
-      "titulo foto1 foto1"
-      "card   foto2 acento";
-    grid-template-rows:clamp(280px,32vw,420px) clamp(220px,26vw,340px)
+      "foto1  foto1  foto1"
+      "titulo card   acento"
+      "foto2  foto2  foto2";
+    grid-template-rows:clamp(360px,42vw,560px) clamp(240px,26vw,340px) clamp(240px,26vw,340px)
   }
   .lounge__gitem--titulo{grid-area:titulo}
   .lounge__gitem--foto1{grid-area:foto1}
