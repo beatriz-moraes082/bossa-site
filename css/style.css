@@ -1339,12 +1339,10 @@ ul,ol,dl{margin:0;padding:0;list-style:none}
 .lounge__gitem-txt{margin:0;font-family:var(--corpo);font-size:.9rem;line-height:1.6;color:var(--tinta);max-width:32ch}
 .lounge__gitem-txt--claro{color:rgba(247,244,234,.9)}
 
-/* bloco escuro "Cena I / 01" */
-.lounge__gitem--dark{background:var(--tinta);color:var(--creme);justify-content:space-between}
-.lounge__gitem--dark .lounge__gitem-eyebrow{color:rgba(247,244,234,.55)}
-.lounge__gitem--dark .lounge__gitem-txt{color:rgba(247,244,234,.85);font-family:var(--corpo);max-width:26ch}
-.lounge__gitem-num{font-family:var(--display);font-weight:400;font-size:clamp(3.5rem,7vw,6rem);
-  line-height:.85;color:var(--creme);align-self:flex-end;margin-top:auto}
+/* bloco escuro (parceria/atmosfera) */
+.lounge__gitem--dark{background:var(--tinta);color:var(--creme);justify-content:center}
+.lounge__gitem--dark .lounge__gitem-txt{color:rgba(247,244,234,.9);font-family:var(--display);font-style:italic;
+  font-size:clamp(1.1rem,1.5vw,1.4rem);line-height:1.4;max-width:28ch}
 
 /* fotos */
 .lounge__gitem--foto1,.lounge__gitem--foto2{padding:0;background:var(--areia)}
