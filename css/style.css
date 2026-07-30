@@ -322,7 +322,7 @@ ul,ol,dl{margin:0;padding:0;list-style:none}
 .hero__word .ln{display:block;overflow:hidden}
 /* variante logo real do Bossa (mask preserva a tipografia oficial) */
 .hero__word--logo{display:block;width:100%}
-.hero__logo{display:block;width:100%;aspect-ratio:1328/314;
+.hero__logo{display:block;width:100%;aspect-ratio:1328/360;
   background:var(--oliva-esc);
   -webkit-mask:url("../assets/img/bossa-logo-only.png") no-repeat left center/contain;
   mask:url("../assets/img/bossa-logo-only.png") no-repeat left center/contain}
