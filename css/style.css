@@ -1149,9 +1149,11 @@ ul,ol,dl{margin:0;padding:0;list-style:none}
   .assina__c video{object-position:65% center}
 }
 .assina__c:hover img,.assina__c:hover video{transform:scale(1.045);filter:brightness(.92)}
-/* Agra Lemos: zoom permanente pra cortar legenda queimada na base */
-.assina__c video[src*="agra-lemos"]{transform:scale(1.25);transform-origin:center 20%}
-.assina__c:hover video[src*="agra-lemos"]{transform:scale(1.3)}
+/* Agra Lemos e Padovani: zoom permanente pra cortar legenda queimada na base */
+.assina__c video[src*="agra-lemos"],
+.assina__c video[src*="padovani"]{transform:scale(1.25);transform-origin:center 20%}
+.assina__c:hover video[src*="agra-lemos"],
+.assina__c:hover video[src*="padovani"]{transform:scale(1.3)}
 .assina__c figcaption{
   position:absolute;inset:auto 0 0 0;padding:clamp(1.4rem,3vw,2.4rem);
   display:flex;flex-direction:column;gap:.6rem;color:var(--creme);
