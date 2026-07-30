@@ -1292,7 +1292,7 @@ ul,ol,dl{margin:0;padding:0;list-style:none}
   .lounge__grid{
     grid-template-columns:1.15fr 1fr .9fr;
     grid-template-areas:
-      "titulo foto1 dark"
+      "titulo foto1 foto1"
       "card   foto2 acento";
     grid-auto-rows:minmax(200px,1fr);
     padding-inline:calc(var(--pad) + 2.2rem)
