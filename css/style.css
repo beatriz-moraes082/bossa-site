@@ -1277,6 +1277,9 @@ ul,ol,dl{margin:0;padding:0;list-style:none}
 .mil2__link .condo__btn{color:var(--oliva-esc);border-color:var(--oliva)}
 .mil2__link .condo__btn:hover{background:var(--oliva-esc);color:var(--creme);border-color:var(--oliva-esc)}
 .lounge__cta{margin-top:clamp(1.5rem,3vw,2rem)}
+.obras__cta{margin-top:clamp(1.5rem,3vw,2rem)}
+.obras__cta .condo__btn{color:var(--oliva-esc);border-color:var(--oliva)}
+.obras__cta .condo__btn:hover{background:var(--oliva-esc);color:var(--creme);border-color:var(--oliva-esc)}
 .lounge__logo{margin:0 0 clamp(1rem,2vw,1.6rem);max-width:clamp(110px,12vw,160px)}
 .lounge__logo img{display:block;width:100%;height:auto}
 
