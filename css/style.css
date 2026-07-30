@@ -1348,7 +1348,7 @@ ul,ol,dl{margin:0;padding:0;list-style:none}
 .lounge__gitem--foto1,.lounge__gitem--foto2{padding:0;background:var(--areia)}
 .lounge__gitem--foto1{min-height:clamp(240px,32vw,420px)}
 .lounge__gitem--foto2{min-height:clamp(200px,24vw,320px)}
-.lounge__gitem--foto1 img,.lounge__gitem--foto2 img{width:100%;height:100%;object-fit:cover;display:block;
+.lounge__gitem--foto1 img,.lounge__gitem--foto2 img{width:100%;height:100%;object-fit:cover;object-position:center 35%;display:block;
   transition:transform 1.2s var(--ease)}
 .lounge__gitem--foto1:hover img,.lounge__gitem--foto2:hover img{transform:scale(1.04)}
 .lounge__gitem--foto1 figcaption{position:absolute;left:0;bottom:0;padding:.9rem 1.2rem;
