@@ -1359,12 +1359,14 @@ ul,ol,dl{margin:0;padding:0;list-style:none}
   stroke-dasharray:1000;stroke-dashoffset:1000}
 .costa__map.on .cline,.costa__map-v.on .cline{animation:clineDraw 3s var(--ease) forwards}
 @keyframes clineDraw{to{stroke-dashoffset:0}}
-.cpt__dot{fill:var(--creme)}
-.cpt__dot--hi{fill:var(--acento-claro);filter:drop-shadow(0 0 8px rgba(217,201,163,.6))}
-.cpt__nm{font-family:var(--display);font-size:19px;fill:var(--creme)}
-.cpt__ds{font-family:var(--micro);font-size:11px;letter-spacing:1.4px;text-transform:uppercase;
-  fill:rgba(247,244,234,.62)}
-.cpt__ds--hi{fill:var(--acento-claro);opacity:1;font-weight:500;letter-spacing:2.4px}
+.cpt__dot{fill:rgba(247,244,234,.75)}
+.cpt__dot--hi{fill:var(--acento-claro);filter:drop-shadow(0 0 10px rgba(217,201,163,.9))}
+.cpt__nm{font-family:var(--display);font-size:13px;fill:rgba(247,244,234,.8)}
+.cpt__nm--hi{font-size:22px;fill:var(--creme);font-style:italic}
+.cpt__ds{font-family:var(--micro);font-size:9px;letter-spacing:1.4px;text-transform:uppercase;
+  fill:rgba(247,244,234,.55)}
+.cpt__ds--hi{font-size:12px;fill:var(--acento-claro);opacity:1;font-weight:500;letter-spacing:3px}
+.cpt__pin{filter:drop-shadow(0 3px 8px rgba(0,0,0,.35))}
 .cpt{opacity:0}
 .costa__map.on .cpt,.costa__map-v.on .cpt{animation:cptIn .6s var(--ease) forwards;animation-delay:calc(.6s + var(--i) * .34s)}
 @keyframes cptIn{from{opacity:0}to{opacity:1}}
