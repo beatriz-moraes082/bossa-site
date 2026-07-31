@@ -693,7 +693,7 @@ ul,ol,dl{margin:0;padding:0;list-style:none}
 }
 
 /* ── 06 · TAIPA LOUNGE ───────────────────────────────────── */
-.sec--lounge{background:var(--tinta);color:var(--creme)}
+.sec--lounge{background:var(--tinta);color:var(--creme);padding-bottom:0}
 .lounge__grid{
   display:grid;gap:clamp(1rem,2vw,1.6rem);grid-template-columns:1fr;
   max-width:var(--maxw);margin:clamp(2.5rem,5vw,4rem) auto 0;padding-inline:var(--pad)
@@ -1293,9 +1293,8 @@ ul,ol,dl{margin:0;padding:0;list-style:none}
     grid-template-columns:1fr 1fr 1fr;
     grid-template-areas:
       "foto1  foto1  foto1"
-      "titulo card   acento"
-      "foto2  foto2  foto2";
-    grid-template-rows:clamp(360px,42vw,560px) clamp(240px,26vw,340px) clamp(240px,26vw,340px)
+      "titulo card   acento";
+    grid-template-rows:clamp(360px,42vw,560px) clamp(240px,26vw,340px)
   }
   .lounge__gitem--titulo{grid-area:titulo}
   .lounge__gitem--foto1{grid-area:foto1}

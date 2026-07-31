@@ -14,7 +14,7 @@
 
   /* ── CONFIG — João, trocar aqui ─────────────────────────── */
   const WHATSAPP = {
-    numero: '5582000000000',            // TODO: número real da Taipa (DDI+DDD, só dígitos)
+    numero: '5582993128362',            // Michel Cosme — Comercial Taipa Inc
     texto: 'Olá! Vim pelo site do Bossa e quero saber mais sobre as duas últimas casas.'
   };
   const FORM_ENDPOINT = '';            // TODO: URL do Kommo/RD/webhook. Vazio = só loga no console.
