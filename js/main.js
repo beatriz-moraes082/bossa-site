@@ -17,11 +17,69 @@
     numero: '5582993128362',            // Michel Cosme — Comercial Taipa Inc
     texto: 'Olá! Vim pelo site do Bossa e quero saber mais sobre as duas últimas casas.'
   };
-  const FORM_ENDPOINT = '';            // TODO: URL do Kommo/RD/webhook. Vazio = só loga no console.
+  // Webhook do Make que recebe o lead. Vazio = só loga no console.
+  const FORM_ENDPOINT = 'https://hook.us2.make.com/tgfs70lqay7dee1pqqhtv5c4htucdm9e';
+  const FORM_TIMEOUT = 12000;          // ms — evita o usuário travar em "Enviando..."
+
+  const qs = new URLSearchParams(location.search);
+
+  /* ── Camada de dados (GTM) ──────────────────────────────── */
+  window.dataLayer = window.dataLayer || [];
+  const dl = (event, dados) => window.dataLayer.push(Object.assign({ event }, dados || {}));
+
+  /* ── Atribuição: captura UTMs/click-ids e guarda na sessão ──
+     Modelo first-touch por sessão: a primeira visita que chega com
+     parâmetros de campanha é a que fica gravada. Assim o lead que
+     navega, sai e volta pelo orgânico ainda credita a mídia paga. */
+  const ATTR_KEY = 'bossa_attr';
+  const ATTR_PARAMS = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term',
+                       'gclid', 'fbclid', 'ttclid', 'msclkid'];
+
+  const atribuicao = (() => {
+    const ler = () => { try { return JSON.parse(sessionStorage.getItem(ATTR_KEY)) || null; } catch (e) { return null; } };
+    const gravar = o => { try { sessionStorage.setItem(ATTR_KEY, JSON.stringify(o)); } catch (e) { /* modo privado */ } };
+
+    const daUrl = {};
+    ATTR_PARAMS.forEach(p => { const v = qs.get(p); if (v) daUrl[p] = v; });
+
+    const salvo = ler();
+    // URL traz campanha → sempre vence (clique novo em anúncio)
+    if (Object.keys(daUrl).length) {
+      const novo = Object.assign(daUrl, {
+        referrer: document.referrer || '(direct)',
+        landing_page: location.pathname + location.search,
+        capturado_em: new Date().toISOString()
+      });
+      gravar(novo);
+      return novo;
+    }
+    // sem campanha na URL → reaproveita o que já havia na sessão
+    if (salvo) return salvo;
+    // primeira visita sem campanha → registra a origem orgânica/direta
+    const base = {
+      utm_source: document.referrer ? '(referral)' : '(direct)',
+      utm_medium: document.referrer ? 'referral' : '(none)',
+      referrer: document.referrer || '(direct)',
+      landing_page: location.pathname + location.search,
+      capturado_em: new Date().toISOString()
+    };
+    gravar(base);
+    return base;
+  })();
+
+  // publica a atribuição no dataLayer para o GTM usar em qualquer tag
+  dl('attribution_ready', { atribuicao: atribuicao });
 
   /* ── WhatsApp ───────────────────────────────────────────── */
   const waHref = 'https://wa.me/' + WHATSAPP.numero + '?text=' + encodeURIComponent(WHATSAPP.texto);
-  document.querySelectorAll('#wa-float, #wa-inline, #wa-principal').forEach(a => { a.href = waHref; });
+  document.querySelectorAll('#wa-float, #wa-inline, #wa-principal, #wa-erro').forEach(a => { a.href = waHref; });
+
+  // rastreia o clique distinguindo qual dos CTAs converteu
+  const ORIGEM_WA = { 'wa-float': 'botao_flutuante', 'wa-inline': 'secao_contato', 'wa-erro': 'falha_formulario' };
+  Object.keys(ORIGEM_WA).forEach(id => {
+    const a = document.getElementById(id);
+    if (a) a.addEventListener('click', () => dl('whatsapp_click', { origem_cta: ORIGEM_WA[id] }));
+  });
 
   /* ── Menu cheio ─────────────────────────────────────────── */
   const burger = document.getElementById('burger');
@@ -81,7 +139,6 @@
   }
 
   /* ── Reveal on scroll ───────────────────────────────────── */
-  const qs = new URLSearchParams(location.search);
   // ?shift=N sobe o conteúdo N px — permite capturar o miolo da página sem rolar
   const shiftPx = +qs.get('shift') || 0;
   if (shiftPx) document.body.style.marginTop = '-' + shiftPx + 'px';
@@ -280,40 +337,95 @@
   /* ── Formulário ─────────────────────────────────────────── */
   const form = document.getElementById('form');
   const ok = document.getElementById('form-ok');
+  const erro = document.getElementById('form-erro');
   if (!form) return;
+
+  const botao = form.querySelector('.btn');
+  const rotuloBotao = botao ? botao.textContent : '';
+
+  // form_start: primeira interação real com o formulário (dispara uma vez só)
+  let comecou = false;
+  form.addEventListener('input', () => {
+    if (comecou) return;
+    comecou = true;
+    dl('form_start', { form_id: 'agendar_visita' });
+  }, { once: false });
 
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
-    let valid = true;
 
+    /* validação */
+    const invalidos = [];
     ['nome', 'fone'].forEach(id => {
       const input = document.getElementById(id);
       const wrap = input.closest('.field');
       const bad = !input.value.trim() || (id === 'fone' && input.value.replace(/\D/g, '').length < 10);
       wrap.classList.toggle('err', bad);
-      if (bad) valid = false;
+      if (bad) invalidos.push(id);
     });
-    if (!valid) return;
-
-    const dados = Object.fromEntries(new FormData(form).entries());
-    dados.origem = 'lp-bossa';
-    dados.enviado_em = new Date().toISOString();
-
-    if (FORM_ENDPOINT) {
-      try {
-        await fetch(FORM_ENDPOINT, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(dados)
-        });
-      } catch (err) {
-        console.error('Falha no envio:', err);
-      }
-    } else {
-      console.log('[Bossa] Lead capturado (sem endpoint configurado):', dados);
+    if (invalidos.length) {
+      dl('form_error', { form_id: 'agendar_visita', motivo: 'validacao', campos: invalidos.join(',') });
+      return;
     }
 
-    form.querySelectorAll('.field, .btn, .form__note').forEach(el => { el.hidden = true; });
-    ok.hidden = false;
+    /* payload: campos do form + atribuição achatada no nível raiz,
+       para o webhook mapear direto nos campos do CRM */
+    const campos = Object.fromEntries(new FormData(form).entries());
+    const rotulos = { ambas: 'Ambas as tipologias', brisa: 'Casa Brisa 294,85 m²', lagob: 'Casa Lago B 322 m²' };
+    const dados = Object.assign({}, campos, atribuicao, {
+      interesse_label: rotulos[campos.interesse] || campos.interesse,
+      origem: 'lp-bossa',
+      enviado_em: new Date().toISOString(),
+      pagina: location.href,
+      user_agent: navigator.userAgent
+    });
+
+    if (!FORM_ENDPOINT) {
+      console.log('[Bossa] Lead capturado (sem endpoint configurado):', dados);
+      concluir(true, dados, 'sem_endpoint');
+      return;
+    }
+
+    /* envio */
+    if (botao) { botao.disabled = true; botao.textContent = 'Enviando...'; }
+    erro.hidden = true;
+
+    const ctrl = new AbortController();
+    const relogio = setTimeout(() => ctrl.abort(), FORM_TIMEOUT);
+    try {
+      const r = await fetch(FORM_ENDPOINT, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(dados),
+        signal: ctrl.signal,
+        keepalive: true
+      });
+      clearTimeout(relogio);
+      if (!r.ok) throw new Error('HTTP ' + r.status);
+      concluir(true, dados);
+    } catch (err) {
+      clearTimeout(relogio);
+      console.error('[Bossa] Falha no envio do lead:', err);
+      if (botao) { botao.disabled = false; botao.textContent = rotuloBotao; }
+      erro.hidden = false;
+      dl('form_error', { form_id: 'agendar_visita', motivo: 'envio', detalhe: String(err && err.message || err) });
+    }
   });
+
+  /* sucesso: só chega aqui quando o webhook confirmou o recebimento.
+     É este ponto — e só ele — que marca a conversão no GTM. */
+  function concluir(sucesso, dados, nota) {
+    form.querySelectorAll('.field, .btn, .form__note').forEach(el => { el.hidden = true; });
+    erro.hidden = true;
+    ok.hidden = false;
+    dl('generate_lead', {
+      form_id: 'agendar_visita',
+      interesse: dados.interesse,
+      interesse_label: dados.interesse_label,
+      utm_source: dados.utm_source,
+      utm_medium: dados.utm_medium,
+      utm_campaign: dados.utm_campaign,
+      entrega: nota || 'webhook_ok'
+    });
+  }
 })();

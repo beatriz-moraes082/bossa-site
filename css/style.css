@@ -775,6 +775,12 @@ ul,ol,dl{margin:0;padding:0;list-style:none}
   margin-top:1.2rem;padding:.9rem 1.1rem;background:rgba(96,108,72,.1);
   border-left:2px solid var(--oliva);font-size:.98rem;color:var(--oliva-esc)
 }
+.form__erro{
+  margin-top:1.2rem;padding:.9rem 1.1rem;background:rgba(138,91,74,.1);
+  border-left:2px solid var(--erro);font-size:.98rem;color:var(--erro)
+}
+.form__erro a{color:inherit;text-decoration:underline;text-underline-offset:.2em}
+.btn[disabled]{opacity:.55;cursor:progress}
 
 /* ── FOOTER ──────────────────────────────────────────────── */
 .foot{background:var(--tinta);color:rgba(247,244,234,.7);padding-block:clamp(3rem,7vh,5rem) 2rem}
