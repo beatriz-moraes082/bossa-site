@@ -35,34 +35,39 @@
   const ATTR_PARAMS = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term',
                        'gclid', 'fbclid', 'ttclid', 'msclkid'];
 
+  // Schema fixo: TODAS as chaves sempre presentes, vazias quando não houver.
+  // Sem isso o payload muda de formato conforme a origem do lead, e o Make
+  // (que aprende a estrutura pelo primeiro bundle) ignoraria os campos que
+  // não existiam no momento em que a estrutura foi determinada.
+  const molde = () => ATTR_PARAMS.reduce((o, p) => { o[p] = ''; return o; }, {});
+
   const atribuicao = (() => {
     const ler = () => { try { return JSON.parse(sessionStorage.getItem(ATTR_KEY)) || null; } catch (e) { return null; } };
     const gravar = o => { try { sessionStorage.setItem(ATTR_KEY, JSON.stringify(o)); } catch (e) { /* modo privado */ } };
 
-    const daUrl = {};
-    ATTR_PARAMS.forEach(p => { const v = qs.get(p); if (v) daUrl[p] = v; });
-
-    const salvo = ler();
-    // URL traz campanha → sempre vence (clique novo em anúncio)
-    if (Object.keys(daUrl).length) {
-      const novo = Object.assign(daUrl, {
-        referrer: document.referrer || '(direct)',
-        landing_page: location.pathname + location.search,
-        capturado_em: new Date().toISOString()
-      });
-      gravar(novo);
-      return novo;
-    }
-    // sem campanha na URL → reaproveita o que já havia na sessão
-    if (salvo) return salvo;
-    // primeira visita sem campanha → registra a origem orgânica/direta
-    const base = {
-      utm_source: document.referrer ? '(referral)' : '(direct)',
-      utm_medium: document.referrer ? 'referral' : '(none)',
+    const contexto = {
       referrer: document.referrer || '(direct)',
       landing_page: location.pathname + location.search,
       capturado_em: new Date().toISOString()
     };
+
+    const daUrl = {};
+    ATTR_PARAMS.forEach(p => { const v = qs.get(p); if (v) daUrl[p] = v; });
+
+    // URL traz campanha → sempre vence (clique novo em anúncio)
+    if (Object.keys(daUrl).length) {
+      const novo = Object.assign(molde(), daUrl, contexto);
+      gravar(novo);
+      return novo;
+    }
+    // sem campanha na URL → reaproveita o que já havia na sessão
+    const salvo = ler();
+    if (salvo) return Object.assign(molde(), salvo);
+    // primeira visita sem campanha → registra a origem orgânica/direta
+    const base = Object.assign(molde(), {
+      utm_source: document.referrer ? '(referral)' : '(direct)',
+      utm_medium: document.referrer ? 'referral' : '(none)'
+    }, contexto);
     gravar(base);
     return base;
   })();
