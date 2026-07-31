@@ -1355,7 +1355,7 @@ ul,ol,dl{margin:0;padding:0;list-style:none}
   background:linear-gradient(transparent,rgba(36,40,29,.6))}
 
 /* card terracota destaque "Casa Acayu" */
-.lounge__gitem--acento{background:#8f4b32;color:var(--creme);justify-content:space-between;min-height:clamp(200px,24vw,320px)}
+.lounge__gitem--acento{background:#8f4b32;color:var(--creme);justify-content:flex-start;min-height:clamp(200px,24vw,320px)}
 .lounge__gitem--acento .lounge__gitem-eyebrow{color:rgba(247,244,234,.7)}
 .lounge__gitem-arrows{display:flex;gap:1rem;font-size:1rem;color:rgba(247,244,234,.7);margin-top:auto}
 .lounge__gitem-arrows span{cursor:pointer;transition:color .3s var(--ease)}
