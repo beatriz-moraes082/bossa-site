@@ -7,9 +7,42 @@
   font-family:"Sitka Display";
   src:url("../assets/fonts/SitkaVF.ttf") format("truetype-variations"),
       url("../assets/fonts/SitkaVF.ttf") format("truetype");
-  font-weight:100 900;
-  font-style:normal;
-  font-display:swap;
+  font-weight:100 900;font-style:normal;font-display:swap;
+}
+@font-face{
+  font-family:"PT Serif";
+  src:url("../assets/fonts/PTSerif-Regular.ttf") format("truetype");
+  font-weight:400;font-style:normal;font-display:swap;
+}
+@font-face{
+  font-family:"PT Serif";
+  src:url("../assets/fonts/PTSerif-Italic.ttf") format("truetype");
+  font-weight:400;font-style:italic;font-display:swap;
+}
+@font-face{
+  font-family:"PT Serif";
+  src:url("../assets/fonts/PTSerif-Bold.ttf") format("truetype");
+  font-weight:700;font-style:normal;font-display:swap;
+}
+@font-face{
+  font-family:"PT Serif";
+  src:url("../assets/fonts/PTSerif-BoldItalic.ttf") format("truetype");
+  font-weight:700;font-style:italic;font-display:swap;
+}
+@font-face{
+  font-family:"Roc Grotesk Wide";
+  src:url("../assets/fonts/RocGroteskWide-Regular.otf") format("opentype");
+  font-weight:400;font-style:normal;font-display:swap;
+}
+@font-face{
+  font-family:"Roc Grotesk Wide";
+  src:url("../assets/fonts/RocGroteskWide-Medium.otf") format("opentype");
+  font-weight:500;font-style:normal;font-display:swap;
+}
+@font-face{
+  font-family:"Roc Grotesk Wide";
+  src:url("../assets/fonts/RocGroteskWide-Bold.otf") format("opentype");
+  font-weight:700;font-style:normal;font-display:swap;
 }
 
 :root{
@@ -25,7 +58,8 @@
   --linha:rgba(96,108,72,.20);
   --linha-luz:rgba(247,244,234,.26);
 
-  --display:"PT Serif",Georgia,serif;      /* títulos — Roc Grotesk Wide vai substituir quando chegar */
+  --display:"PT Serif",Georgia,serif;      /* títulos editoriais (com italics) */
+  --display-wide:"Roc Grotesk Wide","PT Serif",Georgia,sans-serif; /* alternativa geométrica larga */
   --corpo:"Sitka Display","PT Sans",system-ui,sans-serif;  /* textos corridos — Sitka */
   --micro:"Sitka Display","PT Sans",system-ui,sans-serif;  /* labels — Sitka */
 
@@ -572,8 +606,8 @@ ul,ol,dl{margin:0;padding:0;list-style:none}
   font-family:var(--micro);font-size:.58rem;letter-spacing:.24em;text-transform:uppercase;
   text-shadow:0 1px 12px rgba(20,24,15,.6)}
 .mtile--txt{display:flex;align-items:center;justify-content:center;padding:1rem;text-align:center}
-.mtile__word{position:relative;z-index:3;font-family:var(--display);font-weight:400;
-  font-size:clamp(1rem,2vw,1.75rem);line-height:1;letter-spacing:.02em;
+.mtile__word{position:relative;z-index:3;font-family:var(--display-wide);font-weight:500;
+  font-size:clamp(.85rem,1.7vw,1.5rem);line-height:1;letter-spacing:.04em;
   text-transform:uppercase;color:var(--creme)}
 @media(max-width:760px){
   .mil2__grade{grid-template-columns:repeat(2,1fr);grid-auto-rows:clamp(140px,42vw,200px)}
@@ -1300,7 +1334,7 @@ ul,ol,dl{margin:0;padding:0;list-style:none}
     grid-template-areas:
       "foto1  foto1  foto1"
       "titulo card   acento";
-    grid-template-rows:clamp(360px,42vw,560px) clamp(240px,26vw,340px)
+    grid-template-rows:auto clamp(240px,26vw,340px)
   }
   .lounge__gitem--titulo{grid-area:titulo}
   .lounge__gitem--foto1{grid-area:foto1}
@@ -1351,7 +1385,8 @@ ul,ol,dl{margin:0;padding:0;list-style:none}
 
 /* fotos */
 .lounge__gitem--foto1,.lounge__gitem--foto2{padding:0;background:var(--areia)}
-.lounge__gitem--foto1{min-height:clamp(240px,32vw,420px)}
+.lounge__gitem--foto1{aspect-ratio:21/9;min-height:clamp(240px,32vw,420px)}
+@media(min-width:900px){.lounge__gitem--foto1{aspect-ratio:21/9;min-height:0}}
 .lounge__gitem--foto2{min-height:clamp(200px,24vw,320px)}
 .lounge__gitem--foto1 img,.lounge__gitem--foto2 img{width:100%;height:100%;object-fit:cover;object-position:center 35%;display:block;
   transition:transform 1.2s var(--ease)}
