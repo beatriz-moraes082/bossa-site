@@ -254,7 +254,8 @@ ul,ol,dl{margin:0;padding:0;list-style:none}
 .menu__list a:hover span{opacity:.62;transform:translateX(14px)}
 .menu__foot{
   display:flex;flex-wrap:wrap;gap:2rem;justify-content:space-between;
-  margin-top:clamp(2rem,5vw,4rem);color:rgba(247,244,234,.6);
+  /* .68 e não .6: abaixo disso o contraste sobre o oliva cai de 4.5:1 (WCAG AA) */
+  margin-top:clamp(2rem,5vw,4rem);color:rgba(247,244,234,.68);
   font-family:var(--micro);font-size:.72rem;letter-spacing:.12em;line-height:1.9
 }
 .menu__inc b{font-weight:400;letter-spacing:.2em}
@@ -819,7 +820,8 @@ ul,ol,dl{margin:0;padding:0;list-style:none}
 /* ── FOOTER ──────────────────────────────────────────────── */
 .foot{background:var(--tinta);color:rgba(247,244,234,.7);padding-block:clamp(3rem,7vh,5rem) 2rem}
 .foot__by{margin-top:clamp(1.4rem,3vw,2.2rem);font-family:var(--micro);font-size:.64rem;
-  letter-spacing:.2em;text-transform:uppercase;color:rgba(247,244,234,.42)}
+  /* .52 e não .42: contraste mínimo de 4.5:1 sobre a tinta do rodapé */
+  letter-spacing:.2em;text-transform:uppercase;color:rgba(247,244,234,.52)}
 .foot__trilha{display:inline-flex;align-items:center;gap:.5em;margin-left:.45em;
   color:rgba(247,244,234,.82);text-decoration:none;transition:color .3s var(--ease)}
 .foot__trilha:hover{color:var(--creme)}
@@ -978,8 +980,10 @@ ul,ol,dl{margin:0;padding:0;list-style:none}
 /* ── Contagem 43 → 2 ─────────────────────────────────────── */
 .contagem{
   display:flex;flex-wrap:wrap;align-items:center;gap:clamp(1.2rem,3vw,2.6rem);
-  margin-top:clamp(2rem,4vw,3rem);padding-top:1.6rem;border-top:1px solid var(--linha)
+  margin:clamp(2rem,4vw,3rem) 0 0;padding-top:1.6rem;border-top:1px solid var(--linha)
 }
+/* cada par vira um <dl> próprio: a seta é decorativa e não pode ser filha de um <dl> */
+.contagem__par{margin:0}
 .contagem dt{
   font-family:var(--micro);font-size:.6rem;letter-spacing:.26em;text-transform:uppercase;
   color:var(--oliva);margin-bottom:.5rem

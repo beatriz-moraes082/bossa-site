@@ -95,8 +95,12 @@
     root.classList.toggle('is-open', open);
     burger.setAttribute('aria-expanded', String(open));
     menu.setAttribute('aria-hidden', String(!open));
+    /* inert tira os links do menu fechado da ordem de tabulação — sem ele,
+       quem navega por teclado cai dentro de um menu invisível */
+    menu.inert = !open;
     document.body.style.overflow = open ? 'hidden' : '';
   }
+  setMenu(false);
   burger.addEventListener('click', () => setMenu(!root.classList.contains('is-open')));
   menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => setMenu(false)));
   document.addEventListener('keydown', e => {
@@ -307,16 +311,28 @@
   const leve = largura <= 900 ||
                (navigator.connection && navigator.connection.saveData);
 
+  /* AV1 entrega a mesma qualidade do H.264 com ~40% menos bytes, mas o Safari
+     só decodifica em aparelhos com suporte em hardware. canPlayType responde
+     por aparelho; quem não suporta continua recebendo o .mp4. */
+  const av1 = document.createElement('video')
+                .canPlayType('video/webm; codecs="av01.0.05M.08"') === 'probably';
+
+  const arquivo = v => v.dataset.src.replace(/\.mp4$/, '') +
+                       (leve ? '-m' : '') + (av1 ? '.webm' : '.mp4');
+
   const tocar = v => { if (!v.controls && v.src) v.play().catch(() => {}); };
 
   const carregar = v => {
     if (v.dataset.carregado) return;
     v.dataset.carregado = '1';
     if (v.dataset.poster) v.poster = v.dataset.poster;
-    v.src = leve ? v.dataset.src.replace(/\.mp4$/, '-m.mp4') : v.dataset.src;
+    v.src = arquivo(v);
     // filme com player próprio: define o src mas não baixa nada até o lead dar play
     if (v.controls) return;
-    v.preload = 'auto';
+    /* O hero tem 2min de duração: deixa o navegador transmitir conforme toca,
+       em vez de bufferizar o filme inteiro de saída. Os demais são loops de
+       poucos segundos, aí vale pré-carregar para o loop não engasgar. */
+    v.preload = v === heroVideo ? 'metadata' : 'auto';
     try { v.load(); } catch (e) { /* noop */ }
     if (v.dataset.visivel) tocar(v);
   };
