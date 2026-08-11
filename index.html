@@ -4,6 +4,24 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
+<title>Bossa Eco Luxury Villa</title>
+<meta name="description" content="Bossa Eco Luxury Villa — Praia do Toque, São Miguel dos Milagres. Paisagismo de Luiz Carlos Orsini, autor dos jardins do Instituto Inhotim.">
+
+<!-- CSS primeiro: é o único recurso que bloqueia a renderização -->
+<link rel="stylesheet" href="css/style.css">
+
+<!-- Fontes auto-hospedadas (woff2 subsetado). Sem ida ao Google Fonts. -->
+<link rel="preload" as="font" type="font/woff2" href="assets/fonts/SitkaVF.woff2" crossorigin>
+<link rel="preload" as="font" type="font/woff2" href="assets/fonts/PTSerif-Regular.woff2" crossorigin>
+<link rel="preload" as="font" type="font/woff2" href="assets/fonts/PTSerif-Italic.woff2" crossorigin>
+
+<!-- Primeira tela: poster do hero. É o que o lead vê antes de tudo. -->
+<link rel="preload" as="image" href="assets/video/hero-conceito.webp" fetchpriority="high">
+
+<link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon-32.png">
+<link rel="icon" type="image/png" sizes="512x512" href="assets/img/favicon.png">
+<link rel="apple-touch-icon" href="assets/img/favicon.png">
+
 <!-- Google Tag Manager -->
 <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
 new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -11,16 +29,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
 })(window,document,'script','dataLayer','GTM-NTT6CC6R');</script>
 <!-- End Google Tag Manager -->
-
-<title>Bossa Eco Luxury Villa</title>
-<meta name="description" content="Bossa Eco Luxury Villa — Praia do Toque, São Miguel dos Milagres. Paisagismo de Luiz Carlos Orsini, autor dos jardins do Instituto Inhotim.">
-<link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon-32.png">
-<link rel="icon" type="image/png" sizes="512x512" href="assets/img/favicon.png">
-<link rel="apple-touch-icon" href="assets/img/favicon.png">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=PT+Serif:ital,wght@0,400;0,700;1,400&family=PT+Sans:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
@@ -72,8 +80,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- ══════════ HERO ══════════ -->
 <section class="hero hero--edito">
   <div class="hero__media">
-    <video class="hero__video" id="hero-video" src="assets/video/hero-conceito.mp4" poster="assets/video/hero-conceito.jpg"
-           autoplay muted loop playsinline preload="auto"></video>
+    <video preload="none" class="hero__video" id="hero-video" data-src="assets/video/hero-conceito.mp4" poster="assets/video/hero-conceito.webp" muted loop playsinline></video>
     <div class="hero__veil"></div>
     <p class="hero__loc rv" data-d="0">Praia do Toque <i>·</i> São Miguel dos Milagres <i>·</i> Alagoas</p>
     <button class="hero__som" id="hero-som" type="button" aria-pressed="false" aria-label="Ativar som">
@@ -111,7 +118,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- ══════════ 01 · A PRAIA — boas-vindas (moodboard) ══════════ -->
 <section class="sec sec--praiabv" id="praia">
   <figure class="coastal__hero rv">
-    <img src="assets/img/mil-cavalos.jpg" alt="Cavalos no mar turquesa da Praia do Toque" loading="lazy" style="object-position:center 60%">
+    <img decoding="async" width="1920" height="2400" src="assets/img/mil-cavalos.webp" alt="Cavalos no mar turquesa da Praia do Toque" loading="lazy" style="object-position:center 60%">
   </figure>
 
   <div class="wrap coastal__head rv">
@@ -120,9 +127,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
 
   <div class="wrap coastal__grid rv">
-    <figure><img src="assets/img/praia-banco.jpg" alt="Banco de areia na maré baixa" loading="lazy"></figure>
-    <figure><video src="assets/video/praia-capela.mp4" poster="assets/video/praia-capela.jpg" muted loop playsinline autoplay preload="metadata"></video></figure>
-    <figure><img src="assets/img/praia-barco.jpg" alt="Jangada nas águas turquesa" loading="lazy"></figure>
+    <figure><img decoding="async" width="1000" height="1250" src="assets/img/praia-banco.webp" alt="Banco de areia na maré baixa" loading="lazy"></figure>
+    <figure><video preload="none" data-src="assets/video/praia-capela.mp4" data-poster="assets/video/praia-capela.webp" muted loop playsinline></video></figure>
+    <figure><img decoding="async" width="1000" height="1334" src="assets/img/praia-barco.webp" alt="Jangada nas águas turquesa" loading="lazy"></figure>
   </div>
 
   <div class="wrap coastal__story rv">
@@ -130,14 +137,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <!-- SELO GUARDIAN — reconhecimento afirmado pelo cliente (Taipa), não verificado de forma independente. -->
     <div class="coastal__reconhec">
       <p class="coastal__reconhec-txt">Destacada pelo jornal britânico <em>The Guardian</em> entre as praias mais bonitas do Brasil.</p>
-      <figure class="coastal__selo"><img src="assets/img/selo-guardian.jpg" alt="The Guardian"></figure>
+      <figure class="coastal__selo"><img decoding="async" loading="lazy" width="400" height="146" src="assets/img/selo-guardian.webp" alt="The Guardian"></figure>
     </div>
   </div>
 </section>
 
 <!-- ══════════ A COSTA — os 15 km (linha horizontal sobre fundo imersivo, ref FS) ══════════ -->
 <section class="costa" id="quinze">
-  <img class="costa__bg" src="assets/img/costa-bg.jpg" alt="A costa protegida vista de cima, com a barreira de recifes" loading="lazy">
+  <img decoding="async" width="1920" height="2560" class="costa__bg" src="assets/img/costa-bg.webp" alt="A costa protegida vista de cima, com a barreira de recifes" loading="lazy">
   <div class="costa__veil"></div>
   <div class="costa__inner">
     <p class="costa__eyebrow">A Rota Ecológica dos Milagres</p>
@@ -167,7 +174,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <text class="cpt__nm" text-anchor="end" x="-6" y="40">São Miguel dos Milagres</text>
         </g>
         <g class="cpt cpt--hi" style="--i:4" transform="translate(600,232)">
-          <image class="cpt__pin" href="assets/img/em/local.png" x="-24" y="-88" width="48" height="60"/>
+          <image class="cpt__pin" href="assets/img/em/local.webp" x="-24" y="-88" width="48" height="60"/>
           <circle class="cpt__dot cpt__dot--hi" r="9"/>
           <text class="cpt__nm cpt__nm--hi" text-anchor="middle" y="52">Praia do Toque</text>
           <text class="cpt__ds cpt__ds--hi" text-anchor="middle" y="72">Bossa</text>
@@ -224,7 +231,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <text class="cpt__nm" text-anchor="start" x="18" y="16">dos Milagres</text>
         </g>
         <g class="cpt cpt--hi" style="--i:4" transform="translate(195,430)">
-          <image class="cpt__pin" href="assets/img/em/local.png" x="-20" y="-56" width="40" height="50"/>
+          <image class="cpt__pin" href="assets/img/em/local.webp" x="-20" y="-56" width="40" height="50"/>
           <circle class="cpt__dot cpt__dot--hi" r="8"/>
           <text class="cpt__nm cpt__nm--hi" text-anchor="start" x="22" y="0">Praia do Toque</text>
           <text class="cpt__ds cpt__ds--hi" text-anchor="start" x="22" y="20">Bossa</text>
@@ -278,25 +285,25 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <span class="linhas__em linhas__em--peixe" aria-hidden="true"></span>
       <h3>Lago Ornamental</h3>
       <p>Desenhado por Luiz Carlos Orsini, autor dos icônicos jardins de Inhotim, o lago possui 1.800 m² de curvas sinuosas inspiradas na natureza local, além de um Deck Zen criado para momentos de contemplação.</p>
-      <figure><video src="assets/video/cond-lago.mp4" poster="assets/video/cond-lago.jpg" muted loop playsinline autoplay preload="metadata"></video></figure>
+      <figure><video preload="none" data-src="assets/video/cond-lago.mp4" data-poster="assets/video/cond-lago.webp" muted loop playsinline></video></figure>
     </li>
     <li class="rv">
       <span class="linhas__em linhas__em--concha" aria-hidden="true"></span>
       <h3>Beach Club KOKO</h3>
       <p>Traduz o espírito de comunidade descomplicada e sofisticada. De um lado, as experiências à beira-mar: piscina, lounges, espaço gourmet e apoio completo para viver o mar da Praia do Toque. Do outro, um refúgio para o corpo e a mente: academia com vista mar, SPA e sauna.</p>
-      <figure><video src="assets/video/cond-clube.mp4" poster="assets/video/cond-clube.jpg" muted loop playsinline autoplay preload="metadata"></video></figure>
+      <figure><video preload="none" data-src="assets/video/cond-clube.mp4" data-poster="assets/video/cond-clube.webp" muted loop playsinline></video></figure>
     </li>
     <li class="rv">
       <span class="linhas__em linhas__em--coqueiro" aria-hidden="true"></span>
       <h3>Racket Club</h3>
       <p>Quadra de tênis, pickleball, padel e quadras de areia, para quem encontra prazer no movimento.</p>
-      <figure><video src="assets/video/cond-quadras.mp4" poster="assets/video/cond-quadras.jpg" muted loop playsinline autoplay preload="metadata"></video></figure>
+      <figure><video preload="none" data-src="assets/video/cond-quadras.mp4" data-poster="assets/video/cond-quadras.webp" muted loop playsinline></video></figure>
     </li>
     <li class="rv">
       <span class="linhas__em linhas__em--cadeira" aria-hidden="true"></span>
       <h3>Áreas de Convívio</h3>
       <p>Entre caminhos de areia e sombras de coqueiros, o Playground Kids acolhe a infância com liberdade. Silencioso e iluminado, o Coworking inspira novas ideias. Já o Bicicletário e os Paddle lockers acompanham a rotina de quem transita com leveza entre a mata e o mar.</p>
-      <figure><video src="assets/video/cond-deck.mp4" poster="assets/video/cond-deck.jpg" muted loop playsinline autoplay preload="metadata"></video></figure>
+      <figure><video preload="none" data-src="assets/video/cond-deck.mp4" data-poster="assets/video/cond-deck.webp" muted loop playsinline></video></figure>
     </li>
   </ol>
 </section>
@@ -304,7 +311,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- ══════════ 03 · O TERRENO ══════════ -->
 <section class="sec sec--terreno" id="terreno">
   <figure class="bleed rv">
-    <video src="assets/video/terreno-perspectivas.mp4" poster="assets/video/terreno-perspectivas.jpg" muted loop playsinline autoplay preload="metadata"></video>
+    <video preload="none" data-src="assets/video/terreno-perspectivas.mp4" data-poster="assets/video/terreno-perspectivas.webp" muted loop playsinline></video>
   </figure>
 </section>
 
@@ -317,15 +324,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
   <div class="assina">
     <figure class="assina__c rv">
-      <video src="assets/video/agra-lemos.mp4" poster="assets/video/agra-lemos.jpg" muted loop playsinline autoplay preload="metadata"></video>
+      <video preload="none" data-src="assets/video/agra-lemos.mp4" data-poster="assets/video/agra-lemos.webp" muted loop playsinline></video>
       <figcaption><span class="assina__papel">Arquitetura</span><span class="assina__nome">Agra Lemos</span><span class="assina__desc"><em>Daniel Lemos</em> e <em>Waleska Agra</em> assinam pousadas e hotéis de referência na Rota Ecológica, entre elas o Mahré, eleito um dos cinco melhores do Brasil pela Exame.</span></figcaption>
     </figure>
     <figure class="assina__c rv">
-      <video src="assets/video/padovani.mp4" poster="assets/video/padovani.jpg" muted loop playsinline autoplay preload="metadata"></video>
+      <video preload="none" data-src="assets/video/padovani.mp4" data-poster="assets/video/padovani.webp" muted loop playsinline></video>
       <figcaption><span class="assina__papel">Arquitetura</span><span class="assina__nome">Padovani Arquitetos</span><span class="assina__desc">Só em 2024, acumulou mais de 20 prêmios, entre eles o <em>iF Design Award</em> e o <em>Architecture MasterPrize</em>.</span></figcaption>
     </figure>
     <figure class="assina__c rv">
-      <video src="assets/video/orsini.mp4" poster="assets/video/orsini.jpg" muted loop playsinline autoplay preload="metadata"></video>
+      <video preload="none" data-src="assets/video/orsini.mp4" data-poster="assets/video/orsini.webp" muted loop playsinline></video>
       <figcaption><span class="assina__papel">Paisagismo</span><span class="assina__nome">Luiz Carlos Orsini</span><span class="assina__desc">Renomado paisagista brasileiro, responsável por projetos icônicos como o <em>Instituto Inhotim</em>, onde desenvolveu o paisagismo de 25 hectares e criou os famosos lagos que inspiraram o projeto do Bossa.</span></figcaption>
     </figure>
   </div>
@@ -346,7 +353,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
   <article class="casa-full">
     <div class="casa-full__media">
-      <video src="assets/video/casa-brisa-persp.mp4" poster="assets/video/casa-brisa-persp.jpg" muted loop playsinline autoplay preload="metadata"></video>
+      <video preload="none" data-src="assets/video/casa-brisa-persp.mp4" data-poster="assets/video/casa-brisa-persp.webp" muted loop playsinline></video>
       <div class="casa-full__veil"></div>
     </div>
     <div class="casa-full__body">
@@ -362,7 +369,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
   <article class="casa-full">
     <div class="casa-full__media">
-      <video src="assets/video/casa-lago-persp.mp4" poster="assets/video/casa-lago-persp.jpg" muted loop playsinline autoplay preload="metadata"></video>
+      <video preload="none" data-src="assets/video/casa-lago-persp.mp4" data-poster="assets/video/casa-lago-persp.webp" muted loop playsinline></video>
       <div class="casa-full__veil"></div>
     </div>
     <div class="casa-full__body">
@@ -381,7 +388,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <section class="sec sec--lounge" id="lounge">
   <div class="wrap">
     <figure class="lounge__logo rv" role="img" aria-label="Taipa Lounge">
-      <img src="assets/img/logo-taipa-lounge-branca.png" alt="Taipa Lounge">
+      <img decoding="async" loading="lazy" width="480" height="305" src="assets/img/logo-taipa-lounge-branca.webp" alt="Taipa Lounge">
     </figure>
     <h2 class="h-display h-display--light rv">Enquanto o Bossa nasce,<br>a <em>vivência</em> já começou</h2>
     <p class="mil__lead rv"><b>Taipa Lounge.</b> Entre e fique à vontade. Projeto assinado por <b>Agra Lemos Arquitetos</b>, é onde os proprietários do Bossa se encontram.</p>
@@ -389,8 +396,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
 
   <figure class="filme rv">
-    <video src="assets/video/taipa-lounge-completo.mp4" poster="assets/video/taipa-lounge-completo.jpg"
-           controls playsinline preload="none"></video>
+    <video preload="none" data-src="assets/video/taipa-lounge-completo.mp4" data-poster="assets/video/taipa-lounge-completo.webp"
+           controls playsinline></video>
   </figure>
 
   <!-- Grid editorial "concept store" — parcerias do Lounge -->
@@ -402,7 +409,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
 
     <figure class="lounge__gitem lounge__gitem--foto1">
-      <img src="assets/img/lounge-6.jpg" alt="Taipa Lounge vista ampla com o mar" loading="lazy">
+      <img decoding="async" width="1200" height="1500" src="assets/img/lounge-6.webp" alt="Taipa Lounge vista ampla com o mar" loading="lazy">
       <figcaption>Vista do mar</figcaption>
     </figure>
 
@@ -425,7 +432,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <!-- CACHAÇA AUTORAL — abaixo do Taipa Lounge -->
 <div class="capa capa--curta">
-  <video src="assets/video/bebida-bossa.mp4" poster="assets/video/bebida-bossa.jpg" muted loop playsinline autoplay preload="metadata"></video>
+  <video preload="none" data-src="assets/video/bebida-bossa.mp4" data-poster="assets/video/bebida-bossa.webp" muted loop playsinline></video>
   <div class="capa__veu"></div>
   <div class="capa__txt wrap">
     <p class="frase frase--claro rv">O <em>Drink Bossa</em> tem o sabor do nosso estilo de vida. Uma criação autoral que combina frescor e notas tropicais, feita para celebrar à beira-mar.</p>
@@ -440,14 +447,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
   <div class="mil2__grade">
     <div class="mtile mtile--txt rv" style="--cor:#9c5636"><span class="mtile__word">Gastronomia</span></div>
-    <figure class="mtile mtile--img mtile--tall rv" style="--cor:#26301d"><img src="assets/img/mil-igreja-noite.jpg" alt="Festa noturna iluminada em Milagres" loading="lazy"><figcaption class="mtile__cap">A fé em festa</figcaption></figure>
-    <figure class="mtile mtile--img rv" style="--cor:#a85274"><video src="assets/video/mil-reveillon.mp4" poster="assets/video/mil-reveillon.jpg" muted loop playsinline autoplay preload="none"></video></figure>
-    <figure class="mtile mtile--img rv" style="--cor:#5c7488"><img src="assets/img/mil-pescador.jpg" alt="Pescador com tarrafa" loading="lazy"></figure>
-    <figure class="mtile mtile--img rv" style="--cor:#3c7a72"><img src="assets/img/mil-peixe.jpg" alt="Filés de peixe fresco preparados no local" loading="lazy"></figure>
+    <figure class="mtile mtile--img mtile--tall rv" style="--cor:#26301d"><img decoding="async" width="1000" height="1250" src="assets/img/mil-igreja-noite.webp" alt="Festa noturna iluminada em Milagres" loading="lazy"><figcaption class="mtile__cap">A fé em festa</figcaption></figure>
+    <figure class="mtile mtile--img rv" style="--cor:#a85274"><video preload="none" data-src="assets/video/mil-reveillon.mp4" data-poster="assets/video/mil-reveillon.webp" muted loop playsinline></video></figure>
+    <figure class="mtile mtile--img rv" style="--cor:#5c7488"><img decoding="async" width="1000" height="1334" src="assets/img/mil-pescador.webp" alt="Pescador com tarrafa" loading="lazy"></figure>
+    <figure class="mtile mtile--img rv" style="--cor:#3c7a72"><img decoding="async" width="1000" height="751" src="assets/img/mil-peixe.webp" alt="Filés de peixe fresco preparados no local" loading="lazy"></figure>
     <div class="mtile mtile--txt rv" style="--cor:#6b6d38"><span class="mtile__word">Cultura</span></div>
-    <figure class="mtile mtile--img rv" style="--cor:#9c5636"><img src="assets/img/mil-igreja-festa.jpg" alt="Capela com bandeirinhas de festa" loading="lazy"></figure>
+    <figure class="mtile mtile--img rv" style="--cor:#9c5636"><img decoding="async" width="1000" height="1334" src="assets/img/mil-igreja-festa.webp" alt="Capela com bandeirinhas de festa" loading="lazy"></figure>
     <div class="mtile mtile--txt mtile--wide rv" style="--cor:#5c7488"><span class="mtile__word">Arte</span></div>
-    <figure class="mtile mtile--img rv" style="--cor:#6b6d38"><video src="assets/video/alma-local.mp4" poster="assets/img/mil-meninos.jpg" muted loop playsinline autoplay preload="none"></video></figure>
+    <figure class="mtile mtile--img rv" style="--cor:#6b6d38"><video preload="none" data-src="assets/video/alma-local.mp4" data-poster="assets/img/mil-meninos.webp" muted loop playsinline></video></figure>
     <div class="mtile mtile--txt rv" style="--cor:#3c7a72"><span class="mtile__word">Réveillon</span></div>
   </div>
 
@@ -462,7 +469,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
 
   <figure class="bleed rv">
-    <video src="assets/video/obras.mp4" poster="assets/video/obras.jpg" muted loop playsinline autoplay preload="metadata"></video>
+    <video preload="none" data-src="assets/video/obras.mp4" data-poster="assets/video/obras.webp" muted loop playsinline></video>
     <figcaption>Registro do acompanhamento de obra. Percentuais referentes à data da filmagem.</figcaption>
   </figure>
 </section>
@@ -523,7 +530,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
     </div>
     <figure class="taipa__media rv">
-      <video src="assets/video/taipa-textura.mp4" poster="assets/video/taipa-textura.jpg" muted loop playsinline autoplay preload="metadata"></video>
+      <video preload="none" data-src="assets/video/taipa-textura.mp4" data-poster="assets/video/taipa-textura.webp" muted loop playsinline></video>
     </figure>
   </div>
 </section>
@@ -558,6 +565,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </a>
 </div>
 
-<script src="js/main.js"></script>
+<script src="js/main.js" defer></script>
 </body>
 </html>

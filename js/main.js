@@ -160,6 +160,14 @@
         '.pin__scroll{margin-top:0}.pin__step{min-height:720px}.vida__side{position:static}';
       document.head.appendChild(s);
     }
+    // os vídeos são preguiçosos (data-src): na captura, carrega todos de uma vez
+    document.querySelectorAll('video[data-src]').forEach(v => {
+      if (v.dataset.poster) v.poster = v.dataset.poster;
+      v.src = v.dataset.src;
+      v.preload = 'auto';
+      v.load();
+      if (!v.controls) v.play().catch(() => {});
+    });
     return;
   }
 
@@ -287,32 +295,62 @@
     }, { threshold: 0.5 }).observe(s);
   });
 
-  /* ── Vídeos: só tocam quando visíveis (economia de bateria) ── */
-  const vids = document.querySelectorAll('video');
+  /* ── Vídeos: carregam sob demanda, tocam só quando visíveis ──────
+     Nenhum vídeo é baixado no load da página. Cada <video> guarda o
+     caminho em data-src e só recebe o src quando chega perto da tela.
+     Telas pequenas recebem a variante "-m" (720px), bem mais leve. */
+  const vids = document.querySelectorAll('video[data-src]');
+  const heroVideo = document.getElementById('hero-video');
+
+  const largura = window.innerWidth || document.documentElement.clientWidth ||
+                  (window.screen && screen.width) || 1280;
+  const leve = largura <= 900 ||
+               (navigator.connection && navigator.connection.saveData);
+
+  const tocar = v => { if (!v.controls && v.src) v.play().catch(() => {}); };
+
+  const carregar = v => {
+    if (v.dataset.carregado) return;
+    v.dataset.carregado = '1';
+    if (v.dataset.poster) v.poster = v.dataset.poster;
+    v.src = leve ? v.dataset.src.replace(/\.mp4$/, '-m.mp4') : v.dataset.src;
+    // filme com player próprio: define o src mas não baixa nada até o lead dar play
+    if (v.controls) return;
+    v.preload = 'auto';
+    try { v.load(); } catch (e) { /* noop */ }
+    if (v.dataset.visivel) tocar(v);
+  };
+
   if ('IntersectionObserver' in window) {
+    /* baixa ~600px antes de entrar na tela, para já ter buffer no play */
+    const pre = new IntersectionObserver(entries => {
+      entries.forEach(en => {
+        if (!en.isIntersecting) return;
+        carregar(en.target);
+        pre.unobserve(en.target);
+      });
+    }, { rootMargin: '600px 0px' });
+
     const vio = new IntersectionObserver(entries => {
       entries.forEach(en => {
         const v = en.target;
-        if (en.isIntersecting) { v.play().catch(() => {}); }
-        else { v.pause(); }
+        v.dataset.visivel = en.isIntersecting ? '1' : '';
+        if (en.isIntersecting) { carregar(v); tocar(v); }
+        else if (!v.controls) v.pause();
       });
     }, { threshold: 0.15 });
-    vids.forEach(v => vio.observe(v));
 
-    /* pré-carrega o vídeo ~1200px antes de entrar na tela, para já ter
-       buffer quando o play disparar (hospedagem remota tem latência) */
-    const warm = new IntersectionObserver(entries => {
-      entries.forEach(en => {
-        if (!en.isIntersecting) return;
-        const v = en.target;
-        if (v.paused && v.readyState < 2 && v.preload !== 'auto') {
-          v.preload = 'auto';
-          try { v.load(); } catch (e) { /* noop */ }
-        }
-        warm.unobserve(v);
-      });
-    }, { rootMargin: '1200px 0px' });
-    vids.forEach(v => warm.observe(v));
+    vids.forEach(v => { pre.observe(v); vio.observe(v); });
+  } else {
+    vids.forEach(carregar);
+  }
+
+  /* O hero é o único que não espera scroll — mas espera o primeiro paint,
+     para não disputar banda com o CSS, as fontes e o poster. */
+  if (heroVideo) {
+    const iniciaHero = () => { carregar(heroVideo); tocar(heroVideo); };
+    if (document.readyState === 'complete') iniciaHero();
+    else window.addEventListener('load', iniciaHero, { once: true });
   }
 
   /* ── Caça-palavras: acende cultura, artesanato, pescaria e festa ── */

@@ -5,43 +5,43 @@
 
 @font-face{
   font-family:"Sitka Display";
-  src:url("../assets/fonts/SitkaVF.ttf") format("truetype-variations"),
-      url("../assets/fonts/SitkaVF.ttf") format("truetype");
+  src:url("../assets/fonts/SitkaVF.woff2") format("woff2-variations"),
+      url("../assets/fonts/SitkaVF.woff2") format("woff2");
   font-weight:100 900;font-style:normal;font-display:swap;
 }
 @font-face{
   font-family:"PT Serif";
-  src:url("../assets/fonts/PTSerif-Regular.ttf") format("truetype");
+  src:url("../assets/fonts/PTSerif-Regular.woff2") format("woff2");
   font-weight:400;font-style:normal;font-display:swap;
 }
 @font-face{
   font-family:"PT Serif";
-  src:url("../assets/fonts/PTSerif-Italic.ttf") format("truetype");
+  src:url("../assets/fonts/PTSerif-Italic.woff2") format("woff2");
   font-weight:400;font-style:italic;font-display:swap;
 }
 @font-face{
   font-family:"PT Serif";
-  src:url("../assets/fonts/PTSerif-Bold.ttf") format("truetype");
+  src:url("../assets/fonts/PTSerif-Bold.woff2") format("woff2");
   font-weight:700;font-style:normal;font-display:swap;
 }
 @font-face{
   font-family:"PT Serif";
-  src:url("../assets/fonts/PTSerif-BoldItalic.ttf") format("truetype");
+  src:url("../assets/fonts/PTSerif-BoldItalic.woff2") format("woff2");
   font-weight:700;font-style:italic;font-display:swap;
 }
 @font-face{
   font-family:"Roc Grotesk Wide";
-  src:url("../assets/fonts/RocGroteskWide-Regular.otf") format("opentype");
+  src:url("../assets/fonts/RocGroteskWide-Regular.woff2") format("woff2");
   font-weight:400;font-style:normal;font-display:swap;
 }
 @font-face{
   font-family:"Roc Grotesk Wide";
-  src:url("../assets/fonts/RocGroteskWide-Medium.otf") format("opentype");
+  src:url("../assets/fonts/RocGroteskWide-Medium.woff2") format("woff2");
   font-weight:500;font-style:normal;font-display:swap;
 }
 @font-face{
   font-family:"Roc Grotesk Wide";
-  src:url("../assets/fonts/RocGroteskWide-Bold.otf") format("opentype");
+  src:url("../assets/fonts/RocGroteskWide-Bold.woff2") format("woff2");
   font-weight:700;font-style:normal;font-display:swap;
 }
 
@@ -152,15 +152,15 @@ ul,ol,dl{margin:0;padding:0;list-style:none}
   mask-repeat:no-repeat;mask-position:center;mask-size:contain;
 }
 .track__em--solto{display:inline-block;opacity:.55;margin:.3rem 0 .1rem}
-.track__em--concha  {-webkit-mask-image:url("../assets/img/em/concha.png");mask-image:url("../assets/img/em/concha.png")}
-.track__em--local   {-webkit-mask-image:url("../assets/img/em/local.png");mask-image:url("../assets/img/em/local.png")}
-.track__em--compasso{-webkit-mask-image:url("../assets/img/em/compasso.png");mask-image:url("../assets/img/em/compasso.png")}
-.track__em--chave   {-webkit-mask-image:url("../assets/img/em/chave.png");mask-image:url("../assets/img/em/chave.png")}
-.track__em--peixe   {-webkit-mask-image:url("../assets/img/em/peixe.png");mask-image:url("../assets/img/em/peixe.png")}
-.track__em--abajur  {-webkit-mask-image:url("../assets/img/em/abajur.png");mask-image:url("../assets/img/em/abajur.png")}
-.track__em--martelo {-webkit-mask-image:url("../assets/img/em/martelo.png");mask-image:url("../assets/img/em/martelo.png")}
-.track__em--mesa    {-webkit-mask-image:url("../assets/img/em/mesa.png");mask-image:url("../assets/img/em/mesa.png")}
-.track__em--cadeira {-webkit-mask-image:url("../assets/img/em/cadeira.png");mask-image:url("../assets/img/em/cadeira.png")}
+.track__em--concha  {-webkit-mask-image:url("../assets/img/em/concha.webp");mask-image:url("../assets/img/em/concha.webp")}
+.track__em--local   {-webkit-mask-image:url("../assets/img/em/local.webp");mask-image:url("../assets/img/em/local.webp")}
+.track__em--compasso{-webkit-mask-image:url("../assets/img/em/compasso.webp");mask-image:url("../assets/img/em/compasso.webp")}
+.track__em--chave   {-webkit-mask-image:url("../assets/img/em/chave.webp");mask-image:url("../assets/img/em/chave.webp")}
+.track__em--peixe   {-webkit-mask-image:url("../assets/img/em/peixe.webp");mask-image:url("../assets/img/em/peixe.webp")}
+.track__em--abajur  {-webkit-mask-image:url("../assets/img/em/abajur.webp");mask-image:url("../assets/img/em/abajur.webp")}
+.track__em--martelo {-webkit-mask-image:url("../assets/img/em/martelo.webp");mask-image:url("../assets/img/em/martelo.webp")}
+.track__em--mesa    {-webkit-mask-image:url("../assets/img/em/mesa.webp");mask-image:url("../assets/img/em/mesa.webp")}
+.track__em--cadeira {-webkit-mask-image:url("../assets/img/em/cadeira.webp");mask-image:url("../assets/img/em/cadeira.webp")}
 
 /* ── NAV ─────────────────────────────────────────────────── */
 .nav{
@@ -187,8 +187,8 @@ ul,ol,dl{margin:0;padding:0;list-style:none}
 .logo-mark{
   display:block;width:clamp(104px,10.5vw,142px);aspect-ratio:1328/506;
   background:currentColor;
-  -webkit-mask:url("../assets/img/bossa-logo.png") no-repeat center/contain;
-  mask:url("../assets/img/bossa-logo.png") no-repeat center/contain;
+  -webkit-mask:url("../assets/img/bossa-logo.webp") no-repeat center/contain;
+  mask:url("../assets/img/bossa-logo.webp") no-repeat center/contain;
 }
 .logo-mark--foot{width:clamp(120px,12vw,168px)}
 
@@ -198,8 +198,8 @@ ul,ol,dl{margin:0;padding:0;list-style:none}
 .nav__emblema{
   display:block;height:clamp(24px,2.4vw,30px);aspect-ratio:1400/298;
   background:currentColor;
-  -webkit-mask:url("../assets/img/em/taipa.png") no-repeat left center/contain;
-  mask:url("../assets/img/em/taipa.png") no-repeat left center/contain;
+  -webkit-mask:url("../assets/img/em/taipa.webp") no-repeat left center/contain;
+  mask:url("../assets/img/em/taipa.webp") no-repeat left center/contain;
 }
 .nav .logo-mark{display:none}
 .nav.is-solid .nav__emblema{display:none}
@@ -358,8 +358,8 @@ ul,ol,dl{margin:0;padding:0;list-style:none}
 .hero__word--logo{display:block;width:100%}
 .hero__logo{display:block;width:100%;aspect-ratio:1328/360;
   background:var(--oliva-esc);
-  -webkit-mask:url("../assets/img/bossa-logo-only.png") no-repeat left center/contain;
-  mask:url("../assets/img/bossa-logo-only.png") no-repeat left center/contain}
+  -webkit-mask:url("../assets/img/bossa-logo-only.webp") no-repeat left center/contain;
+  mask:url("../assets/img/bossa-logo-only.webp") no-repeat left center/contain}
 /* texto SVG: textLength força a palavra a preencher exatamente a largura do
    container — alinhamento perfeito à direita, sem JS, sem depender da fonte */
 .hero__word svg{display:block;width:100%;height:auto}
@@ -451,8 +451,8 @@ ul,ol,dl{margin:0;padding:0;list-style:none}
 .ilustra{
   width:min(560px,72%);aspect-ratio:883/136;margin:clamp(3rem,6vw,5rem) auto 0;
   background:var(--oliva);opacity:.55;
-  -webkit-mask:url("../assets/img/ilustra-barco.png") no-repeat center/contain;
-  mask:url("../assets/img/ilustra-barco.png") no-repeat center/contain;
+  -webkit-mask:url("../assets/img/ilustra-barco.webp") no-repeat center/contain;
+  mask:url("../assets/img/ilustra-barco.webp") no-repeat center/contain;
 }
 
 /* cordas de violão — divisor -------------------------------- */
@@ -1292,10 +1292,10 @@ ul,ol,dl{margin:0;padding:0;list-style:none}
   mask-repeat:no-repeat;mask-position:center;mask-size:contain;
   transition:opacity .4s var(--ease),transform .4s var(--ease)
 }
-.linhas__em--peixe   {-webkit-mask-image:url("../assets/img/em/peixe.png");mask-image:url("../assets/img/em/peixe.png")}
-.linhas__em--concha  {-webkit-mask-image:url("../assets/img/em/concha.png");mask-image:url("../assets/img/em/concha.png")}
-.linhas__em--coqueiro{-webkit-mask-image:url("../assets/img/em/coqueiro.png");mask-image:url("../assets/img/em/coqueiro.png")}
-.linhas__em--cadeira {-webkit-mask-image:url("../assets/img/em/cadeira.png");mask-image:url("../assets/img/em/cadeira.png")}
+.linhas__em--peixe   {-webkit-mask-image:url("../assets/img/em/peixe.webp");mask-image:url("../assets/img/em/peixe.webp")}
+.linhas__em--concha  {-webkit-mask-image:url("../assets/img/em/concha.webp");mask-image:url("../assets/img/em/concha.webp")}
+.linhas__em--coqueiro{-webkit-mask-image:url("../assets/img/em/coqueiro.webp");mask-image:url("../assets/img/em/coqueiro.webp")}
+.linhas__em--cadeira {-webkit-mask-image:url("../assets/img/em/cadeira.webp");mask-image:url("../assets/img/em/cadeira.webp")}
 
 /* hover que amplia o tópico */
 .linhas li{transition:padding .45s var(--ease)}
