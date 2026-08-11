@@ -852,12 +852,19 @@ ul,ol,dl{margin:0;padding:0;list-style:none}
 /* ── REVEAL ──────────────────────────────────────────────── */
 .rv{opacity:0;transform:translateY(26px);transition:opacity .95s var(--ease),transform .95s var(--ease)}
 .rv.on{opacity:1;transform:none}
-.hero .rv[data-d="0"]{transition-delay:.15s}
-.hero .rv[data-d="1"]{transition-delay:.3s}
-.hero .rv[data-d="2"]{transition-delay:.42s}
-.hero .rv[data-d="3"]{transition-delay:.54s}
-.hero .rv[data-d="4"]{transition-delay:.78s}
-.hero .rv[data-d="5"]{transition-delay:1s}
+
+/* O hero já nasce na tela: a entrada dele roda em CSS, sem esperar o JS subir
+   e o observer disparar. Do jeito anterior, o maior elemento da primeira tela
+   só era pintado depois do boot do script — e o LCP ia junto.
+   O .on que o JS adiciona depois é inofensivo: a animação prevalece. */
+@keyframes rv-entra{from{opacity:0;transform:translateY(26px)}to{opacity:1;transform:none}}
+.hero .rv{animation:rv-entra .95s var(--ease) both}
+.hero .rv[data-d="0"]{animation-delay:.15s}
+.hero .rv[data-d="1"]{animation-delay:.3s}
+.hero .rv[data-d="2"]{animation-delay:.42s}
+.hero .rv[data-d="3"]{animation-delay:.54s}
+.hero .rv[data-d="4"]{animation-delay:.78s}
+.hero .rv[data-d="5"]{animation-delay:1s}
 
 /* ── MOBILE ──────────────────────────────────────────────── */
 @media (max-width:720px){

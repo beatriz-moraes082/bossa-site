@@ -7,6 +7,25 @@
   // marca que o JS está rodando: só então o CSS esconde o que será animado
   document.documentElement.classList.add('js-on');
 
+  /* ── Gatilho por scroll, sem reflow forçado ───────────────────
+     Ler getBoundingClientRect direto no handler obriga o navegador a
+     recalcular o layout a cada evento de scroll. Aqui a medição acontece
+     dentro de um requestAnimationFrame, no momento em que ele já ia
+     calcular de qualquer jeito. `parar()` cancela o gatilho. */
+  function aoRolar(medir) {
+    let pendente = false;
+    const handler = () => {
+      if (pendente) return;
+      pendente = true;
+      requestAnimationFrame(() => {
+        pendente = false;
+        medir(() => removeEventListener('scroll', handler));
+      });
+    };
+    addEventListener('scroll', handler, { passive: true });
+    handler();
+  }
+
   /* ── Palavra gigante do hero: mede e dimensiona para preencher ~96% da
      largura, independente das métricas da fonte (não clipa B/A em tela nenhuma) ── */
   // (a palavra gigante do hero agora é SVG com textLength — preenche a largura
@@ -244,13 +263,10 @@
         }
       }, 26);
     };
-    const checar = () => {
+    aoRolar(parar => {
       const r = el.getBoundingClientRect();
-      if (r.top < window.innerHeight * 0.7 && r.bottom > 0) {
-        digitar(); removeEventListener('scroll', checar);
-      }
-    };
-    addEventListener('scroll', checar, { passive: true });
+      if (r.top < window.innerHeight * 0.7 && r.bottom > 0) { digitar(); parar(); }
+    });
     checar();
   });
 
@@ -283,12 +299,10 @@
       });
     };
     // dispara por scroll (não por IntersectionObserver) para ser testável
-    const checar = () => {
+    aoRolar(parar => {
       const r = el.getBoundingClientRect();
-      if (r.top < window.innerHeight * 0.82 && r.bottom > 0) { rodar(); removeEventListener('scroll', checar); }
-    };
-    addEventListener('scroll', checar, { passive: true });
-    checar();
+      if (r.top < window.innerHeight * 0.82 && r.bottom > 0) { rodar(); parar(); }
+    });
   });
 
   /* ── Cordas: dedilha ao entrar em cena ──────────────────── */
@@ -385,12 +399,10 @@
         }, i * 780);
       });
     };
-    const checar = () => {
+    aoRolar(parar => {
       const r = cp.getBoundingClientRect();
-      if (r.top < innerHeight * 0.75 && r.bottom > 0) { acender(); removeEventListener('scroll', checar); }
-    };
-    addEventListener('scroll', checar, { passive: true });
-    checar();
+      if (r.top < innerHeight * 0.75 && r.bottom > 0) { acender(); parar(); }
+    });
   }
 
   /* ── Formulário ─────────────────────────────────────────── */
