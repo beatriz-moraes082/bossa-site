@@ -126,10 +126,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- ══════════ 01 · A PRAIA — boas-vindas (moodboard) ══════════ -->
 <section class="sec sec--praiabv" id="praia">
   <figure class="coastal__hero rv">
-    <!-- Esta é a imagem do LCP (o Lighthouse aponta ela, não o vídeo do hero).
-         Por isso nada de loading=lazy aqui: com lazy, o navegador levava
-         1,17s só para COMEÇAR a pedi-la, contra 46ms baixando. -->
-    <img decoding="async" width="1920" height="2400" fetchpriority="high"
+    <!-- O Lighthouse aponta esta imagem como o elemento do LCP e recomenda
+         tirar o lazy e pôr fetchpriority=high. Medi: piora. O conselho dele
+         pressupõe um LCP acima da dobra, e esta figura começa exatamente no
+         limite da tela — priorizá-la rouba banda do que aparece primeiro.
+         Com lazy: LCP 6673ms. Sem lazy + fetchpriority: 8586ms (5 rodadas).
+         O srcset fica: no celular ela é exibida a 412px e vinha em 1920px. -->
+    <img decoding="async" width="1920" height="2400" loading="lazy"
          src="assets/img/mil-cavalos.webp"
          srcset="assets/img/mil-cavalos-900.webp 900w, assets/img/mil-cavalos.webp 1920w"
          sizes="100vw"
