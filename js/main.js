@@ -173,14 +173,11 @@
 
   // ?static=1 revela tudo na hora — usado só para captura/QA
   if (qs.get('static') === '1') {
-    document.querySelectorAll('.rv,.strings').forEach(el => el.classList.add('on'));
-    document.querySelectorAll('.maquina').forEach(el => el.classList.add('pronto'));
-    document.querySelectorAll('.cp__c[data-p]').forEach(el => el.classList.add('aceso'));
+    document.querySelectorAll('.rv').forEach(el => el.classList.add('on'));
     // ?flat=1 troca alturas em svh por px fixos, para capturar a página inteira de uma vez
     if (qs.get('flat') === '1') {
       const s = document.createElement('style');
-      s.textContent = '.hero{min-height:900px}.casa-full{min-height:900px}.pin__media{height:900px;position:relative}' +
-        '.pin__scroll{margin-top:0}.pin__step{min-height:720px}.vida__side{position:static}';
+      s.textContent = '.hero{min-height:900px}.casa-full{min-height:900px}';
       document.head.appendChild(s);
     }
     // os vídeos são preguiçosos (data-src): na captura, carrega todos de uma vez
@@ -213,62 +210,6 @@
   } else {
     reveals.forEach(el => el.classList.add('on'));
   }
-
-  /* ── Vídeo de fundo troca conforme a etapa do scroll fixado ── */
-  const pinVids = [...document.querySelectorAll('.pin__vid')];
-  const pinSteps = [...document.querySelectorAll('.pin__step')];
-  if (pinVids.length > 1 && pinSteps.length) {
-    // via scroll, não IntersectionObserver: a etapa "ativa" é a que cruza o meio da tela
-    const mostrar = (i) => {
-      let alvo = pinVids[0];
-      pinVids.forEach(v => { if (+v.dataset.from <= i) alvo = v; });
-      pinVids.forEach(v => v.classList.toggle('is-on', v === alvo));
-    };
-    let agendado = false;
-    const atualizar = () => {
-      agendado = false;
-      const meio = window.innerHeight / 2;
-      let atual = 0;
-      pinSteps.forEach((s, i) => {
-        const r = s.getBoundingClientRect();
-        if (r.top <= meio && r.bottom > meio) atual = i;
-      });
-      mostrar(atual);
-    };
-    addEventListener('scroll', () => {
-      if (!agendado) { agendado = true; requestAnimationFrame(atualizar); }
-    }, { passive: true });
-    atualizar();
-  }
-
-  /* ── Máquina de escrever: frases da seção 01 ────────────── */
-  document.querySelectorAll('.maquina').forEach(el => {
-    const texto = el.textContent.trim();
-    el.textContent = '';
-    const alvo = document.createTextNode('');
-    const cursor = document.createElement('span');
-    cursor.className = 'cursor';
-    el.append(alvo, cursor);
-    let rodou = false;
-    const digitar = () => {
-      if (rodou) return;
-      rodou = true;
-      el.classList.add('digitando');
-      let i = 0;
-      const t = setInterval(() => {
-        alvo.nodeValue = texto.slice(0, ++i);
-        if (i >= texto.length) {
-          clearInterval(t);
-          el.classList.add('pronto');
-        }
-      }, 26);
-    };
-    aoRolar(parar => {
-      const r = el.getBoundingClientRect();
-      if (r.top < window.innerHeight * 0.7 && r.bottom > 0) { digitar(); parar(); }
-    });
-    checar();
-  });
 
   /* ── Decodificação: revela a frase da escassez letra a letra ── */
   document.querySelectorAll('.decode').forEach(el => {
@@ -303,14 +244,6 @@
       const r = el.getBoundingClientRect();
       if (r.top < window.innerHeight * 0.82 && r.bottom > 0) { rodar(); parar(); }
     });
-  });
-
-  /* ── Cordas: dedilha ao entrar em cena ──────────────────── */
-  document.querySelectorAll('.strings').forEach(s => {
-    if (!('IntersectionObserver' in window)) { s.classList.add('on'); return; }
-    new IntersectionObserver(([e], obs) => {
-      if (e.isIntersecting) { s.classList.add('on'); obs.disconnect(); }
-    }, { threshold: 0.5 }).observe(s);
   });
 
   /* ── Vídeos: carregam sob demanda, tocam só quando visíveis ──────
@@ -381,28 +314,6 @@
     const iniciaHero = () => { carregar(heroVideo); tocar(heroVideo); };
     if (document.readyState === 'complete') iniciaHero();
     else window.addEventListener('load', iniciaHero, { once: true });
-  }
-
-  /* ── Caça-palavras: acende cultura, artesanato, pescaria e festa ── */
-  const cp = document.getElementById('cp');
-  if (cp) {
-    const ordem = ['CULTURA', 'ARTESANATO', 'PESCARIA', 'FESTA'];
-    let rodou = false;
-    const acender = () => {
-      if (rodou) return;
-      rodou = true;
-      ordem.forEach((p, i) => {
-        setTimeout(() => {
-          cp.querySelectorAll(`.cp__c[data-p="${p}"]`).forEach((c, j) => {
-            setTimeout(() => c.classList.add('aceso'), j * 55);
-          });
-        }, i * 780);
-      });
-    };
-    aoRolar(parar => {
-      const r = cp.getBoundingClientRect();
-      if (r.top < innerHeight * 0.75 && r.bottom > 0) { acender(); parar(); }
-    });
   }
 
   /* ── Formulário ─────────────────────────────────────────── */
