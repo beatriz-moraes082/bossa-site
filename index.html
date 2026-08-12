@@ -126,7 +126,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- ══════════ 01 · A PRAIA — boas-vindas (moodboard) ══════════ -->
 <section class="sec sec--praiabv" id="praia">
   <figure class="coastal__hero rv">
-    <img decoding="async" width="1920" height="2400" src="assets/img/mil-cavalos.webp" alt="Cavalos no mar turquesa da Praia do Toque" loading="lazy" style="object-position:center 60%">
+    <!-- Esta é a imagem do LCP (o Lighthouse aponta ela, não o vídeo do hero).
+         Por isso nada de loading=lazy aqui: com lazy, o navegador levava
+         1,17s só para COMEÇAR a pedi-la, contra 46ms baixando. -->
+    <img decoding="async" width="1920" height="2400" fetchpriority="high"
+         src="assets/img/mil-cavalos.webp"
+         srcset="assets/img/mil-cavalos-900.webp 900w, assets/img/mil-cavalos.webp 1920w"
+         sizes="100vw"
+         alt="Cavalos no mar turquesa da Praia do Toque" style="object-position:center 60%">
   </figure>
 
   <div class="wrap coastal__head rv">
