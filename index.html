@@ -30,42 +30,12 @@
 <link rel="preconnect" href="https://connect.facebook.net" crossorigin>
 <link rel="preconnect" href="https://signals.birch.click" crossorigin>
 
-<!-- Google Tag Manager — carregamento adiado.
-     Medido: o GTM e o pixel da Meta ocupam a thread principal e, quando isso
-     cai em cima da pintura do poster, o LCP salta de 2,3s para 7,5s. Bloqueando
-     os dois na medição, a pior rodada foi de 69 para 91 e o TBT de 217ms para 6ms.
-
-     NENHUM evento se perde por causa disso: o dataLayer é criado agora, na
-     primeira linha. Tudo que for empurrado antes do GTM subir fica na fila e é
-     processado quando ele carrega — é assim que o dataLayer funciona.
-
-     Dispara no que vier primeiro: primeiro gesto do lead, ou o load da página,
-     ou 3,5s. Quem interage é justamente quem interessa, e é atendido na hora. -->
-<script>
-window.dataLayer = window.dataLayer || [];
-(function (w, d, id) {
-  var carregou = false;
-  var GESTOS = ['pointerdown', 'touchstart', 'keydown', 'scroll', 'wheel'];
-
-  function carregaGTM() {
-    if (carregou) return;
-    carregou = true;
-    GESTOS.forEach(function (g) { w.removeEventListener(g, carregaGTM, true); });
-    w.dataLayer.push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
-    var s = d.createElement('script');
-    s.async = true;
-    s.src = 'https://www.googletagmanager.com/gtm.js?id=' + id;
-    d.head.appendChild(s);
-  }
-
-  GESTOS.forEach(function (g) {
-    w.addEventListener(g, carregaGTM, { capture: true, once: true, passive: true });
-  });
-  if (d.readyState === 'complete') setTimeout(carregaGTM, 500);
-  else w.addEventListener('load', function () { setTimeout(carregaGTM, 500); }, { once: true });
-  setTimeout(carregaGTM, 3500);   // teto: rede ruim não pode deixar o lead sem rastreio
-})(window, document, 'GTM-NTT6CC6R');
-</script>
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-NTT6CC6R');</script>
 <!-- End Google Tag Manager -->
 </head>
 <body>
