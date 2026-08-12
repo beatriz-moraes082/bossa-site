@@ -308,12 +308,27 @@
     vids.forEach(carregar);
   }
 
-  /* O hero é o único que não espera scroll — mas espera o primeiro paint,
-     para não disputar banda com o CSS, as fontes e o poster. */
+  /* O hero é o único que não espera scroll. Ele espera só o poster ficar
+     pronto — não o load da página inteira.
+     O vídeo do hero é o maior elemento da primeira tela, então é ele que
+     define o LCP. Esperar o `load` significava esperar fontes, emblemas e
+     imagens terminarem antes de o filme sequer começar a baixar. Esperar o
+     poster é o suficiente: garante que ele não rouba banda do LCP, sem
+     empurrar o vídeo para o fim da fila. */
   if (heroVideo) {
-    const iniciaHero = () => { carregar(heroVideo); tocar(heroVideo); };
-    if (document.readyState === 'complete') iniciaHero();
-    else window.addEventListener('load', iniciaHero, { once: true });
+    let iniciado = false;
+    const iniciaHero = () => {
+      if (iniciado) return;
+      iniciado = true;
+      carregar(heroVideo);
+      tocar(heroVideo);
+    };
+    const poster = new Image();
+    poster.src = heroVideo.poster;
+    if (poster.complete) iniciaHero();
+    else { poster.onload = iniciaHero; poster.onerror = iniciaHero; }
+    // rede ruim não pode deixar o hero parado para sempre
+    setTimeout(iniciaHero, 4000);
   }
 
   /* ── Formulário ─────────────────────────────────────────── */
