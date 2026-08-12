@@ -23,6 +23,13 @@
 <link rel="icon" type="image/png" sizes="512x512" href="assets/img/favicon.png">
 <link rel="apple-touch-icon" href="assets/img/favicon.png">
 
+<!-- Abre a conexão com os domínios de rastreamento antes de precisar deles.
+     Não muda o que é carregado nem quando dispara — só evita pagar DNS + TLS
+     no meio do caminho crítico. O Lighthouse mede 330 ms de LCP só no birch. -->
+<link rel="preconnect" href="https://www.googletagmanager.com" crossorigin>
+<link rel="preconnect" href="https://connect.facebook.net" crossorigin>
+<link rel="preconnect" href="https://signals.birch.click" crossorigin>
+
 <!-- Google Tag Manager -->
 <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
 new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -145,7 +152,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <!-- ══════════ A COSTA — os 15 km (linha horizontal sobre fundo imersivo, ref FS) ══════════ -->
 <section class="costa" id="quinze">
-  <img decoding="async" width="1920" height="2560" class="costa__bg" src="assets/img/costa-bg.webp" alt="A costa protegida vista de cima, com a barreira de recifes" loading="lazy">
+  <img decoding="async" width="1600" height="2134" class="costa__bg" src="assets/img/costa-bg.webp" alt="A costa protegida vista de cima, com a barreira de recifes" loading="lazy">
   <div class="costa__veil"></div>
   <div class="costa__inner">
     <p class="costa__eyebrow">A Rota Ecológica dos Milagres</p>

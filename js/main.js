@@ -253,16 +253,23 @@
   const vids = document.querySelectorAll('video[data-src]');
   const heroVideo = document.getElementById('hero-video');
 
-  const largura = window.innerWidth || document.documentElement.clientWidth ||
-                  (window.screen && screen.width) || 1280;
-  const leve = largura <= 900 ||
+  /* matchMedia e não innerWidth: ler innerWidth obriga o navegador a
+     recalcular o layout na hora (reflow forçado). A media query já está
+     resolvida, então sai de graça. */
+  const leve = matchMedia('(max-width: 900px)').matches ||
                (navigator.connection && navigator.connection.saveData);
 
   /* AV1 entrega a mesma qualidade do H.264 com ~40% menos bytes, mas o Safari
      só decodifica em aparelhos com suporte em hardware. canPlayType responde
-     por aparelho; quem não suporta continua recebendo o .mp4. */
-  const av1 = document.createElement('video')
-                .canPlayType('video/webm; codecs="av01.0.05M.08"') === 'probably';
+     por aparelho; quem não suporta continua recebendo o .mp4.
+     A string precisa bater com o que foi codificado (perfil Main, level 4);
+     com um level menor, alguns navegadores respondem vazio e caem no mp4
+     sem necessidade. Aceita 'maybe' porque parte deles não crava 'probably'. */
+  const av1 = (() => {
+    const t = document.createElement('video');
+    return ['av01.0.08M.08', 'av01.0.05M.08'].some(c =>
+      t.canPlayType(`video/webm; codecs="${c}"`) !== '');
+  })();
 
   const arquivo = v => v.dataset.src.replace(/\.mp4$/, '') +
                        (leve ? '-m' : '') + (av1 ? '.webm' : '.mp4');
