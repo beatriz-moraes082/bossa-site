@@ -1,0 +1,9 @@
+{
+  "name": "bossa-ferramentas",
+  "private": true,
+  "description": "Medicao de performance da LP do Bossa",
+  "devDependencies": {
+    "lighthouse": "^13.4.1",
+    "puppeteer-core": "^25.6.0"
+  }
+}
