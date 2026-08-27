@@ -166,3 +166,30 @@ o problema nunca foi o nosso código.
   rastreamento do navegador sem perder evento.
 
 **Decidido pelo cliente:** o filme do hero (2min10, com narração) fica como está.
+
+---
+
+## Edição pelo portal da Taipa
+
+Esta LP é administrada pelo **portal** que vive em `../portal` — fora deste
+repositório, de propósito: assim nada de painel vai junto para o ar quando
+o site publica.
+
+O que este repositório precisa fornecer:
+
+| | |
+|---|---|
+| `index.html` | com os atributos `data-ed` gravados. São **aditivos** — o arquivo é o original mais eles, byte a byte. Custo: **+0,70 KB depois do gzip**. |
+| `ferramentas/otimiza-imagem.sh` | sem ele, o portal não deixa trocar foto |
+| `ferramentas/encoda-video.sh` | sem ele, o portal não deixa trocar vídeo |
+
+O conteúdo editável e o histórico de versões ficam em `portal/dados/bossa/`,
+**não aqui**. Este repositório continua sendo só o site.
+
+```bash
+python3 portal/servidor.py     # http://127.0.0.1:5600
+```
+
+**Não remova os `data-ed` do `index.html`.** É por eles que o portal encontra
+cada trecho. Se algum sumir, aquele trecho simplesmente deixa de ser editável
+— sem erro, sem aviso. Detalhes em `portal/README.md`.
