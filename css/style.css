@@ -69,6 +69,8 @@
 }
 
 *,*::before,*::after{box-sizing:border-box}
+/* texto só para leitores de tela / SEO — invisível na tela, sem alterar layout */
+.vh{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
 html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
 body{
   margin:0;background:var(--areia);color:var(--tinta);

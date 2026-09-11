@@ -52,7 +52,7 @@
      navega, sai e volta pelo orgânico ainda credita a mídia paga. */
   const ATTR_KEY = 'bossa_attr';
   const ATTR_PARAMS = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term',
-                       'gclid', 'fbclid', 'ttclid', 'msclkid'];
+                       'gclid', 'gbraid', 'wbraid', 'fbclid', 'ttclid', 'msclkid'];
 
   // Schema fixo: TODAS as chaves sempre presentes, vazias quando não houver.
   // Sem isso o payload muda de formato conforme a origem do lead, e o Make
@@ -429,7 +429,13 @@
       utm_source: dados.utm_source,
       utm_medium: dados.utm_medium,
       utm_campaign: dados.utm_campaign,
-      entrega: nota || 'webhook_ok'
+      entrega: nota || 'webhook_ok',
+      // Dados de contato para as Conversões Otimizadas (enhanced conversions).
+      // O GTM criptografa (SHA-256) no navegador antes de enviar; nada sai legível.
+      enhanced_conversion_data: {
+        email: dados.email || '',
+        phone_number: dados.fone ? '+55' + dados.fone.replace(/\D/g, '') : ''
+      }
     });
   }
 })();
