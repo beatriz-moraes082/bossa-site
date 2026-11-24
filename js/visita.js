@@ -104,7 +104,8 @@
     const ok = cartao.querySelector('.ok');
     const erro = form.querySelector('.form__erro');
     const botao = form.querySelector('.btn');
-    const rotulo = botao.textContent;
+    const textoBotao = botao.querySelector('span') || botao;
+    const rotulo = textoBotao.textContent;
 
     mascaraFone(form.elements.fone);
 
@@ -140,7 +141,7 @@
       });
 
       botao.disabled = true;
-      botao.textContent = 'Enviando...';
+      textoBotao.textContent = 'Enviando...';
       erro.hidden = true;
 
       const ctrl = new AbortController();
@@ -160,7 +161,7 @@
         clearTimeout(relogio);
         console.error('[Bossa] Falha no envio do lead:', err);
         botao.disabled = false;
-        botao.textContent = rotulo;
+        textoBotao.textContent = rotulo;
         erro.hidden = false;
         dl('form_error', { form_id: FORM_ID, form_posicao: posicao, motivo: 'envio', detalhe: String(err && err.message || err) });
       }
@@ -171,6 +172,7 @@
     function concluir(dados) {
       form.hidden = true;
       ok.hidden = false;
+      ok.classList.add('mostra');
       ok.focus({ preventScroll: true });
       dl('generate_lead', {
         form_id: FORM_ID,
@@ -192,6 +194,45 @@
   document.querySelectorAll('.wa-erro').forEach(a => a.addEventListener('click', () => {
     dl('whatsapp_click', { origem_cta: 'falha_formulario', pagina_lp: 'visita' });
   }));
+
+  /* ── Entrada dos blocos ao rolar (como o .rv da LP principal) ── */
+  const reveals = document.querySelectorAll('.rv');
+  if ('IntersectionObserver' in window) {
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(en => {
+        if (en.isIntersecting) { en.target.classList.add('on'); io.unobserve(en.target); }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+    reveals.forEach(el => io.observe(el));
+  } else {
+    reveals.forEach(el => el.classList.add('on'));
+  }
+
+  /* ── Letras que se acertam no título das casas (igual à LP principal) ── */
+  const reduzir = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  document.querySelectorAll('.decode').forEach(el => {
+    const alvo = el.dataset.final || el.textContent.trim();
+    el.setAttribute('aria-label', alvo.replace('|', ' '));
+    if (reduzir) { el.innerHTML = alvo.split('|').join('<br>'); return; }
+    const pool = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    el.innerHTML = [...alvo].map(c =>
+      c === '|' ? '<br>' : `<span class="ch" aria-hidden="true" data-c="${c}">${c}</span>`).join('');
+    const chars = [...el.querySelectorAll('.ch')];
+    const rodar = () => chars.forEach((sp, i) => {
+      const real = sp.dataset.c;
+      if (real === ' ') return;
+      sp.classList.add('embaralha');
+      let n = 0;
+      const t = setInterval(() => {
+        sp.textContent = pool[Math.floor(Math.random() * pool.length)];
+        if (++n > 3 + i * 0.7) { clearInterval(t); sp.textContent = real; sp.classList.remove('embaralha'); }
+      }, 28);
+    });
+    if ('IntersectionObserver' in window) {
+      const o = new IntersectionObserver(([en]) => { if (en.isIntersecting) { rodar(); o.disconnect(); } }, { threshold: 0.4 });
+      o.observe(el);
+    }
+  });
 
   /* ── Vídeo das obras: só baixa no clique ────────────────── */
   const filme = document.querySelector('.filme');
