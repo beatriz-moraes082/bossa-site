@@ -257,6 +257,93 @@ a{color:inherit}
 .rodape b{font-weight:400;color:var(--creme)}
 .rodape__by{margin-top:2rem;font-family:var(--micro);font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(247,244,234,.52)}
 
+
+/* ── a Rota Ecológica: foto aérea com o mapa que se desenha (igual à LP principal) ── */
+/* A COSTA — linha horizontal animada sobre fundo imersivo (ref FS) */
+.costa{position:relative;min-height:clamp(560px,92vh,940px);display:flex;overflow:hidden;background:var(--oliva-esc)}
+.costa__bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.costa__veil{position:absolute;inset:0;background:
+  linear-gradient(180deg,rgba(18,22,15,.58),rgba(18,22,15,.32) 42%,rgba(18,22,15,.62)),
+  radial-gradient(130% 100% at 50% 46%,rgba(18,22,15,.12),rgba(18,22,15,.52))}
+.costa__inner{position:relative;z-index:2;width:100%;max-width:var(--maxw);margin-inline:auto;
+  padding:clamp(2.5rem,6vh,5rem) var(--pad);
+  display:flex;flex-direction:column;justify-content:center;gap:clamp(2rem,5vh,4.5rem)}
+.costa__eyebrow{text-align:center;margin:0;font-family:var(--display);font-style:italic;
+  font-size:clamp(1.6rem,3.4vw,2.8rem);letter-spacing:-.005em;text-transform:none;color:var(--creme)}
+
+/* mapa / linha */
+.costa__mapwrap{width:100%}
+.costa__map{display:block;width:100%;min-width:0;height:auto;overflow:hidden}
+@media(max-width:760px){
+  .costa__mapwrap{overflow-x:auto}
+  .costa__map{min-width:680px}
+}
+.cline{fill:none;stroke:rgba(247,244,234,.88);stroke-width:1.5;stroke-linecap:round;
+  stroke-dasharray:1000;stroke-dashoffset:1000}
+.costa__map.on .cline,.costa__map-v.on .cline{animation:clineDraw 3s var(--ease) forwards}
+@keyframes clineDraw{to{stroke-dashoffset:0}}
+.cpt__dot{fill:rgba(247,244,234,.75)}
+.cpt__dot--hi{fill:var(--acento-claro);filter:drop-shadow(0 0 10px rgba(217,201,163,.9))}
+.cpt__nm{font-family:var(--display);font-size:13px;fill:rgba(247,244,234,.8)}
+.cpt__nm--hi{font-size:22px;fill:var(--creme);font-style:italic}
+.cpt__ds{font-family:var(--micro);font-size:9px;letter-spacing:1.4px;text-transform:uppercase;
+  fill:rgba(247,244,234,.55)}
+.cpt__ds--hi{font-size:12px;fill:var(--acento-claro);opacity:1;font-weight:500;letter-spacing:3px}
+.cpt__pin{filter:drop-shadow(0 3px 8px rgba(0,0,0,.35))}
+.cpt{opacity:0}
+.costa__map.on .cpt,.costa__map-v.on .cpt{animation:cptIn .6s var(--ease) forwards;animation-delay:calc(.6s + var(--i) * .34s)}
+@keyframes cptIn{from{opacity:0}to{opacity:1}}
+.cline__runner{fill:var(--creme);opacity:0;offset-path:path("M120,176 C140,176 190,190 220,190 C200,190 300,208 330,208 C310,208 415,212 445,212 C425,212 530,208 560,208 C540,208 655,194 685,194 C665,194 780,172 810,172 C790,172 895,138 925,138 C905,138 1005,126 1035,126 C1015,126 1090,132 1110,132");offset-distance:0}
+.costa__map.on .cline__runner,.costa__map-v.on .cline__runner{animation:clineRun 3s var(--ease) forwards}
+@keyframes clineRun{0%{opacity:0;offset-distance:0}6%{opacity:1}90%{opacity:1}100%{opacity:0;offset-distance:100%}}
+.costa__map.on .cpt__dot--hi,.costa__map-v.on .cpt__dot--hi{animation:cptPulse 2.6s var(--ease) 3.6s infinite}
+@keyframes cptPulse{0%,100%{r:5}50%{r:7}}
+
+/* polos tipográficos embaixo */
+.costa__poles{display:flex;align-items:baseline;justify-content:space-between;gap:1.5rem;color:var(--creme)}
+.costa__pole{font-family:var(--display);font-weight:400;font-size:clamp(2rem,5.4vw,4.4rem);
+  line-height:1;letter-spacing:-.01em}
+.costa__pole--r{font-style:italic;color:var(--creme)}
+.costa__to{font-family:var(--micro);font-size:.58rem;letter-spacing:.26em;text-transform:uppercase;
+  color:rgba(247,244,234,.55);text-align:center;line-height:1.7}
+
+/* mobile: SVG horizontal ilegível — mostra a versão vertical serpenteante */
+.costa__map-v{display:none}
+@media(max-width:760px){
+  .costa{min-height:auto}
+  .costa__inner{gap:clamp(1.4rem,3.5vh,2.2rem);padding-block:clamp(2.5rem,6vh,3.5rem)}
+  .costa__mapwrap{overflow:visible}
+  .costa__map{display:none}
+  .costa__map-v{display:block;width:100%;max-width:360px;margin:0 auto;height:auto;overflow:visible}
+  .costa__map-v .cpt__nm{font-size:15px;dominant-baseline:middle}
+  .costa__map-v .cpt__ds{font-size:9.5px;letter-spacing:1.6px;dominant-baseline:middle}
+  /* mobile: sempre visível (dispensa animação que estava travando) */
+  .costa__map-v .cline{stroke-dashoffset:0}
+  .costa__map-v .cpt{opacity:1}
+  /* runner do vertical: percorre o mesmo path da linha */
+  .costa__map-v .cline__runner{offset-path:path("M195,40 C205,70 205,100 215,130 C225,160 175,190 185,220 C195,250 195,290 205,320 C215,350 185,400 195,430 C205,460 205,510 215,540 C225,570 170,610 180,640 C190,670 190,710 200,740 C210,770 160,810 170,840 C180,870 185,910 195,940")}
+  .costa__poles{flex-direction:column;align-items:flex-start;gap:.3rem;text-align:left}
+  .costa__pole{font-size:clamp(2rem,10vw,3rem)}
+  .costa__to{font-size:.55rem;letter-spacing:.22em;text-align:left;margin:.6rem 0;line-height:1.7}
+}
+@media(prefers-reduced-motion:reduce){
+  .cline{stroke-dashoffset:0}
+  .cpt{opacity:1}
+  .costa__map.on .cline,.costa__map.on .cpt,
+  .costa__map.on .cline__runner,.costa__map.on .cpt__dot--hi,
+  .costa__map-v.on .cline,.costa__map-v.on .cpt,
+  .costa__map-v.on .cline__runner,.costa__map-v.on .cpt__dot--hi{animation:none}
+}
+/* ── vídeos de perspectiva: entram no lugar das fotos, só baixam perto da tela ── */
+.casa__foto video,.assina__c video,.largo video{width:100%;height:100%;object-fit:cover;display:block}
+.assina__c video{object-position:center top;filter:brightness(.82);transition:transform 1.4s var(--ease),filter .6s var(--ease)}
+.assina__c:hover video{transform:scale(1.045);filter:brightness(.92)}
+.casa__foto{background:var(--tinta)}
+/* terreno: o voo de perspectivas cola nas bordas */
+.voo{margin:0;background:var(--tinta)}
+.voo video{width:100%;height:clamp(420px,80vh,880px);object-fit:cover;display:block}
+@media (max-width:860px){.voo video{height:clamp(320px,62svh,560px)}}
+
 /* ── celular ────────────────────────────────────────────── */
 @media (max-width:860px){
   /* a foto vira uma faixa no alto e o texto vai para o fundo escuro:
@@ -372,6 +459,132 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
 </section>
 
+<!-- ══════════ A ROTA ECOLÓGICA ══════════ -->
+<section class="costa">
+  <img decoding="async" width="1600" height="2134" class="costa__bg" src="assets/img/costa-bg.webp" alt="A costa protegida vista de cima, com a barreira de recifes" loading="lazy">
+  <div class="costa__veil"></div>
+  <div class="costa__inner">
+    <p class="costa__eyebrow">A Rota Ecológica dos Milagres</p>
+
+    <div class="costa__mapwrap">
+      <svg class="costa__map rv" viewBox="0 0 1200 420" preserveAspectRatio="xMidYMid meet" role="img" aria-label="As praias da Rota Ecológica dos Milagres">
+        <path class="cline" d="M60,220 C100,222 180,232 210,234 C260,238 300,246 340,248 C400,252 470,246 520,240 C560,236 600,232 640,226 C700,218 760,208 820,200 C880,192 940,182 990,176 C1040,170 1100,166 1150,166" pathLength="1000"/>
+        <circle class="cline__runner" r="4"/>
+        <g class="cpt" style="--i:0" transform="translate(60,220)">
+          <circle class="cpt__dot" r="4"/>
+          <text class="cpt__nm" text-anchor="start" x="-4" y="-32">Barra de</text>
+          <text class="cpt__nm" text-anchor="start" x="-4" y="-18">Camaragibe</text>
+        </g>
+        <g class="cpt" style="--i:1" transform="translate(210,234)">
+          <circle class="cpt__dot" r="4"/>
+          <text class="cpt__nm" text-anchor="middle" y="28">Praia do</text>
+          <text class="cpt__nm" text-anchor="middle" y="42">Marceneiro</text>
+        </g>
+        <g class="cpt" style="--i:2" transform="translate(340,248)">
+          <circle class="cpt__dot" r="4"/>
+          <text class="cpt__nm" text-anchor="middle" y="-32">Praia do</text>
+          <text class="cpt__nm" text-anchor="middle" y="-18">Riacho</text>
+        </g>
+        <g class="cpt" style="--i:3" transform="translate(430,248)">
+          <circle class="cpt__dot" r="4"/>
+          <text class="cpt__nm" text-anchor="end" x="-6" y="26">Praia de</text>
+          <text class="cpt__nm" text-anchor="end" x="-6" y="40">São Miguel dos Milagres</text>
+        </g>
+        <g class="cpt cpt--hi" style="--i:4" transform="translate(600,232)">
+          <image class="cpt__pin" href="assets/img/em/local.webp" x="-24" y="-88" width="48" height="60"/>
+          <circle class="cpt__dot cpt__dot--hi" r="9"/>
+          <text class="cpt__nm cpt__nm--hi" text-anchor="middle" y="52">Praia do Toque</text>
+          <text class="cpt__ds cpt__ds--hi" text-anchor="middle" y="72">Bossa</text>
+        </g>
+        <g class="cpt" style="--i:5" transform="translate(730,220)">
+          <circle class="cpt__dot" r="4"/>
+          <text class="cpt__nm" text-anchor="middle" y="-32">Praia de</text>
+          <text class="cpt__nm" text-anchor="middle" y="-18">Porto da Rua</text>
+        </g>
+        <g class="cpt" style="--i:6" transform="translate(850,198)">
+          <circle class="cpt__dot" r="4"/>
+          <text class="cpt__nm" text-anchor="middle" y="28">Praia de</text>
+          <text class="cpt__nm" text-anchor="middle" y="42">Tatuamunha</text>
+        </g>
+        <g class="cpt" style="--i:7" transform="translate(970,178)">
+          <circle class="cpt__dot" r="4"/>
+          <text class="cpt__nm" text-anchor="middle" y="-32">Praia de</text>
+          <text class="cpt__nm" text-anchor="middle" y="-18">Lajes</text>
+        </g>
+        <g class="cpt" style="--i:8" transform="translate(1080,168)">
+          <circle class="cpt__dot" r="4"/>
+          <text class="cpt__nm" text-anchor="middle" y="28">Praia do</text>
+          <text class="cpt__nm" text-anchor="middle" y="42">Patacho</text>
+        </g>
+        <g class="cpt" style="--i:9" transform="translate(1150,166)">
+          <circle class="cpt__dot" r="4"/>
+          <text class="cpt__nm" text-anchor="end" x="8" y="-32">Praia de</text>
+          <text class="cpt__nm" text-anchor="end" x="8" y="-18">Porto de Pedras</text>
+        </g>
+      </svg>
+
+      <!-- Mobile: SVG vertical serpenteante (linha desce em curvas com os 10 pontos) -->
+      <svg class="costa__map-v" viewBox="0 0 360 980" preserveAspectRatio="xMidYMid meet" role="img" aria-label="As 10 praias da Rota Ecológica dos Milagres" aria-hidden="true">
+        <path class="cline" d="M195,40 C205,70 205,100 215,130 C225,160 175,190 185,220 C195,250 195,290 205,320 C215,350 185,400 195,430 C205,460 205,510 215,540 C225,570 170,610 180,640 C190,670 190,710 200,740 C210,770 160,810 170,840 C180,870 185,910 195,940" pathLength="1000"/>
+        <circle class="cline__runner" r="4"/>
+        <g class="cpt" style="--i:0" transform="translate(195,40)">
+          <circle class="cpt__dot" r="4.5"/>
+          <text class="cpt__nm" text-anchor="start" x="18" y="0">Barra de</text>
+          <text class="cpt__nm" text-anchor="start" x="18" y="16">Camaragibe</text>
+        </g>
+        <g class="cpt" style="--i:1" transform="translate(215,130)">
+          <circle class="cpt__dot" r="4.5"/>
+          <text class="cpt__nm" text-anchor="start" x="18" y="0">Praia do</text>
+          <text class="cpt__nm" text-anchor="start" x="18" y="16">Marceneiro</text>
+        </g>
+        <g class="cpt" style="--i:2" transform="translate(185,220)">
+          <circle class="cpt__dot" r="4.5"/>
+          <text class="cpt__nm" text-anchor="end" x="-18" y="0">Praia do</text>
+          <text class="cpt__nm" text-anchor="end" x="-18" y="16">Riacho</text>
+        </g>
+        <g class="cpt" style="--i:3" transform="translate(205,320)">
+          <circle class="cpt__dot" r="4.5"/>
+          <text class="cpt__nm" text-anchor="start" x="18" y="0">Praia de São Miguel</text>
+          <text class="cpt__nm" text-anchor="start" x="18" y="16">dos Milagres</text>
+        </g>
+        <g class="cpt cpt--hi" style="--i:4" transform="translate(195,430)">
+          <image class="cpt__pin" href="assets/img/em/local.webp" x="-20" y="-56" width="40" height="50"/>
+          <circle class="cpt__dot cpt__dot--hi" r="8"/>
+          <text class="cpt__nm cpt__nm--hi" text-anchor="start" x="22" y="0">Praia do Toque</text>
+          <text class="cpt__ds cpt__ds--hi" text-anchor="start" x="22" y="20">Bossa</text>
+        </g>
+        <g class="cpt" style="--i:5" transform="translate(215,540)">
+          <circle class="cpt__dot" r="4.5"/>
+          <text class="cpt__nm" text-anchor="end" x="-18" y="0">Praia de</text>
+          <text class="cpt__nm" text-anchor="end" x="-18" y="16">Porto da Rua</text>
+        </g>
+        <g class="cpt" style="--i:6" transform="translate(180,640)">
+          <circle class="cpt__dot" r="4.5"/>
+          <text class="cpt__nm" text-anchor="start" x="18" y="0">Praia de</text>
+          <text class="cpt__nm" text-anchor="start" x="18" y="16">Tatuamunha</text>
+        </g>
+        <g class="cpt" style="--i:7" transform="translate(200,740)">
+          <circle class="cpt__dot" r="4.5"/>
+          <text class="cpt__nm" text-anchor="end" x="-18" y="0">Praia de</text>
+          <text class="cpt__nm" text-anchor="end" x="-18" y="16">Lajes</text>
+        </g>
+        <g class="cpt" style="--i:8" transform="translate(170,840)">
+          <circle class="cpt__dot" r="4.5"/>
+          <text class="cpt__nm" text-anchor="end" x="-18" y="0">Praia do</text>
+          <text class="cpt__nm" text-anchor="end" x="-18" y="16">Patacho</text>
+        </g>
+        <g class="cpt" style="--i:9" transform="translate(195,940)">
+          <circle class="cpt__dot" r="4.5"/>
+          <text class="cpt__nm" text-anchor="start" x="18" y="0">Praia de</text>
+          <text class="cpt__nm" text-anchor="start" x="18" y="16">Porto de Pedras</text>
+        </g>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ 02 · O CONDOMÍNIO ══════════ -->
+
 <!-- ══════════ O PROJETO ══════════ -->
 <section class="sec sec--escura">
   <div class="wrap">
@@ -380,9 +593,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <h2 class="h-display h-display--claro rv">Entre o mar<br>e sua porta, <em>Bossa</em>.</h2>
       <p class="lead lead--claro rv" data-d="1">São 43 casas em 6 tipologias, com áreas de convívio pensadas para liberdade, privacidade e tempo de qualidade. No centro do projeto, um lago ornamental de 1.800 m² com deck para contemplação.</p>
     </div>
-    <figure class="largo respira rv"><img src="assets/img/visita/lago-1280.webp" srcset="assets/img/visita/lago-900.webp 900w, assets/img/visita/lago-1280.webp 1280w" sizes="(max-width: 860px) 100vw, 90vw" width="1280" height="720" loading="lazy" decoding="async" alt="Vista do alto do Bossa, com as casas ao redor do lago ornamental"></figure>
+    <figure class="largo rv"><video data-src="assets/video/cond-lago.mp4" data-poster="assets/video/cond-lago.webp" preload="none" muted loop playsinline aria-label="O lago ornamental do Bossa"></video></figure>
     <p class="legenda">Lago ornamental de 1.800 m² · paisagismo de Luiz Carlos Orsini</p>
   </div>
+</section>
+
+<!-- ══════════ PERSPECTIVAS DO TERRENO ══════════ -->
+<section aria-label="Perspectivas do terreno">
+  <figure class="voo rv"><video data-src="assets/video/terreno-perspectivas.mp4" data-poster="assets/video/terreno-perspectivas.webp" preload="none" muted loop playsinline aria-label="Voo sobre o terreno do Bossa, com as casas e o mar"></video></figure>
 </section>
 
 <!-- ══════════ QUEM ASSINA ══════════ -->
@@ -393,15 +611,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
   <div class="assina">
     <figure class="assina__c rv">
-      <img src="assets/img/visita/ass-padovani.webp" width="540" height="720" loading="lazy" decoding="async" alt="Arquiteto do escritório Padovani Arquitetos">
+      <video data-src="assets/video/padovani.mp4" data-poster="assets/video/padovani.webp" preload="none" muted loop playsinline aria-label="Arquiteto do escritório Padovani Arquitetos"></video>
       <figcaption><span class="assina__papel">Arquitetura</span><span class="assina__nome">Padovani Arquitetos</span><span class="assina__desc">Só em 2024, somou mais de 20 prêmios, entre eles o <em>iF Design Award</em> e o <em>Architecture MasterPrize</em>.</span></figcaption>
     </figure>
     <figure class="assina__c rv" data-d="1">
-      <img src="assets/img/visita/ass-agra.webp" width="540" height="720" loading="lazy" decoding="async" alt="Waleska Agra, da Agra Lemos Arquitetos">
+      <video data-src="assets/video/agra-lemos.mp4" data-poster="assets/video/agra-lemos.webp" preload="none" muted loop playsinline aria-label="Waleska Agra, da Agra Lemos Arquitetos"></video>
       <figcaption><span class="assina__papel">Áreas de convívio</span><span class="assina__nome">Agra Lemos</span><span class="assina__desc"><em>Daniel Lemos</em> e <em>Waleska Agra</em> assinam pousadas e hotéis de referência na Rota Ecológica, entre eles o Mahré.</span></figcaption>
     </figure>
     <figure class="assina__c rv" data-d="2">
-      <img src="assets/img/visita/ass-orsini.webp" width="540" height="720" loading="lazy" decoding="async" alt="O paisagista Luiz Carlos Orsini">
+      <video data-src="assets/video/orsini.mp4" data-poster="assets/video/orsini.webp" preload="none" muted loop playsinline aria-label="O paisagista Luiz Carlos Orsini"></video>
       <figcaption><span class="assina__papel">Paisagismo</span><span class="assina__nome">Luiz Carlos Orsini</span><span class="assina__desc">Autor dos jardins do <em>Instituto Inhotim</em>, onde desenvolveu o paisagismo de 25 hectares e criou os lagos que inspiraram o Bossa.</span></figcaption>
     </figure>
   </div>
@@ -414,7 +632,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <h2 class="h-display decode" data-final="As últimas casas|do Bossa">As últimas casas do Bossa</h2>
   </div>
   <article class="casa">
-    <div class="casa__foto"><img src="assets/img/visita/brisa-1280.webp" srcset="assets/img/visita/brisa-800.webp 800w, assets/img/visita/brisa-1280.webp 1280w" sizes="100vw" width="1280" height="720" loading="lazy" decoding="async" alt="Perspectiva da Casa Brisa, entre o jardim tropical"></div>
+    <div class="casa__foto"><video data-src="assets/video/casa-brisa-persp.mp4" data-poster="assets/video/casa-brisa-persp.webp" preload="none" muted loop playsinline aria-label="Perspectiva da Casa Brisa, entre o jardim tropical"></video></div>
     <div class="wrap casa__txt">
       <div class="rv">
         <p class="micro micro--claro">Planta horizontal</p>
@@ -429,7 +647,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
   </article>
   <article class="casa">
-    <div class="casa__foto"><img src="assets/img/visita/casalago-1280.webp" srcset="assets/img/visita/casalago-800.webp 800w, assets/img/visita/casalago-1280.webp 1280w" sizes="100vw" width="1280" height="720" loading="lazy" decoding="async" alt="Vista do alto das Casas Lago, com rooftop e jardim"></div>
+    <div class="casa__foto"><video data-src="assets/video/casa-lago-persp.mp4" data-poster="assets/video/casa-lago-persp.webp" preload="none" muted loop playsinline aria-label="Perspectiva animada da Casa Lago"></video></div>
     <div class="wrap casa__txt">
       <div class="rv">
         <p class="micro micro--claro">Com rooftop</p>

@@ -234,6 +234,50 @@
     }
   });
 
+  /* O mapa vertical do celular não tem .rv: acende quando entra na tela */
+  document.querySelectorAll('.costa__map-v').forEach(el => {
+    if (!('IntersectionObserver' in window)) { el.classList.add('on'); return; }
+    const o = new IntersectionObserver(([en]) => { if (en.isIntersecting) { el.classList.add('on'); o.disconnect(); } }, { threshold: 0.01 });
+    o.observe(el);
+  });
+
+  /* ── Perspectivas em vídeo: mesmo esquema da LP principal ──
+     Nada é baixado no carregamento. Cada <video> guarda o caminho em
+     data-src e só recebe o arquivo ~600px antes de chegar na tela; toca
+     só enquanto está visível. Celular recebe a variante "-m", e quem
+     decodifica AV1 recebe o .webm (bem mais leve que o .mp4). */
+  const leve = matchMedia('(max-width: 900px)').matches ||
+               (navigator.connection && navigator.connection.saveData);
+  const av1 = (() => {
+    const t = document.createElement('video');
+    return ['av01.0.08M.08', 'av01.0.05M.08'].some(c => t.canPlayType(`video/webm; codecs="${c}"`) !== '');
+  })();
+  const arquivo = v => v.dataset.src.replace(/\.mp4$/, '') + (leve ? '-m' : '') + (av1 ? '.webm' : '.mp4');
+  const tocar = v => { if (v.src && !reduzir) v.play().catch(() => {}); };
+  const carregar = v => {
+    if (v.dataset.carregado) return;
+    v.dataset.carregado = '1';
+    if (v.dataset.poster) v.poster = v.dataset.poster;
+    v.src = arquivo(v);
+    v.preload = 'auto';
+    try { v.load(); } catch (e) { /* noop */ }
+    if (v.dataset.visivel) tocar(v);
+  };
+  const vids = document.querySelectorAll('video[data-src]');
+  if ('IntersectionObserver' in window) {
+    const pre = new IntersectionObserver(entries => entries.forEach(en => {
+      if (en.isIntersecting) { carregar(en.target); pre.unobserve(en.target); }
+    }), { rootMargin: '600px 0px' });
+    const vio = new IntersectionObserver(entries => entries.forEach(en => {
+      const v = en.target;
+      v.dataset.visivel = en.isIntersecting ? '1' : '';
+      if (en.isIntersecting) { carregar(v); tocar(v); } else v.pause();
+    }), { threshold: 0.15 });
+    vids.forEach(v => { pre.observe(v); vio.observe(v); });
+  } else {
+    vids.forEach(carregar);
+  }
+
   /* ── Vídeo das obras: só baixa no clique ────────────────── */
   const filme = document.querySelector('.filme');
   if (filme) filme.addEventListener('click', () => {
