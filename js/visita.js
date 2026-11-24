@@ -234,13 +234,6 @@
     }
   });
 
-  /* O mapa vertical do celular não tem .rv: acende quando entra na tela */
-  document.querySelectorAll('.costa__map-v').forEach(el => {
-    if (!('IntersectionObserver' in window)) { el.classList.add('on'); return; }
-    const o = new IntersectionObserver(([en]) => { if (en.isIntersecting) { el.classList.add('on'); o.disconnect(); } }, { threshold: 0.01 });
-    o.observe(el);
-  });
-
   /* ── Perspectivas em vídeo: mesmo esquema da LP principal ──
      Nada é baixado no carregamento. Cada <video> guarda o caminho em
      data-src e só recebe o arquivo ~600px antes de chegar na tela; toca
