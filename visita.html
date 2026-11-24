@@ -83,12 +83,12 @@ a{color:inherit}
 .micro{font-family:var(--micro);font-weight:400;font-size:.66rem;letter-spacing:.32em;text-transform:uppercase;color:var(--oliva)}
 .micro i{font-style:normal;opacity:.5;padding-inline:.35em}
 .micro--claro{color:rgba(247,244,234,.7)}
-.h-display{font-family:var(--display);font-size:clamp(1.9rem,4.2vw,3.6rem);line-height:1;letter-spacing:-.015em;color:var(--oliva-esc);text-wrap:balance}
+.h-display{font-family:var(--display);font-size:clamp(1.9rem,4.2vw,3.6rem);line-height:.98;letter-spacing:-.015em;color:var(--oliva-esc);text-wrap:balance}
 .h-display em,.h-sec em{font-style:italic;letter-spacing:0;color:var(--acento)}
 .h-display--claro{color:var(--creme)}
 .h-display--claro em{color:var(--acento-claro)}
 .h-sec{font-family:var(--display);font-size:clamp(1.5rem,2.8vw,2.4rem);line-height:1.08;letter-spacing:-.01em;color:var(--oliva-esc);text-wrap:balance}
-.lead{font-size:clamp(.96rem,.4vw + .86rem,1.06rem);line-height:1.72;color:rgba(36,40,29,.78);max-width:50ch}
+.lead{font-size:clamp(1.02rem,.6vw + .9rem,1.18rem);line-height:1.72;color:rgba(36,40,29,.78);max-width:50ch}
 .lead--claro{color:rgba(247,244,234,.78)}
 
 /* faixa de seção: emblema da marca + rótulo + linha */
@@ -203,17 +203,26 @@ a{color:inherit}
 .sec{padding-block:clamp(4.5rem,11vh,8.5rem)}
 .sec--escura{background:var(--tinta);color:var(--creme)}
 .sec--creme{background:var(--creme)}
+.sec--luz{background:var(--areia-luz)}
+/* botão de contorno da LP original (condo__btn) */
+.link--claro{color:var(--creme);border-color:rgba(247,244,234,.4)}
 .dois-col{display:grid;grid-template-columns:1.25fr .75fr;gap:clamp(1.6rem,4vw,4.5rem);align-items:end}
 .dois-col .lead{margin:0}
 
-/* a praia: título centralizado, foto e selo */
-.centro{text-align:center;display:flex;flex-direction:column;align-items:center;gap:1rem}
-.praia__grade{display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(1.5rem,4vw,4rem);align-items:center;margin-top:clamp(2.5rem,5vw,4rem)}
-.praia__grade figure{aspect-ratio:4/5}
-.praia__grade figure img{width:100%;height:100%;object-fit:cover}
-.selo{display:flex;align-items:center;gap:1.1rem;margin-top:1.8rem;padding-top:1.6rem;border-top:1px solid var(--linha);font-size:.92rem;color:rgba(36,40,29,.75)}
-.selo img{width:116px;flex:none}
-.selo em{font-style:italic;color:var(--acento)}
+/* a praia: o mesmo modelo centralizado da LP original */
+.praia__ttl{font-family:var(--display);font-weight:400;font-size:clamp(1.7rem,3.4vw,2.8rem);line-height:1.1;letter-spacing:-.01em;color:var(--oliva-esc);text-align:center;text-wrap:balance}
+.praia__ttl em{font-style:italic;color:var(--acento)}
+.praia__sub{margin-top:1rem;text-align:center;font-size:.64rem;letter-spacing:.26em}
+.praia__foto{margin:clamp(2.5rem,5vw,4rem) auto 0;max-width:980px;aspect-ratio:16/9;overflow:hidden;border-radius:2px}
+.praia__foto img{width:100%;height:100%;object-fit:cover;object-position:center 60%}
+.praia__txt{text-align:center;max-width:58ch;margin:clamp(2.5rem,5vw,4rem) auto 0}
+.praia__txt p{font-size:clamp(1rem,1.4vw,1.2rem);line-height:1.72;color:var(--tinta)}
+.praia__txt em{font-style:italic;color:var(--acento)}
+.selo{margin-top:clamp(2rem,4vw,3rem);padding-top:clamp(1.6rem,3vw,2.4rem);border-top:1px solid var(--linha);display:flex;flex-direction:column;align-items:center;gap:clamp(1rem,2vw,1.4rem)}
+.selo span{max-width:34ch;font-size:.92rem;line-height:1.6;color:var(--oliva)}
+.selo em{font-style:italic;color:var(--oliva-esc)}
+.selo img{width:clamp(104px,11vw,140px);opacity:.92}
+.praia__grade{display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(1.5rem,4vw,4rem);align-items:center}
 
 /* o projeto: foto larga */
 .largo{margin-top:clamp(2.5rem,5vw,4rem);aspect-ratio:16/7;overflow:hidden}
@@ -257,11 +266,16 @@ a{color:inherit}
 .filme:hover .filme__play{background:var(--creme);transform:scale(1.05)}
 .filme__play svg{width:20px;height:20px;margin-left:4px;fill:var(--creme);transition:fill .35s}
 .filme:hover .filme__play svg{fill:var(--oliva-esc)}
+.lounge__logo{width:clamp(110px,12vw,160px);margin-bottom:clamp(1rem,2vw,1.6rem)}
+.obras__em{display:block;width:clamp(96px,10vw,150px);height:clamp(72px,7.5vw,110px);margin-bottom:clamp(.7rem,1.8vw,1.3rem);background:var(--oliva);opacity:.9;
+  -webkit-mask:url("assets/img/em/martelo.webp") no-repeat left center/contain;mask:url("assets/img/em/martelo.webp") no-repeat left center/contain}
 .obras__topo{display:grid;grid-template-columns:1fr 1fr;gap:clamp(1.6rem,4vw,4.5rem);align-items:end;margin-bottom:clamp(2rem,4vw,3rem)}
 
 /* ── fecho ──────────────────────────────────────────────── */
 .fecho__in{display:grid;grid-template-columns:1fr minmax(340px,.85fr);gap:clamp(2rem,5vw,5.5rem);align-items:center}
 .fecho .h-display{max-width:12ch}
+.fecho .cartao{background:transparent;box-shadow:none;padding:0}
+.fecho__in{align-items:start}
 
 .rodape{background:var(--tinta);color:rgba(247,244,234,.7);padding-block:clamp(2.5rem,5vw,3.5rem) 2rem;border-top:1px solid var(--linha-luz)}
 .rodape__in{display:flex;flex-wrap:wrap;gap:2rem 3rem;justify-content:space-between;align-items:flex-end}
@@ -397,21 +411,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </section>
 
 <!-- ══════════ A PRAIA ══════════ -->
-<section class="sec">
+<section class="sec sec--luz">
   <div class="wrap">
-    <div class="centro">
-      <span class="em em--concha rv" style="color:var(--oliva)" aria-hidden="true"></span>
-      <h2 class="h-sec rv" data-d="1">Na maré baixa, o mar vira <em>piscina natural</em></h2>
-      <p class="micro rv" data-d="2">Praia do Toque <i>·</i> São Miguel dos Milagres <i>·</i> Alagoas</p>
-    </div>
-    <div class="praia__grade">
-      <figure class="respira rv"><img src="assets/img/visita/praia-800.webp" width="800" height="1000" loading="lazy" decoding="async" sizes="(max-width: 860px) 100vw, 55vw" alt="Banco de areia na maré baixa, com o mar turquesa ao redor"></figure>
-      <div class="rv" data-d="1">
-        <p class="lead">Uma faixa de mar protegida pela segunda maior barreira de corais do mundo, bem na frente do condomínio. Água morna e cristalina, numa das praias mais bonitas do Brasil.</p>
-        <div class="selo">
-          <img src="assets/img/selo-guardian.webp" width="400" height="146" loading="lazy" decoding="async" alt="The Guardian">
-          <span>Destacada pelo jornal britânico <em>The Guardian</em> entre as praias mais bonitas do Brasil.</span>
-        </div>
+    <h2 class="praia__ttl rv">Na maré baixa, o mar vira <em>piscina natural</em></h2>
+    <p class="micro praia__sub rv" data-d="1">Praia do Toque <i>·</i> São Miguel dos Milagres <i>·</i> Alagoas</p>
+    <figure class="praia__foto rv"><img src="assets/img/praia-banco.webp" width="1000" height="1250" loading="lazy" decoding="async" alt="Banco de areia na maré baixa, com o mar turquesa ao redor"></figure>
+    <div class="praia__txt rv">
+      <p>Uma faixa de mar protegida pela segunda maior barreira de corais do mundo, bem na frente do condomínio. Água morna e cristalina, numa das praias mais bonitas do Brasil.</p>
+      <div class="selo">
+        <span>Destacada pelo jornal britânico <em>The Guardian</em> entre as praias mais bonitas do Brasil.</span>
+        <img src="assets/img/selo-guardian.webp" width="400" height="146" loading="lazy" decoding="async" alt="The Guardian">
       </div>
     </div>
   </div>
@@ -448,7 +457,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <!-- ══════════ AS CASAS (2 cards, como no brief) ══════════ -->
 <!-- PENDENTE: confirmar com a Taipa se o "a partir de" ainda é R$ 3,8 milhões. -->
-<section class="sec sec--creme">
+<section class="sec">
   <div class="wrap">
     <div class="track rv"><span class="em em--chave" aria-hidden="true"></span><span class="micro">Disponibilidade</span></div>
     <h2 class="h-display decode" data-final="As últimas casas|do Bossa">As últimas casas do Bossa</h2>
@@ -484,24 +493,23 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </section>
 
 <!-- ══════════ A VIVÊNCIA ══════════ -->
-<section class="sec">
-  <div class="wrap praia__grade" style="margin-top:0">
+<section class="sec sec--escura">
+  <div class="wrap praia__grade">
     <div>
-      <div class="track rv"><span class="em em--abajur" aria-hidden="true"></span><span class="micro">A vivência</span></div>
-      <h2 class="h-display rv">Enquanto o Bossa nasce, o <em>Lounge</em> já está de pé</h2>
-      <p class="lead rv" data-d="1" style="margin-top:clamp(1.2rem,2.4vw,1.8rem)">O Taipa Lounge recebe visitas com hora marcada, à beira-mar, com serviço de praia. É onde os proprietários do Bossa se encontram.</p>
-      <p class="rv" data-d="2" style="margin-top:1.8rem"><a class="link" href="#agendar"><span>Agendar visita</span><svg viewBox="0 0 24 12" aria-hidden="true"><path d="M0 6h22M17 1l5 5-5 5"/></svg></a></p>
+      <img class="lounge__logo rv" src="assets/img/logo-taipa-lounge-branca.webp" width="480" height="305" loading="lazy" decoding="async" alt="Taipa Lounge">
+      <h2 class="h-display h-display--claro rv">Enquanto o Bossa nasce, o <em>Lounge</em> já está de pé</h2>
+      <p class="lead lead--claro rv" data-d="1" style="margin-top:clamp(1.2rem,2.4vw,1.8rem)">O Taipa Lounge recebe visitas com hora marcada, à beira-mar, com serviço de praia. É onde os proprietários do Bossa se encontram.</p>
+      <p class="rv" data-d="2" style="margin-top:1.8rem"><a class="link link--claro" href="#agendar"><span>Agendar visita</span><svg viewBox="0 0 24 12" aria-hidden="true"><path d="M0 6h22M17 1l5 5-5 5"/></svg></a></p>
     </div>
     <figure class="respira rv" data-d="1" style="aspect-ratio:4/5"><img src="assets/img/visita/lounge-800.webp" width="800" height="1000" loading="lazy" decoding="async" sizes="(max-width: 860px) 100vw, 45vw" alt="Taipa Lounge, com sofás e o mar ao fundo" style="width:100%;height:100%;object-fit:cover"></figure>
   </div>
 </section>
 
 <!-- ══════════ AS OBRAS ══════════ -->
-<section class="sec sec--creme">
+<section class="sec sec--luz">
   <div class="wrap">
-    <div class="track rv"><span class="em em--martelo" aria-hidden="true"></span><span class="micro">Acompanhamento</span></div>
     <div class="obras__topo">
-      <h2 class="h-display rv">As obras<br><em>já começaram</em></h2>
+      <h2 class="h-display rv"><span class="obras__em" aria-hidden="true"></span>As obras<br><em>já começaram</em></h2>
       <p class="lead rv" data-d="1">O acompanhamento é filmado e enviado aos proprietários a cada etapa. Entrega prevista para agosto de 2028.</p>
     </div>
     <figure class="rv">
@@ -516,12 +524,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </section>
 
 <!-- ══════════ FECHO ══════════ -->
-<section class="sec sec--escura fecho">
+<section class="sec sec--creme fecho">
   <div class="wrap fecho__in">
     <div>
-      <div class="track track--claro rv"><span class="em em--concha" aria-hidden="true"></span><span class="micro micro--claro">Agende sua visita</span></div>
-      <h2 class="h-display h-display--claro rv">Conheça o Bossa <em>pessoalmente</em></h2>
-      <p class="lead lead--claro rv" data-d="1" style="margin-top:clamp(1.2rem,2.4vw,1.8rem)">Agende sua visita: deixe seu contato e nosso anfitrião encontra o melhor jeito de te receber, em São Miguel dos Milagres ou por vídeo.</p>
+      <div class="track rv"><span class="em em--concha" aria-hidden="true"></span><span class="micro">Agende sua visita</span></div>
+      <h2 class="h-display rv">Conheça o Bossa <em>pessoalmente</em></h2>
+      <p class="lead rv" data-d="1" style="margin-top:clamp(1.2rem,2.4vw,1.8rem)">Agende sua visita: deixe seu contato e nosso anfitrião encontra o melhor jeito de te receber, em São Miguel dos Milagres ou por vídeo.</p>
     </div>
     <div class="cartao rv" data-d="1">
       <form class="form" data-posicao="fim" novalidate>
