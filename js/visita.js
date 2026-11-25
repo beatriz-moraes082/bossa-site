@@ -191,6 +191,27 @@
     }
   });
 
+  /* ── WhatsApp dos cards das casas: mensagem pronta e clique rastreado ──
+     O contato por WhatsApp não passa pelo webhook, então a origem vai
+     no evento do GTM (whatsapp_click), com a casa e a campanha. */
+  const WA_NUMERO = '5582993128362'; // o mesmo da LP principal (Comercial Taipa Inc)
+  document.querySelectorAll('[data-wa-casa]').forEach(a => {
+    const casa = a.dataset.waCasa;
+    const texto = 'Olá! Vi a ' + casa + ' no site do Bossa e quero saber mais e agendar uma visita.';
+    a.href = 'https://wa.me/' + WA_NUMERO + '?text=' + encodeURIComponent(texto);
+    a.addEventListener('click', () => {
+      dl('whatsapp_click', {
+        origem_cta: a.dataset.waOrigem,
+        casa_interesse: casa,
+        pagina_lp: 'visita',
+        utm_source: atribuicao.utm_source,
+        utm_medium: atribuicao.utm_medium,
+        utm_campaign: atribuicao.utm_campaign,
+        utm_content: atribuicao.utm_content
+      });
+    });
+  });
+
   document.querySelectorAll('.wa-erro').forEach(a => a.addEventListener('click', () => {
     dl('whatsapp_click', { origem_cta: 'falha_formulario', pagina_lp: 'visita' });
   }));

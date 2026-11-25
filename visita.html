@@ -147,32 +147,34 @@ a{color:inherit}
 .hero{position:relative;isolation:isolate;color:var(--creme);background:var(--tinta)}
 .hero__foto{position:absolute;inset:0;z-index:-2;overflow:hidden}
 .hero__foto img{width:100%;height:100%;object-fit:cover;object-position:center 55%;animation:derivar 26s ease-in-out infinite alternate}
-.hero::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,rgba(36,40,29,.82) 0%,rgba(36,40,29,.58) 46%,rgba(36,40,29,.3) 100%),linear-gradient(180deg,rgba(36,40,29,.45) 0%,rgba(36,40,29,0) 22%)}
-.hero__in{display:grid;grid-template-columns:1.12fr minmax(340px,.88fr);gap:clamp(2rem,5vw,5.5rem);align-items:center;min-height:min(100svh,900px);padding-block:clamp(6rem,10vw,8rem) clamp(2.5rem,5vw,4rem)}
-.hero__txt{display:flex;flex-direction:column;gap:clamp(1rem,2vw,1.4rem);max-width:40rem}
-.hero__chapeu{color:var(--acento-claro)}
-.hero h1{font-size:clamp(1.9rem,.9rem + 2.6vw,3.3rem);line-height:1.02;letter-spacing:-.015em;color:#fff;text-wrap:balance}
+.hero::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,rgba(30,36,28,.74) 0%,rgba(30,36,28,.5) 34%,rgba(30,36,28,.12) 58%,rgba(30,36,28,0) 72%),linear-gradient(180deg,rgba(30,36,28,.4) 0%,rgba(30,36,28,0) 20%,rgba(30,36,28,0) 78%,rgba(30,36,28,.28) 100%)}
+.hero__in{display:grid;grid-template-columns:minmax(0,1fr) minmax(340px,430px);gap:clamp(2rem,5vw,5.5rem);align-items:center;min-height:min(100svh,900px);padding-block:clamp(6rem,10vw,8rem) clamp(2.5rem,5vw,4rem)}
+.hero__txt{display:flex;flex-direction:column;gap:clamp(1rem,2vw,1.35rem);max-width:38rem}
+.hero__chapeu{display:flex;align-items:center;gap:.9rem;color:var(--acento-claro)}
+.hero__chapeu::before{content:"";width:2.2rem;height:1px;background:currentColor;opacity:.7}
+.hero h1{font-size:clamp(1.9rem,.9rem + 2.4vw,3.1rem);line-height:1.04;letter-spacing:-.015em;color:#fff;text-wrap:balance;text-shadow:0 1px 30px rgba(20,24,14,.25)}
 .hero h1 em{font-style:italic;letter-spacing:0;color:var(--acento-claro)}
-.hero__sub{font-size:clamp(.96rem,.86rem + .3vw,1.06rem);line-height:1.7;color:rgba(247,244,234,.86);max-width:34rem}
-.hero__sub b{font-weight:400;color:#fff;white-space:nowrap;border-bottom:1px solid rgba(217,201,163,.6)}
+.hero__sub{font-size:clamp(.96rem,.86rem + .3vw,1.04rem);line-height:1.7;color:rgba(247,244,234,.88);max-width:31rem;text-wrap:pretty}
+.hero__sub b{font-weight:400;color:var(--acento-claro);white-space:nowrap}
 .hero__coord{margin-top:.4rem;font-size:.6rem;letter-spacing:.26em}
 
 /* ── cartão do formulário (campos de linha, como o da LP principal) ── */
-.cartao{position:relative;background:var(--creme);color:var(--tinta);border-radius:2px;padding:clamp(1.6rem,3vw,2.6rem);box-shadow:0 30px 70px rgba(20,24,14,.32);min-width:0}
-.cartao h2{font-size:clamp(1.35rem,1rem + 1vw,1.75rem);line-height:1.1;color:var(--oliva-esc)}
+.cartao{position:relative;background:var(--creme);color:var(--tinta);border-radius:2px;padding:clamp(1.6rem,2.6vw,2.4rem);box-shadow:0 24px 60px -18px rgba(20,24,14,.45);min-width:0}
+.hero .cartao::after{content:"";position:absolute;inset:.55rem;border:1px solid rgba(96,108,72,.16);pointer-events:none}
+.cartao h2{font-size:clamp(1.3rem,1rem + .8vw,1.6rem);line-height:1.12;color:var(--oliva-esc)}
 .cartao h2 em{font-style:italic;color:var(--acento)}
-.cartao__intro{margin-top:.7rem;font-size:.95rem;line-height:1.6;color:rgba(36,40,29,.7)}
+.cartao__intro{margin-top:.75rem;font-size:.88rem;line-height:1.6;color:rgba(36,40,29,.66)}
 .form{margin-top:.6rem}
 .campo{position:relative;margin-bottom:.35rem}
 .campo input{width:100%;padding:1.55rem 0 .55rem;border:0;border-bottom:1px solid rgba(96,108,72,.32);border-radius:0;background:transparent;font-family:var(--corpo);font-size:1.02rem;color:var(--tinta);transition:border-color .3s}
 .campo input:focus{outline:none;border-bottom-color:var(--oliva-esc)}
-.campo label{position:absolute;left:0;top:1.55rem;pointer-events:none;font-family:var(--micro);font-size:.74rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(96,108,72,.72);transition:all .3s var(--ease)}
+.campo label{position:absolute;left:0;top:1.55rem;pointer-events:none;font-family:var(--micro);font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;color:rgba(96,108,72,.7);transition:all .3s var(--ease)}
 .campo input:focus + label,.campo input:not(:placeholder-shown) + label{top:.2rem;font-size:.58rem;letter-spacing:.26em;color:var(--oliva)}
 .campo.err input{border-bottom-color:var(--erro)}
 .campo__msg{display:block;font-size:.76rem;color:var(--erro);padding-top:.25rem}
 .campo__msg:empty{display:none}
-.form .btn{margin-top:1.4rem}
-.form__nota{margin-top:1rem;font-size:.68rem;letter-spacing:.04em;line-height:1.6;color:rgba(36,40,29,.52)}
+.form .btn{margin-top:1.6rem;padding-block:1rem}
+.form__nota{margin-top:.9rem;font-size:.64rem;letter-spacing:.03em;line-height:1.6;color:rgba(36,40,29,.48);text-align:center}
 .form__erro{margin-top:1rem;padding:.85rem 1rem;background:rgba(138,91,74,.1);border-left:2px solid var(--erro);font-size:.92rem;color:var(--erro)}
 .form__erro a{color:inherit;text-underline-offset:.2em}
 .ok{padding:1.2rem 0 .4rem;display:flex;flex-direction:column;gap:.7rem}
@@ -257,6 +259,11 @@ a{color:inherit}
 .ficha dd{margin-top:.3rem;font-family:var(--display);font-size:clamp(1rem,1.3vw,1.2rem);color:var(--oliva-esc)}
 .casa__preco{margin-top:.6rem;font-family:var(--display);font-size:clamp(1.15rem,1.6vw,1.4rem);color:var(--oliva-esc)}
 .casa__preco .micro{display:block;margin-bottom:.2rem}
+.casa__txt{flex:1}
+.casa__wa{align-self:flex-start;margin-top:auto;transform:translateY(0)}
+.casa__preco{margin-bottom:1.4rem}
+.casa__wa:hover{background:var(--oliva-esc);border-color:var(--oliva-esc);color:var(--creme)}
+.wa-ico{width:16px;height:16px;flex:none;fill:currentColor}
 
 /* vídeo das obras: miniatura que só carrega o filme no clique */
 .filme{position:relative;display:block;width:100%;padding:0;border:0;cursor:pointer;background:var(--tinta);aspect-ratio:900/502;overflow:hidden}
@@ -359,7 +366,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <h1 class="in" data-d="2">Casa de alto padrão à venda <em>à beira‑mar</em> em São Miguel dos Milagres</h1>
       <!-- PENDENTE: confirmar com a Taipa se o "a partir de" ainda é R$ 3,8 milhões (aparece aqui e nas duas casas). -->
       <p class="hero__sub in" data-d="3">Bossa Eco Luxury Villa, na Praia do Toque. Casas de 4 suítes a partir de <b>R$ 3,8 milhões</b>, na Rota Ecológica dos Milagres.</p>
-      <p class="micro micro--claro hero__coord in" data-d="4">Praia do Toque <i>·</i> São Miguel dos Milagres <i>·</i> 09° 17′ S <i>·</i> 35° 22′ O</p>
     </div>
 
     <div class="cartao in" data-d="3" id="agendar">
@@ -473,6 +479,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <div><dt>Área</dt><dd>294,85 m²</dd></div>
           </dl>
           <p class="casa__preco"><span class="micro">A partir de</span> R$ 3,8 milhões</p>
+          <a class="link casa__wa" data-wa-casa="Casa Brisa" data-wa-origem="card_casa_brisa" href="https://wa.me/5582993128362" target="_blank" rel="noopener"><svg class="wa-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.2a9.8 9.8 0 0 0-8.4 14.8L2.2 21.8l4.9-1.3A9.8 9.8 0 1 0 12 2.2Zm0 1.6a8.2 8.2 0 1 1-4.2 15.3l-.3-.2-2.9.8.8-2.8-.2-.3A8.2 8.2 0 0 1 12 3.8Zm-3.3 4.4c-.2 0-.5 0-.7.3-.3.3-1 1-1 2.4s1 2.8 1.2 3c.1.2 2 3.1 4.9 4.3 2.4 1 2.9.8 3.4.7.5 0 1.7-.7 1.9-1.4.2-.7.2-1.2.2-1.4l-.5-.3-1.8-.9c-.3-.1-.4-.1-.6.1l-.8 1c-.2.2-.3.2-.6.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-2c-.2-.5-.4-.4-.6-.4h-.5Z"/></svg><span>Falar sobre a Casa Brisa</span></a>
         </div>
       </article>
       <article class="casa rv" data-d="1">
@@ -486,6 +493,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <div><dt>Área</dt><dd>a partir de 319 m²</dd></div>
           </dl>
           <p class="casa__preco"><span class="micro">A partir de</span> R$ 3,8 milhões</p>
+          <a class="link casa__wa" data-wa-casa="Casa Lago" data-wa-origem="card_casa_lago" href="https://wa.me/5582993128362" target="_blank" rel="noopener"><svg class="wa-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.2a9.8 9.8 0 0 0-8.4 14.8L2.2 21.8l4.9-1.3A9.8 9.8 0 1 0 12 2.2Zm0 1.6a8.2 8.2 0 1 1-4.2 15.3l-.3-.2-2.9.8.8-2.8-.2-.3A8.2 8.2 0 0 1 12 3.8Zm-3.3 4.4c-.2 0-.5 0-.7.3-.3.3-1 1-1 2.4s1 2.8 1.2 3c.1.2 2 3.1 4.9 4.3 2.4 1 2.9.8 3.4.7.5 0 1.7-.7 1.9-1.4.2-.7.2-1.2.2-1.4l-.5-.3-1.8-.9c-.3-.1-.4-.1-.6.1l-.8 1c-.2.2-.3.2-.6.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-2c-.2-.5-.4-.4-.6-.4h-.5Z"/></svg><span>Falar sobre a Casa Lago</span></a>
         </div>
       </article>
     </div>
@@ -565,6 +573,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
 </footer>
 
-<script src="js/visita.js" defer></script>
+<script src="js/visita.js?v=20261125" defer></script>
 </body>
 </html>
