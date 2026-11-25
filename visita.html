@@ -260,10 +260,11 @@ a{color:inherit}
 .casa__preco{margin-top:.6rem;font-family:var(--display);font-size:clamp(1.15rem,1.6vw,1.4rem);color:var(--oliva-esc)}
 .casa__preco .micro{display:block;margin-bottom:.2rem}
 .casa__txt{flex:1}
-.casa__wa{align-self:flex-start;margin-top:auto;transform:translateY(0)}
+.casa__wa{align-self:stretch;justify-content:center;margin-top:auto;padding:1.15rem 1.6rem;background:var(--oliva-esc);border-color:var(--oliva-esc);color:var(--creme);font-size:.74rem;letter-spacing:.24em;box-shadow:0 14px 30px -16px rgba(36,40,29,.55)}
 .casa__preco{margin-bottom:1.4rem}
-.casa__wa:hover{background:var(--oliva-esc);border-color:var(--oliva-esc);color:var(--creme)}
-.wa-ico{width:16px;height:16px;flex:none;fill:currentColor}
+.casa__wa:hover{background:var(--oliva);border-color:var(--oliva);color:var(--creme)}
+.casa__wa:focus-visible{outline:2px solid var(--oliva-esc);outline-offset:3px}
+.wa-ico{width:19px;height:19px;flex:none;fill:currentColor}
 
 /* vídeo das obras: miniatura que só carrega o filme no clique */
 .filme{position:relative;display:block;width:100%;padding:0;border:0;cursor:pointer;background:var(--tinta);aspect-ratio:900/502;overflow:hidden}
