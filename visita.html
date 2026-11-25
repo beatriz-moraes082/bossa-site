@@ -144,23 +144,33 @@ a{color:inherit}
 .marca{display:block;width:clamp(100px,9.5vw,136px);aspect-ratio:480/183;background:var(--creme);-webkit-mask:url("assets/img/bossa-logo.webp") no-repeat center/contain;mask:url("assets/img/bossa-logo.webp") no-repeat center/contain}
 
 /* ── primeira dobra ─────────────────────────────────────── */
-.hero{position:relative;isolation:isolate;color:var(--creme);background:var(--tinta)}
-.hero__foto{position:absolute;inset:0;z-index:-2;overflow:hidden}
-.hero__foto img{width:100%;height:100%;object-fit:cover;object-position:center 55%;animation:derivar 26s ease-in-out infinite alternate}
-.hero::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,rgba(30,36,28,.74) 0%,rgba(30,36,28,.5) 34%,rgba(30,36,28,.12) 58%,rgba(30,36,28,0) 72%),linear-gradient(180deg,rgba(30,36,28,.4) 0%,rgba(30,36,28,0) 20%,rgba(30,36,28,0) 78%,rgba(30,36,28,.28) 100%)}
-.hero__in{display:grid;grid-template-columns:minmax(0,1fr) minmax(340px,430px);gap:clamp(2rem,5vw,5.5rem);align-items:center;min-height:min(100svh,900px);padding-block:clamp(6rem,10vw,8rem) clamp(2.5rem,5vw,4rem)}
-.hero__txt{display:flex;flex-direction:column;gap:clamp(1rem,2vw,1.35rem);max-width:38rem}
-.hero__chapeu{display:flex;align-items:center;gap:.9rem;color:var(--acento-claro)}
-.hero__chapeu::before{content:"";width:2.2rem;height:1px;background:currentColor;opacity:.7}
-.hero h1{font-size:clamp(1.9rem,.9rem + 2.4vw,3.1rem);line-height:1.04;letter-spacing:-.015em;color:#fff;text-wrap:balance;text-shadow:0 1px 30px rgba(20,24,14,.25)}
-.hero h1 em{font-style:italic;letter-spacing:0;color:var(--acento-claro)}
-.hero__sub{font-size:clamp(.96rem,.86rem + .3vw,1.04rem);line-height:1.7;color:rgba(247,244,234,.88);max-width:31rem;text-wrap:pretty}
-.hero__sub b{font-weight:400;color:var(--acento-claro);white-space:nowrap}
+.hero{position:relative;isolation:isolate;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);min-height:min(100svh,940px);background:var(--creme);color:var(--tinta)}
+/* metade esquerda: só a foto, sem texto por cima */
+.hero__foto{position:relative;overflow:hidden;background:var(--tinta)}
+.hero__foto picture{display:contents}
+.hero__foto img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 55%;animation:derivar 26s ease-in-out infinite alternate}
+/* véu só no alto da foto, para o logo ler */
+.hero::before{content:"";position:absolute;left:0;top:0;width:50%;height:200px;z-index:1;pointer-events:none;background:linear-gradient(180deg,rgba(30,36,28,.5) 0%,rgba(30,36,28,0) 100%)}
+/* metade direita: texto e formulário em fundo claro */
+.hero__in.wrap{display:flex;flex-direction:column;justify-content:center;gap:clamp(1.6rem,3vh,2.4rem);max-width:none;margin:0;padding:clamp(5.5rem,8vw,7rem) clamp(1.5rem,5vw,5.5rem) clamp(2.5rem,4vw,3.5rem)}
+.hero__txt,.hero .cartao{width:100%;max-width:33rem}
+.hero__txt{display:flex;flex-direction:column;gap:clamp(.8rem,1.6vw,1.1rem)}
+.hero__chapeu{display:flex;align-items:center;gap:.9rem;color:var(--oliva)}
+.hero__chapeu::before{content:"";width:2.2rem;height:1px;background:currentColor;opacity:.6}
+.hero h1{font-size:clamp(1.8rem,.9rem + 1.9vw,2.8rem);line-height:1.05;letter-spacing:-.015em;color:var(--oliva-esc);text-wrap:balance}
+.hero h1 em{font-style:italic;letter-spacing:0;color:var(--acento)}
+.hero__sub{font-size:clamp(.95rem,.86rem + .25vw,1.02rem);line-height:1.65;color:rgba(36,40,29,.74);text-wrap:pretty}
+.hero__sub b{font-weight:400;color:var(--oliva-esc);white-space:nowrap}
+/* o formulário vira um bloco do próprio painel, separado por um filete */
+.hero .cartao{background:transparent;box-shadow:none;padding:clamp(1.4rem,2.6vh,1.9rem) 0 0;border-top:1px solid var(--linha);border-radius:0}
+.hero .cartao h2{font-size:clamp(1.2rem,1rem + .6vw,1.45rem)}
+.hero .cartao__intro{margin-top:.5rem;font-size:.86rem;line-height:1.55}
+.barra .micro{color:var(--oliva)}
 .hero__coord{margin-top:.4rem;font-size:.6rem;letter-spacing:.26em}
 
 /* ── cartão do formulário (campos de linha, como o da LP principal) ── */
 .cartao{position:relative;background:var(--creme);color:var(--tinta);border-radius:2px;padding:clamp(1.6rem,2.6vw,2.4rem);box-shadow:0 24px 60px -18px rgba(20,24,14,.45);min-width:0}
-.hero .cartao::after{content:"";position:absolute;inset:.55rem;border:1px solid rgba(96,108,72,.16);pointer-events:none}
+
 .cartao h2{font-size:clamp(1.3rem,1rem + .8vw,1.6rem);line-height:1.12;color:var(--oliva-esc)}
 .cartao h2 em{font-style:italic;color:var(--acento)}
 .cartao__intro{margin-top:.75rem;font-size:.88rem;line-height:1.6;color:rgba(36,40,29,.66)}
@@ -298,17 +308,32 @@ a{color:inherit}
 .assina__c video{object-position:center top;filter:brightness(.82);transition:transform 1.4s var(--ease),filter .6s var(--ease)}
 .assina__c:hover video{transform:scale(1.045);filter:brightness(.92)}
 
+/* telas baixas de notebook: aperta o painel para o botão caber sem rolar */
+@media (min-width:861px) and (max-height:820px){
+  .hero__in.wrap{padding-top:4.4rem;padding-bottom:1.4rem;gap:1rem}
+  .hero__txt{gap:.55rem}
+  .hero h1{font-size:clamp(1.7rem,.8rem + 1.5vw,2.3rem)}
+  .hero__sub{font-size:.93rem;line-height:1.55}
+  .hero .cartao{padding-top:.9rem}
+  .hero .cartao__intro{font-size:.8rem;line-height:1.5}
+  .hero .campo input{padding:1.2rem 0 .4rem}
+  .hero .campo label{top:1.2rem}
+  .hero .form .btn{margin-top:1rem;padding-block:.9rem}
+  .hero .form__nota{margin-top:.6rem}
+}
 /* ── celular ────────────────────────────────────────────── */
 @media (max-width:860px){
   /* a foto vira uma faixa no alto e o texto vai para o fundo escuro:
      sobre o céu claro, texto branco não teria contraste */
-  .hero__foto{position:relative;inset:auto;z-index:auto;height:118px}
-  .hero::before{bottom:auto;height:118px;z-index:1;background:linear-gradient(180deg,rgba(36,40,29,.5) 0%,rgba(36,40,29,0) 38%,rgba(36,40,29,0) 66%,var(--tinta) 100%)}
+  .hero{grid-template-columns:1fr;min-height:0}
+  .hero__foto{height:150px}
+  .hero::before{width:100%;height:110px}
   .hero h1{font-size:clamp(1.7rem,1.1rem + 2.6vw,2.15rem)}
-  .hero__in{grid-template-columns:1fr;min-height:0;gap:1.1rem;padding-block:0 2.5rem}
+  .hero__in.wrap{gap:1.1rem;padding:1.3rem var(--pad) 2.5rem}
   .hero__txt{gap:.6rem}
   .hero__sub{font-size:.92rem;line-height:1.55}
   .cartao{padding:1.3rem 1.25rem 1.4rem}
+  .hero .cartao{padding:1rem 0 0}
   .cartao__intro{display:none}
   .campo input{padding:1.35rem 0 .45rem}
   .campo label{top:1.35rem}
