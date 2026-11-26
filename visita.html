@@ -195,18 +195,21 @@ a{color:inherit}
 .ok.mostra{animation:entra .7s var(--ease) both}
 
 /* ── faixa de destaques: letreiro contínuo, com o emblema da concha entre os itens ── */
-.faixa{position:relative;background:var(--creme);border-bottom:1px solid var(--linha);overflow:hidden;
-  -webkit-mask:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent);mask:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent)}
-.faixa__trilho{display:flex;width:max-content;animation:letreiro 40s linear infinite}
+.faixa{position:relative;background:var(--oliva-esc);color:var(--creme);overflow:hidden}
+/* as pontas somem na própria cor da faixa */
+.faixa::before,.faixa::after{content:"";position:absolute;top:0;bottom:0;z-index:1;width:clamp(2rem,8vw,7rem);pointer-events:none}
+.faixa::before{left:0;background:linear-gradient(90deg,var(--oliva-esc),rgba(61,69,48,0))}
+.faixa::after{right:0;background:linear-gradient(270deg,var(--oliva-esc),rgba(61,69,48,0))}
+.faixa__trilho{display:flex;width:max-content;animation:letreiro 48s linear infinite}
 .faixa:hover .faixa__trilho{animation-play-state:paused}
 @keyframes letreiro{to{transform:translateX(-50%)}}
 .faixa__lista{display:flex;align-items:center;flex:none}
-.faixa li{display:flex;align-items:baseline;gap:.85rem;padding-block:clamp(.8rem,1.4vw,1.05rem);white-space:nowrap;
-  font-family:var(--micro);font-size:.64rem;letter-spacing:.26em;text-transform:uppercase;color:var(--oliva)}
-.faixa li::after{content:"";align-self:center;width:16px;height:16px;margin-inline:clamp(1.6rem,3vw,2.6rem);background:var(--oliva);opacity:.45;
+.faixa li{display:flex;align-items:center;gap:1rem;padding-block:clamp(1.15rem,1.8vw,1.45rem);white-space:nowrap}
+.faixa li::after{content:"";width:18px;height:18px;margin-inline:clamp(2rem,4vw,3.4rem);background:var(--acento-claro);opacity:.75;
   -webkit-mask:url("assets/img/em/concha.webp") no-repeat center/contain;mask:url("assets/img/em/concha.webp") no-repeat center/contain}
-.faixa b{font-family:var(--display);font-weight:400;font-size:clamp(.92rem,1.1vw,1.05rem);letter-spacing:-.005em;text-transform:none;color:var(--oliva-esc)}
-.faixa b em{font-style:italic;color:var(--acento)}
+.faixa b{font-family:var(--display);font-weight:400;font-size:clamp(1.05rem,1.3vw,1.25rem);letter-spacing:-.005em;color:var(--creme)}
+.faixa b em{font-style:italic;color:var(--acento-claro)}
+.faixa span{padding-left:1rem;border-left:1px solid rgba(247,244,234,.28);font-family:var(--micro);font-size:.6rem;letter-spacing:.28em;text-transform:uppercase;color:rgba(247,244,234,.66)}
 /* entrada: o letreiro sobe junto com o resto da primeira dobra */
 @keyframes surge{from{opacity:0}to{opacity:1}}
 .faixa__lista{animation:surge 1.2s var(--ease) .45s both}
@@ -420,24 +423,24 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="faixa__trilho">
     <!-- itens do brief: Taipa Inc, Serena 100 por cento vendido, The Guardian. A lista vai em 4 cópias para o letreiro girar sem emenda; as cópias ficam escondidas do leitor de tela. -->
     <ul class="faixa__lista">
-      <li>Uma realização <b>Taipa Inc</b></li>
-      <li><b>Serena</b> o primeiro da Taipa, 100% vendido</li>
-      <li>Praia destacada pelo <b><em>The Guardian</em></b></li>
+      <li><b>Taipa Inc</b><span>Uma realização</span></li>
+      <li><b>Serena 100% vendido</b><span>O primeiro da Taipa</span></li>
+      <li><b><em>The Guardian</em></b><span>Destacou a Praia do Toque</span></li>
     </ul>
     <ul class="faixa__lista" aria-hidden="true">
-      <li>Uma realização <b>Taipa Inc</b></li>
-      <li><b>Serena</b> o primeiro da Taipa, 100% vendido</li>
-      <li>Praia destacada pelo <b><em>The Guardian</em></b></li>
+      <li><b>Taipa Inc</b><span>Uma realização</span></li>
+      <li><b>Serena 100% vendido</b><span>O primeiro da Taipa</span></li>
+      <li><b><em>The Guardian</em></b><span>Destacou a Praia do Toque</span></li>
     </ul>
     <ul class="faixa__lista" aria-hidden="true">
-      <li>Uma realização <b>Taipa Inc</b></li>
-      <li><b>Serena</b> o primeiro da Taipa, 100% vendido</li>
-      <li>Praia destacada pelo <b><em>The Guardian</em></b></li>
+      <li><b>Taipa Inc</b><span>Uma realização</span></li>
+      <li><b>Serena 100% vendido</b><span>O primeiro da Taipa</span></li>
+      <li><b><em>The Guardian</em></b><span>Destacou a Praia do Toque</span></li>
     </ul>
     <ul class="faixa__lista" aria-hidden="true">
-      <li>Uma realização <b>Taipa Inc</b></li>
-      <li><b>Serena</b> o primeiro da Taipa, 100% vendido</li>
-      <li>Praia destacada pelo <b><em>The Guardian</em></b></li>
+      <li><b>Taipa Inc</b><span>Uma realização</span></li>
+      <li><b>Serena 100% vendido</b><span>O primeiro da Taipa</span></li>
+      <li><b><em>The Guardian</em></b><span>Destacou a Praia do Toque</span></li>
     </ul>
   </div>
 </section>
