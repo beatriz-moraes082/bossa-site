@@ -324,6 +324,120 @@ a{color:inherit}
   .hero .form .btn{margin-top:1rem;padding-block:.9rem}
   .hero .form__nota{margin-top:.6rem}
 }
+
+/* ════════ v2: estrutura visual inspirada no Flow, na estética da Taipa ════════ */
+/* faixa de fatos: 3 colunas fixas em oliva */
+.fatos{background:var(--oliva-esc);color:var(--creme)}
+.fatos__in{display:grid;grid-template-columns:repeat(3,1fr);list-style:none;margin:0 auto}
+.fatos li{display:flex;flex-direction:column;gap:.35rem;padding:clamp(1.3rem,2.4vw,1.9rem) clamp(1rem,2.4vw,2.2rem)}
+.fatos li+li{border-left:1px solid rgba(247,244,234,.2)}
+.fatos li:first-child{padding-left:0}
+.fatos b{font-family:var(--display);font-weight:400;font-size:clamp(1.15rem,1.7vw,1.5rem);line-height:1.15;color:var(--creme)}
+.fatos b em{font-style:italic;color:var(--acento-claro)}
+.fatos span{font-family:var(--micro);font-size:.6rem;letter-spacing:.28em;text-transform:uppercase;color:rgba(247,244,234,.62)}
+
+/* tela cheia com título por cima (praia e lounge) */
+.cine{position:relative;isolation:isolate;min-height:min(96svh,880px);display:flex;align-items:flex-end;color:var(--creme);background:var(--tinta);overflow:hidden}
+.cine__midia{position:absolute;inset:0;z-index:-2}
+.cine__midia video{width:100%;height:100%;object-fit:cover;display:block}
+.cine::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(30,36,28,.3) 0%,rgba(30,36,28,0) 26%,rgba(30,36,28,.42) 50%,rgba(30,36,28,.9) 100%)}
+.cine__in{display:flex;flex-direction:column;gap:clamp(1rem,2vw,1.4rem);padding-block:clamp(5rem,10vw,8rem) clamp(2.6rem,5vw,4rem)}
+.cine__ttl{font-family:var(--display);font-weight:400;font-size:clamp(2.2rem,5.4vw,4.8rem);line-height:1;letter-spacing:-.02em;max-width:16ch;text-wrap:balance}
+.cine__ttl em{font-style:italic;color:var(--acento-claro)}
+.cine__rodape{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:clamp(1.5rem,5vw,5rem);align-items:end;margin-top:clamp(.8rem,2vw,1.6rem);padding-top:clamp(1.2rem,2.4vw,1.8rem);border-top:1px solid rgba(247,244,234,.3)}
+.cine__rodape p{max-width:52ch;font-size:clamp(.95rem,.4vw + .86rem,1.08rem);line-height:1.7;color:rgba(247,244,234,.88)}
+.selo2{display:flex;align-items:center;gap:1rem;max-width:25rem;padding:1rem 1.2rem;background:var(--creme);color:var(--tinta);font-size:.8rem;line-height:1.5}
+.selo2 img{width:96px;height:auto;flex:none}
+.selo2 em{font-style:italic}
+.cine--lounge .lounge__logo{width:clamp(120px,12vw,170px);height:auto;margin-bottom:.6rem}
+
+/* projeto: metade vídeo, metade texto escuro com ficha em filetes */
+.mani{display:grid;grid-template-columns:1fr 1fr;background:var(--tinta);color:var(--creme);min-height:min(100svh,860px)}
+.mani__midia{position:relative;margin:0;overflow:hidden;background:var(--oliva-esc)}
+.mani__midia video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.mani__midia .legenda{position:absolute;left:clamp(1.2rem,3vw,2.4rem);bottom:clamp(1rem,2.4vw,1.8rem);margin:0;color:rgba(247,244,234,.85);text-shadow:0 1px 12px rgba(0,0,0,.4)}
+.mani__txt{display:flex;flex-direction:column;justify-content:center;padding:clamp(4rem,8vw,7rem) clamp(1.5rem,6vw,6rem)}
+.mani__ttl{font-family:var(--display);font-weight:400;font-size:clamp(2rem,3.8vw,3.4rem);line-height:1.02;letter-spacing:-.015em;margin-bottom:clamp(1.2rem,2.4vw,1.8rem)}
+.mani__ttl em{font-style:italic;color:var(--acento-claro)}
+.ficha2{margin-top:clamp(2rem,4vw,3rem);border-top:1px solid rgba(247,244,234,.22)}
+.ficha2 div{display:grid;grid-template-columns:minmax(8rem,.8fr) 1.2fr;gap:1rem;padding-block:1rem;border-bottom:1px solid rgba(247,244,234,.22)}
+.ficha2 dt{font-family:var(--micro);font-size:.62rem;letter-spacing:.24em;text-transform:uppercase;color:rgba(247,244,234,.6);align-self:center}
+.ficha2 dd{font-family:var(--display);font-size:clamp(1rem,1.3vw,1.15rem);color:var(--creme)}
+
+/* quem assina: três retratos com legenda embaixo, no escuro */
+.assina2{background:var(--tinta);color:var(--creme);padding-block:clamp(1rem,3vw,2rem) clamp(4.5rem,10vh,8rem)}
+.assina2__topo{padding-top:clamp(2.5rem,5vw,4rem);border-top:1px solid rgba(247,244,234,.16);margin-bottom:clamp(1.6rem,3vw,2.4rem)}
+.assina2__tit{font-family:var(--display);font-weight:400;font-size:clamp(1.6rem,3vw,2.6rem);line-height:1.05}
+.assina2__tit em{font-style:italic;color:var(--acento-claro)}
+.assina2__grade{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(1rem,2vw,1.6rem)}
+.assina2__grade figure{margin:0}
+.assina2__v{aspect-ratio:4/5;overflow:hidden;background:var(--oliva-esc)}
+.assina2__v video{width:100%;height:100%;object-fit:cover;object-position:center top;display:block;filter:brightness(.9);transition:transform 1.4s var(--ease)}
+.assina2__grade figure:hover video{transform:scale(1.04)}
+.assina2__grade figcaption{display:flex;flex-direction:column;gap:.45rem;padding-top:1.1rem}
+.assina2__nome{font-family:var(--display);font-size:clamp(1.2rem,1.6vw,1.45rem);line-height:1.15}
+.assina2__desc{font-size:.86rem;line-height:1.6;color:rgba(247,244,234,.72);max-width:40ch}
+.assina2__desc em{font-style:italic;color:var(--acento-claro)}
+
+/* casas: abertura com duas imagens sobrepostas e linhas em tabela */
+.uni__topo{display:grid;grid-template-columns:1fr 1.05fr;gap:clamp(2rem,5vw,5rem);align-items:center;margin-bottom:clamp(3rem,6vw,5rem)}
+.uni__topo .h-display{font-size:clamp(2.1rem,4.4vw,3.8rem)}
+.uni__fotos{position:relative;padding:0 0 18% 0}
+.uni__f1,.uni__f2{overflow:hidden;background:var(--tinta);box-shadow:0 30px 60px -30px rgba(36,40,29,.5)}
+.uni__f1{aspect-ratio:16/11;width:86%}
+.uni__f2{position:absolute;right:0;bottom:0;width:52%;aspect-ratio:4/3;border:8px solid var(--areia-luz)}
+.uni__f1 video,.uni__f2 video{width:100%;height:100%;object-fit:cover;display:block}
+.linhas{border-top:1px solid var(--oliva-esc)}
+.linha{display:grid;grid-template-columns:1fr 1fr .6fr .9fr minmax(15.5rem,1.6fr);gap:clamp(1rem,2.4vw,2.4rem);align-items:center;padding-block:clamp(1.6rem,3vw,2.4rem);border-bottom:1px solid var(--linha)}
+.linha h3{font-family:var(--display);font-weight:400;font-size:clamp(1.5rem,2.4vw,2.1rem);line-height:1.05;color:var(--oliva-esc);margin-bottom:.4rem}
+.linha .micro{display:block;font-size:.58rem;letter-spacing:.26em;margin-bottom:.35rem}
+.linha__nome .micro{margin:0}
+.linha__m2 b{font-family:var(--display);font-weight:400;font-size:clamp(2.2rem,4vw,3.4rem);line-height:1;letter-spacing:-.02em;color:var(--oliva-esc)}
+.linha__m2 small{font-size:.38em;margin-left:.2em;letter-spacing:0}
+.linha__dado b{font-family:var(--display);font-weight:400;font-size:clamp(1.05rem,1.4vw,1.25rem);color:var(--oliva-esc)}
+.linha__fim{display:flex;flex-direction:column;gap:1rem;align-items:flex-start}
+.linha__fim p{font-size:.92rem;line-height:1.6;color:rgba(36,40,29,.72)}
+.casa__wa2{display:inline-flex;align-items:center;gap:.7rem;padding:.95rem 1.3rem;background:var(--oliva-esc);color:var(--creme);text-decoration:none;font-family:var(--micro);font-size:.64rem;letter-spacing:.16em;white-space:nowrap;text-transform:uppercase;border-radius:2px;box-shadow:0 14px 30px -16px rgba(36,40,29,.55);transition:background .35s var(--ease)}
+.casa__wa2:hover{background:var(--oliva)}
+.casa__wa2:focus-visible{outline:2px solid var(--oliva-esc);outline-offset:3px}
+
+/* obras: escuro, ano grande, barra até a entrega */
+.obras2__in{display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(2rem,5vw,5rem);align-items:center}
+.obras2__ano{display:flex;flex-direction:column;font-family:var(--display);font-size:clamp(4.5rem,11vw,9rem);line-height:.9;letter-spacing:-.04em;color:var(--acento-claro);margin-bottom:clamp(1.2rem,2.6vw,2rem)}
+.obras2__ano .micro{letter-spacing:.3em;margin-bottom:.6rem}
+.obras2 .lead{margin-top:clamp(1rem,2vw,1.4rem)}
+.obras2__barra{position:relative;height:6px;margin-top:clamp(2rem,4vw,3rem);background:rgba(247,244,234,.14)}
+/* linha neutra entre os dois marcos: não indica percentual de obra */
+.obras2__barra{height:1px}
+.obras2__barra::before,.obras2__barra::after{content:"";position:absolute;top:-4px;width:9px;height:9px;border-radius:50%;background:var(--acento-claro)}
+.obras2__barra::before{left:0}.obras2__barra::after{right:0}
+.obras2__barra span{display:none}
+.obras2__marcos{display:flex;justify-content:space-between;margin-top:.8rem;font-family:var(--micro);font-size:.58rem;letter-spacing:.24em;text-transform:uppercase;color:rgba(247,244,234,.62)}
+
+/* fecho: fundo oliva, formulário num cartão claro */
+.fecho--oliva{background:var(--oliva)}
+.fecho--oliva .cartao{background:var(--creme);box-shadow:0 30px 60px -30px rgba(20,24,14,.55);padding:clamp(1.6rem,3vw,2.6rem)}
+.fecho--oliva .fecho__in{align-items:center}
+
+@media (max-width:860px){
+  .fatos__in{grid-template-columns:1fr;padding-block:.4rem}
+  .fatos li{flex-direction:row;align-items:baseline;justify-content:space-between;gap:1rem;padding:.85rem 0}
+  .fatos li+li{border-left:0;border-top:1px solid rgba(247,244,234,.18)}
+  .fatos span{text-align:right}
+  .cine{min-height:88svh}
+  .cine__rodape{grid-template-columns:1fr}
+  .selo2{max-width:none}
+  .mani{grid-template-columns:1fr;min-height:0}
+  .mani__midia{aspect-ratio:4/5}
+  .mani__txt{padding:3.2rem var(--pad) 3rem}
+  .ficha2 div{grid-template-columns:1fr;gap:.25rem}
+  .assina2__grade{grid-template-columns:1fr;gap:2.2rem}
+  .uni__topo{grid-template-columns:1fr}
+  .linha{grid-template-columns:1fr 1fr;row-gap:1.2rem}
+  .linha__nome,.linha__fim{grid-column:1/-1}
+  .linha__fim .casa__wa2{align-self:stretch;justify-content:center}
+  .obras2__in{grid-template-columns:1fr}
+}
 /* ── celular ────────────────────────────────────────────── */
 @media (max-width:860px){
   /* a foto vira uma faixa no alto e o texto vai para o fundo escuro:
@@ -419,137 +533,127 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </section>
 
 <!-- ══════════ FAIXA DE CONFIANÇA ══════════ -->
-<section class="faixa" aria-label="Destaques">
-  <div class="faixa__trilho">
-    <!-- itens do brief: Taipa Inc, Serena 100 por cento vendido, The Guardian. A lista vai em 4 cópias para o letreiro girar sem emenda; as cópias ficam escondidas do leitor de tela. -->
-    <ul class="faixa__lista">
-      <li><b>Taipa Inc</b><span>Uma realização</span></li>
-      <li><b>Serena 100% vendido</b><span>O primeiro da Taipa</span></li>
-      <li><b><em>The Guardian</em></b><span>Destacou a Praia do Toque</span></li>
-    </ul>
-    <ul class="faixa__lista" aria-hidden="true">
-      <li><b>Taipa Inc</b><span>Uma realização</span></li>
-      <li><b>Serena 100% vendido</b><span>O primeiro da Taipa</span></li>
-      <li><b><em>The Guardian</em></b><span>Destacou a Praia do Toque</span></li>
-    </ul>
-    <ul class="faixa__lista" aria-hidden="true">
-      <li><b>Taipa Inc</b><span>Uma realização</span></li>
-      <li><b>Serena 100% vendido</b><span>O primeiro da Taipa</span></li>
-      <li><b><em>The Guardian</em></b><span>Destacou a Praia do Toque</span></li>
-    </ul>
-    <ul class="faixa__lista" aria-hidden="true">
-      <li><b>Taipa Inc</b><span>Uma realização</span></li>
-      <li><b>Serena 100% vendido</b><span>O primeiro da Taipa</span></li>
-      <li><b><em>The Guardian</em></b><span>Destacou a Praia do Toque</span></li>
-    </ul>
-  </div>
+<section class="fatos" aria-label="Destaques">
+  <ul class="wrap fatos__in">
+    <li class="rv"><b>Taipa Inc</b><span>Uma realização</span></li>
+    <li class="rv" data-d="1"><b>Serena 100% vendido</b><span>O primeiro da Taipa</span></li>
+    <li class="rv" data-d="2"><b><em>The Guardian</em></b><span>Destacou a Praia do Toque</span></li>
+  </ul>
 </section>
 
-<!-- ══════════ A PRAIA ══════════ -->
-<section class="sec sec--luz">
-  <div class="wrap">
-    <h2 class="praia__ttl rv">Na maré baixa, o mar vira <em>piscina natural</em></h2>
-    <p class="micro praia__sub rv" data-d="1">Praia do Toque <i>·</i> São Miguel dos Milagres <i>·</i> Alagoas</p>
-    <figure class="praia__foto rv"><img src="assets/img/praia-banco.webp" width="1000" height="1250" loading="lazy" decoding="async" alt="Banco de areia na maré baixa, com o mar turquesa ao redor"></figure>
-    <div class="praia__txt rv">
+<!-- ══════════ A PRAIA: tela cheia, título sobre o mar ══════════ -->
+<section class="cine cine--praia">
+  <div class="cine__midia"><video data-src="assets/video/praia-capela.mp4" data-poster="assets/video/praia-capela.webp" preload="none" muted loop playsinline aria-label="O mar da Praia do Toque na maré baixa"></video></div>
+  <div class="wrap cine__in">
+    <p class="micro micro--claro rv">Praia do Toque <i>·</i> São Miguel dos Milagres <i>·</i> Alagoas</p>
+    <h2 class="cine__ttl rv">Na maré baixa, o mar vira <em>piscina natural</em></h2>
+    <div class="cine__rodape rv" data-d="1">
       <p>Uma faixa de mar protegida pela segunda maior barreira de corais do mundo, bem na frente do condomínio. Água morna e cristalina, numa das praias mais bonitas do Brasil.</p>
-      <div class="selo">
-        <span>Destacada pelo jornal britânico <em>The Guardian</em> entre as praias mais bonitas do Brasil.</span>
+      <div class="selo2">
         <img src="assets/img/selo-guardian.webp" width="400" height="146" loading="lazy" decoding="async" alt="The Guardian">
+        <span>Destacada pelo jornal britânico <em>The Guardian</em> entre as praias mais bonitas do Brasil.</span>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ══════════ O PROJETO E QUEM ASSINA (uma dobra, como no brief) ══════════ -->
-<section class="sec sec--escura">
-  <div class="wrap">
+<!-- ══════════ O PROJETO E QUEM ASSINA: metade vídeo, metade texto com ficha ══════════ -->
+<section class="mani">
+  <figure class="mani__midia">
+    <video data-src="assets/video/cond-lago.mp4" data-poster="assets/video/cond-lago.webp" preload="none" muted loop playsinline aria-label="O lago ornamental do Bossa"></video>
+    <figcaption class="legenda">Lago ornamental de 1.800 m² · paisagismo de Luiz Carlos Orsini</figcaption>
+  </figure>
+  <div class="mani__txt">
     <div class="track track--claro rv"><span class="em em--cadeira" aria-hidden="true"></span><span class="micro micro--claro">O projeto</span></div>
-    <div class="dois-col">
-      <h2 class="h-display h-display--claro rv">Entre o mar<br>e sua porta, <em>Bossa</em>.</h2>
-      <p class="lead lead--claro rv" data-d="1">São 43 casas em 6 tipologias, com áreas de convívio pensadas para liberdade, privacidade e tempo de qualidade. No centro do projeto, um lago ornamental de 1.800 m² com deck para contemplação.</p>
-    </div>
-    <figure class="largo rv"><video data-src="assets/video/cond-lago.mp4" data-poster="assets/video/cond-lago.webp" preload="none" muted loop playsinline aria-label="O lago ornamental do Bossa"></video></figure>
-    <p class="legenda">Lago ornamental de 1.800 m² · paisagismo de Luiz Carlos Orsini</p>
+    <h2 class="mani__ttl rv">Entre o mar<br>e sua porta, <em>Bossa</em>.</h2>
+    <p class="lead lead--claro rv" data-d="1">São 43 casas em 6 tipologias, com áreas de convívio pensadas para liberdade, privacidade e tempo de qualidade. No centro do projeto, um lago ornamental de 1.800 m² com deck para contemplação.</p>
+    <dl class="ficha2 rv" data-d="2">
+      <div><dt>Arquitetura</dt><dd>Padovani Arquitetos</dd></div>
+      <div><dt>Áreas de convívio</dt><dd>Agra Lemos</dd></div>
+      <div><dt>Paisagismo</dt><dd>Luiz Carlos Orsini</dd></div>
+    </dl>
+  </div>
+</section>
 
-    <h3 class="assina__tit rv">Quem <em>assina</em> o Bossa</h3>
-    <div class="assina">
-      <figure class="assina__c rv">
-        <video data-src="assets/video/padovani.mp4" data-poster="assets/video/padovani.webp" preload="none" muted loop playsinline aria-label="Arquiteto do escritório Padovani Arquitetos"></video>
-        <figcaption><span class="assina__papel">Arquitetura</span><span class="assina__nome">Padovani Arquitetos</span><span class="assina__desc">Só em 2024, somou mais de 20 prêmios, entre eles o <em>iF Design Award</em> e o <em>Architecture MasterPrize</em>.</span></figcaption>
+<section class="assina2">
+  <div class="wrap">
+    <div class="assina2__topo">
+      <h3 class="assina2__tit rv">Quem <em>assina</em> o Bossa</h3>
+    </div>
+    <div class="assina2__grade">
+      <figure class="rv">
+        <div class="assina2__v"><video data-src="assets/video/padovani.mp4" data-poster="assets/video/padovani.webp" preload="none" muted loop playsinline aria-label="Arquiteto do escritório Padovani Arquitetos"></video></div>
+        <figcaption><span class="assina__papel">Arquitetura</span><span class="assina2__nome">Padovani Arquitetos</span><span class="assina2__desc">Só em 2024, somou mais de 20 prêmios, entre eles o <em>iF Design Award</em> e o <em>Architecture MasterPrize</em>.</span></figcaption>
       </figure>
-      <figure class="assina__c rv" data-d="1">
-        <video data-src="assets/video/agra-lemos.mp4" data-poster="assets/video/agra-lemos.webp" preload="none" muted loop playsinline aria-label="Waleska Agra, da Agra Lemos Arquitetos"></video>
-        <figcaption><span class="assina__papel">Áreas de convívio</span><span class="assina__nome">Agra Lemos</span><span class="assina__desc"><em>Daniel Lemos</em> e <em>Waleska Agra</em> assinam pousadas e hotéis de referência na Rota Ecológica, entre eles o Mahré.</span></figcaption>
+      <figure class="rv" data-d="1">
+        <div class="assina2__v"><video data-src="assets/video/agra-lemos.mp4" data-poster="assets/video/agra-lemos.webp" preload="none" muted loop playsinline aria-label="Waleska Agra, da Agra Lemos Arquitetos"></video></div>
+        <figcaption><span class="assina__papel">Áreas de convívio</span><span class="assina2__nome">Agra Lemos</span><span class="assina2__desc"><em>Daniel Lemos</em> e <em>Waleska Agra</em> assinam pousadas e hotéis de referência na Rota Ecológica, entre eles o Mahré.</span></figcaption>
       </figure>
-      <figure class="assina__c rv" data-d="2">
-        <video data-src="assets/video/orsini.mp4" data-poster="assets/video/orsini.webp" preload="none" muted loop playsinline aria-label="O paisagista Luiz Carlos Orsini"></video>
-        <figcaption><span class="assina__papel">Paisagismo</span><span class="assina__nome">Luiz Carlos Orsini</span><span class="assina__desc">Autor dos jardins do <em>Instituto Inhotim</em>, onde desenvolveu o paisagismo de 25 hectares e criou os lagos que inspiraram o Bossa.</span></figcaption>
+      <figure class="rv" data-d="2">
+        <div class="assina2__v"><video data-src="assets/video/orsini.mp4" data-poster="assets/video/orsini.webp" preload="none" muted loop playsinline aria-label="O paisagista Luiz Carlos Orsini"></video></div>
+        <figcaption><span class="assina__papel">Paisagismo</span><span class="assina2__nome">Luiz Carlos Orsini</span><span class="assina2__desc">Autor dos jardins do <em>Instituto Inhotim</em>, onde desenvolveu o paisagismo de 25 hectares e criou os lagos que inspiraram o Bossa.</span></figcaption>
       </figure>
     </div>
   </div>
 </section>
 
-<!-- ══════════ AS CASAS (2 cards, como no brief) ══════════ -->
+<!-- ══════════ AS CASAS: abertura com imagens sobrepostas + linhas, como uma tabela ══════════ -->
 <!-- PENDENTE: confirmar com a Taipa se o "a partir de" ainda é R$ 3,8 milhões. -->
-<section class="sec">
+<section class="sec sec--luz uni">
   <div class="wrap">
-    <div class="track rv"><span class="em em--chave" aria-hidden="true"></span><span class="micro">Disponibilidade</span></div>
-    <h2 class="h-display decode" data-final="As últimas casas|do Bossa">As últimas casas do Bossa</h2>
-    <div class="casas">
-      <article class="casa rv">
-        <div class="casa__foto"><video data-src="assets/video/casa-brisa-persp.mp4" data-poster="assets/video/casa-brisa-persp.webp" preload="none" muted loop playsinline aria-label="Perspectiva animada da Casa Brisa, entre o jardim tropical"></video></div>
-        <div class="casa__txt">
-          <p class="micro">Planta horizontal</p>
-          <h3>Casa Brisa</h3>
-          <p class="casa__desc">Integrada ao jardim e às áreas de convívio.</p>
-          <dl class="ficha">
-            <div><dt>Suítes</dt><dd>4</dd></div>
-            <div><dt>Área</dt><dd>294,85 m²</dd></div>
-          </dl>
-          <p class="casa__preco"><span class="micro">A partir de</span> R$ 3,8 milhões</p>
-          <a class="link casa__wa" data-wa-casa="Casa Brisa" data-wa-origem="card_casa_brisa" href="https://wa.me/5582993128362" target="_blank" rel="noopener"><svg class="wa-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.2a9.8 9.8 0 0 0-8.4 14.8L2.2 21.8l4.9-1.3A9.8 9.8 0 1 0 12 2.2Zm0 1.6a8.2 8.2 0 1 1-4.2 15.3l-.3-.2-2.9.8.8-2.8-.2-.3A8.2 8.2 0 0 1 12 3.8Zm-3.3 4.4c-.2 0-.5 0-.7.3-.3.3-1 1-1 2.4s1 2.8 1.2 3c.1.2 2 3.1 4.9 4.3 2.4 1 2.9.8 3.4.7.5 0 1.7-.7 1.9-1.4.2-.7.2-1.2.2-1.4l-.5-.3-1.8-.9c-.3-.1-.4-.1-.6.1l-.8 1c-.2.2-.3.2-.6.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-2c-.2-.5-.4-.4-.6-.4h-.5Z"/></svg><span>Falar sobre a Casa Brisa</span></a>
-        </div>
+    <div class="uni__topo">
+      <div>
+        <div class="track rv"><span class="em em--chave" aria-hidden="true"></span><span class="micro">Disponibilidade</span></div>
+        <h2 class="h-display decode" data-final="As últimas casas|do Bossa">As últimas casas do Bossa</h2>
+      </div>
+      <div class="uni__fotos rv" data-d="1">
+        <div class="uni__f1"><video data-src="assets/video/casa-brisa-persp.mp4" data-poster="assets/video/casa-brisa-persp.webp" preload="none" muted loop playsinline aria-label="Perspectiva animada da Casa Brisa, entre o jardim tropical"></video></div>
+        <div class="uni__f2"><video data-src="assets/video/casa-lago-persp.mp4" data-poster="assets/video/casa-lago-persp.webp" preload="none" muted loop playsinline aria-label="Perspectiva animada da Casa Lago"></video></div>
+      </div>
+    </div>
+    <div class="linhas">
+      <article class="linha rv">
+        <div class="linha__nome"><h3>Casa Brisa</h3><span class="micro">Planta horizontal</span></div>
+        <div class="linha__m2"><span class="micro">Área</span><b>294,85<small>m²</small></b></div>
+        <div class="linha__dado"><span class="micro">Suítes</span><b>4</b></div>
+        <div class="linha__dado"><span class="micro">A partir de</span><b>R$ 3,8 milhões</b></div>
+        <div class="linha__fim"><p>Integrada ao jardim e às áreas de convívio.</p><a class="casa__wa2" data-wa-casa="Casa Brisa" data-wa-origem="card_casa_brisa" href="https://wa.me/5582993128362" target="_blank" rel="noopener"><svg class="wa-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.2a9.8 9.8 0 0 0-8.4 14.8L2.2 21.8l4.9-1.3A9.8 9.8 0 1 0 12 2.2Zm0 1.6a8.2 8.2 0 1 1-4.2 15.3l-.3-.2-2.9.8.8-2.8-.2-.3A8.2 8.2 0 0 1 12 3.8Zm-3.3 4.4c-.2 0-.5 0-.7.3-.3.3-1 1-1 2.4s1 2.8 1.2 3c.1.2 2 3.1 4.9 4.3 2.4 1 2.9.8 3.4.7.5 0 1.7-.7 1.9-1.4.2-.7.2-1.2.2-1.4l-.5-.3-1.8-.9c-.3-.1-.4-.1-.6.1l-.8 1c-.2.2-.3.2-.6.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-2c-.2-.5-.4-.4-.6-.4h-.5Z"/></svg><span>Falar sobre a Casa Brisa</span></a></div>
       </article>
-      <article class="casa rv" data-d="1">
-        <div class="casa__foto"><video data-src="assets/video/casa-lago-persp.mp4" data-poster="assets/video/casa-lago-persp.webp" preload="none" muted loop playsinline aria-label="Perspectiva animada da Casa Lago"></video></div>
-        <div class="casa__txt">
-          <p class="micro">Com rooftop</p>
-          <h3>Casa Lago</h3>
-          <p class="casa__desc">Rooftop voltado para o fim de tarde, com vista para o lago.</p>
-          <dl class="ficha">
-            <div><dt>Suítes</dt><dd>4 + rooftop</dd></div>
-            <div><dt>Área</dt><dd>a partir de 319 m²</dd></div>
-          </dl>
-          <p class="casa__preco"><span class="micro">A partir de</span> R$ 3,8 milhões</p>
-          <a class="link casa__wa" data-wa-casa="Casa Lago" data-wa-origem="card_casa_lago" href="https://wa.me/5582993128362" target="_blank" rel="noopener"><svg class="wa-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.2a9.8 9.8 0 0 0-8.4 14.8L2.2 21.8l4.9-1.3A9.8 9.8 0 1 0 12 2.2Zm0 1.6a8.2 8.2 0 1 1-4.2 15.3l-.3-.2-2.9.8.8-2.8-.2-.3A8.2 8.2 0 0 1 12 3.8Zm-3.3 4.4c-.2 0-.5 0-.7.3-.3.3-1 1-1 2.4s1 2.8 1.2 3c.1.2 2 3.1 4.9 4.3 2.4 1 2.9.8 3.4.7.5 0 1.7-.7 1.9-1.4.2-.7.2-1.2.2-1.4l-.5-.3-1.8-.9c-.3-.1-.4-.1-.6.1l-.8 1c-.2.2-.3.2-.6.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-2c-.2-.5-.4-.4-.6-.4h-.5Z"/></svg><span>Falar sobre a Casa Lago</span></a>
-        </div>
+      <article class="linha rv" data-d="1">
+        <div class="linha__nome"><h3>Casa Lago</h3><span class="micro">Com rooftop</span></div>
+        <div class="linha__m2"><span class="micro">Área · a partir de</span><b>319<small>m²</small></b></div>
+        <div class="linha__dado"><span class="micro">Suítes</span><b>4 + rooftop</b></div>
+        <div class="linha__dado"><span class="micro">A partir de</span><b>R$ 3,8 milhões</b></div>
+        <div class="linha__fim"><p>Rooftop voltado para o fim de tarde, com vista para o lago.</p><a class="casa__wa2" data-wa-casa="Casa Lago" data-wa-origem="card_casa_lago" href="https://wa.me/5582993128362" target="_blank" rel="noopener"><svg class="wa-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.2a9.8 9.8 0 0 0-8.4 14.8L2.2 21.8l4.9-1.3A9.8 9.8 0 1 0 12 2.2Zm0 1.6a8.2 8.2 0 1 1-4.2 15.3l-.3-.2-2.9.8.8-2.8-.2-.3A8.2 8.2 0 0 1 12 3.8Zm-3.3 4.4c-.2 0-.5 0-.7.3-.3.3-1 1-1 2.4s1 2.8 1.2 3c.1.2 2 3.1 4.9 4.3 2.4 1 2.9.8 3.4.7.5 0 1.7-.7 1.9-1.4.2-.7.2-1.2.2-1.4l-.5-.3-1.8-.9c-.3-.1-.4-.1-.6.1l-.8 1c-.2.2-.3.2-.6.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-2c-.2-.5-.4-.4-.6-.4h-.5Z"/></svg><span>Falar sobre a Casa Lago</span></a></div>
       </article>
     </div>
   </div>
 </section>
 
-<!-- ══════════ A VIVÊNCIA ══════════ -->
-<section class="sec sec--escura">
-  <div class="wrap praia__grade">
+<!-- ══════════ A VIVÊNCIA: tela cheia com o Lounge ══════════ -->
+<section class="cine cine--lounge">
+  <div class="cine__midia"><video data-src="assets/video/taipa-lounge-completo.mp4" data-poster="assets/video/taipa-lounge-completo.webp" preload="none" muted loop playsinline aria-label="Taipa Lounge, com sofás e o mar ao fundo"></video></div>
+  <div class="wrap cine__in">
+    <img class="lounge__logo rv" src="assets/img/logo-taipa-lounge-branca.webp" width="480" height="305" loading="lazy" decoding="async" alt="Taipa Lounge">
+    <h2 class="cine__ttl rv">Enquanto o Bossa nasce, o <em>Lounge</em> já está de pé</h2>
+    <div class="cine__rodape rv" data-d="1">
+      <p>O Taipa Lounge recebe visitas com hora marcada, à beira-mar, com serviço de praia. É onde os proprietários do Bossa se encontram.</p>
+      <a class="link link--claro" href="#agendar"><span>Agendar visita</span><svg viewBox="0 0 24 12" aria-hidden="true"><path d="M0 6h22M17 1l5 5-5 5"/></svg></a>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ AS OBRAS: escuro, ano grande + filme ══════════ -->
+<section class="sec sec--escura obras2">
+  <div class="wrap obras2__in">
     <div>
-      <img class="lounge__logo rv" src="assets/img/logo-taipa-lounge-branca.webp" width="480" height="305" loading="lazy" decoding="async" alt="Taipa Lounge">
-      <h2 class="h-display h-display--claro rv">Enquanto o Bossa nasce, o <em>Lounge</em> já está de pé</h2>
-      <p class="lead lead--claro rv" data-d="1" style="margin-top:clamp(1.2rem,2.4vw,1.8rem)">O Taipa Lounge recebe visitas com hora marcada, à beira-mar, com serviço de praia. É onde os proprietários do Bossa se encontram.</p>
-      <p class="rv" data-d="2" style="margin-top:1.8rem"><a class="link link--claro" href="#agendar"><span>Agendar visita</span><svg viewBox="0 0 24 12" aria-hidden="true"><path d="M0 6h22M17 1l5 5-5 5"/></svg></a></p>
+      <p class="obras2__ano rv"><span class="micro micro--claro">Entrega prevista</span>2028</p>
+      <h2 class="h-display h-display--claro rv">As obras<br><em>já começaram</em></h2>
+      <p class="lead lead--claro rv" data-d="1">O acompanhamento é filmado e enviado aos proprietários a cada etapa. Entrega prevista para agosto de 2028.</p>
+      <div class="obras2__barra rv" data-d="2" aria-hidden="true"><span></span></div>
+      <div class="obras2__marcos rv" data-d="2"><span>Obras em andamento</span><span>Agosto de 2028</span></div>
     </div>
-    <figure class="respira rv" data-d="1" style="aspect-ratio:4/5"><img src="assets/img/visita/lounge-800.webp" width="800" height="1000" loading="lazy" decoding="async" sizes="(max-width: 860px) 100vw, 45vw" alt="Taipa Lounge, com sofás e o mar ao fundo" style="width:100%;height:100%;object-fit:cover"></figure>
-  </div>
-</section>
-
-<!-- ══════════ AS OBRAS ══════════ -->
-<section class="sec sec--luz">
-  <div class="wrap">
-    <div class="obras__topo">
-      <h2 class="h-display rv"><span class="obras__em" aria-hidden="true"></span>As obras<br><em>já começaram</em></h2>
-      <p class="lead rv" data-d="1">O acompanhamento é filmado e enviado aos proprietários a cada etapa. Entrega prevista para agosto de 2028.</p>
-    </div>
-    <figure class="rv">
+    <figure class="rv" data-d="1">
       <!-- O filme só é baixado no clique (nada de vídeo no carregamento). -->
       <button class="filme" type="button" data-video="assets/video/obras" aria-label="Assistir ao registro das obras">
         <img src="assets/img/visita/obras-900.webp" width="900" height="502" loading="lazy" decoding="async" alt="">
@@ -561,12 +665,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </section>
 
 <!-- ══════════ FECHO ══════════ -->
-<section class="sec sec--creme fecho">
+<section class="sec fecho fecho--oliva">
   <div class="wrap fecho__in">
     <div>
-      <div class="track rv"><span class="em em--concha" aria-hidden="true"></span><span class="micro">Agende sua visita</span></div>
-      <h2 class="h-display rv">Conheça o Bossa <em>pessoalmente</em></h2>
-      <p class="lead rv" data-d="1" style="margin-top:clamp(1.2rem,2.4vw,1.8rem)">Agende sua visita: deixe seu contato e nosso anfitrião encontra o melhor jeito de te receber, em São Miguel dos Milagres ou por vídeo.</p>
+      <div class="track track--claro rv"><span class="em em--concha" aria-hidden="true"></span><span class="micro micro--claro">Agende sua visita</span></div>
+      <h2 class="h-display h-display--claro rv">Conheça o Bossa <em>pessoalmente</em></h2>
+      <p class="lead lead--claro rv" data-d="1" style="margin-top:clamp(1.2rem,2.4vw,1.8rem)">Agende sua visita: deixe seu contato e nosso anfitrião encontra o melhor jeito de te receber, em São Miguel dos Milagres ou por vídeo.</p>
     </div>
     <div class="cartao rv" data-d="1">
       <form class="form" data-posicao="fim" novalidate>
