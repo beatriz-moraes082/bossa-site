@@ -29,9 +29,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <!-- Fontes: Roc Grotesk Wide pelo kit do Adobe Fonts da Taipa; Sitka hospedada no site -->
 <link rel="preconnect" href="https://use.typekit.net" crossorigin>
 <link rel="preconnect" href="https://p.typekit.net" crossorigin>
-<link rel="stylesheet" href="https://use.typekit.net/vmk1hte.css">
-<link rel="preload" href="assets/fonts/SitkaVF.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" as="image" href="assets/img/visita/hero-lago-800.webp" media="(max-width: 900px)" fetchpriority="high">
+<link rel="preload" as="style" href="https://use.typekit.net/vmk1hte.css" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://use.typekit.net/vmk1hte.css"></noscript>
+<link rel="preload" href="assets/fonts/SitkaVF.woff2" as="font" type="font/woff2" crossorigin fetchpriority="low">
+<link rel="preload" as="image" href="assets/img/visita/hero-lago-640.webp" media="(max-width: 900px)" fetchpriority="high">
 <link rel="preload" as="image" href="assets/img/visita/hero-lago-1280.webp" media="(min-width: 901px)" fetchpriority="high">
 <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin>
 <style>
@@ -107,7 +108,6 @@ p{margin:0;max-width:62ch}
 @keyframes pinfloat{0%,100%{transform:none}50%{transform:translateY(-7px)}}
 @keyframes ping{0%{opacity:.95;transform:scale(.35)}100%{opacity:0;transform:scale(1.7)}}
 @media (prefers-reduced-motion:no-preference){
- .hero-frame{animation:heroin 2.4s cubic-bezier(.16,1,.3,1) both}
  .pin-b{animation:pindrop 1s cubic-bezier(.16,1,.3,1) both .7s}
  .pin-f{animation:pinfloat 3.8s ease-in-out infinite 1.8s}
  .pin-r{animation:ping 2.6s cubic-bezier(.16,1,.3,1) infinite 1.7s}
@@ -809,7 +809,7 @@ footer .sign img{width:110px}
  <div class="hero-top">
  <div class="hero-stage">
   <div class="hero-frame">
-   <picture><source media="(max-width: 900px)" srcset="assets/img/visita/hero-lago-800.webp" width="800" height="450"><img class="hero-img hero-foto" src="assets/img/visita/hero-lago-1280.webp" width="1280" height="720" fetchpriority="high" decoding="async" alt="Perspectiva do lago ornamental do Bossa, entre jardins e casas"></picture>
+   <picture><source media="(max-width: 900px)" srcset="assets/img/visita/hero-lago-640.webp" width="640" height="360"><img class="hero-img hero-foto" src="assets/img/visita/hero-lago-1280.webp" width="1280" height="720" fetchpriority="high" decoding="async" alt="Perspectiva do lago ornamental do Bossa, entre jardins e casas"></picture>
   </div>
  </div>
   <div class="hero-copy">
